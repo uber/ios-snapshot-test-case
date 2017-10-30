@@ -106,7 +106,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 {
   NSString *filePath = [self _referenceFilePathForSelector:selector identifier:identifier];
   UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-  CGFloat scale = (self.manualScale > 0 ?: [[UIScreen mainScreen] scale]);
+  CGFloat scale = (self.manualScale > 0 ? self.manualScale : [[UIScreen mainScreen] scale]);
   if ((nil == image && NULL != errorPtr) || (image && image.scale != scale)) {
     BOOL exists = [_fileManager fileExistsAtPath:filePath];
     if (!exists) {
@@ -248,7 +248,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     fileName = FBDeviceAgnosticNormalizedFileNameFromOption(fileName, self.agnosticOptions);
   }
 
-  CGFloat scale = (self.manualScale > 0 ?: [[UIScreen mainScreen] scale]);
+  CGFloat scale = (self.manualScale > 0 ? self.manualScale : [[UIScreen mainScreen] scale]);
   if (scale > 1) {
     fileName = [fileName stringByAppendingFormat:@"@%.fx", scale];
   }
