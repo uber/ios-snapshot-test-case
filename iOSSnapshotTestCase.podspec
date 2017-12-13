@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name         = "FBSnapshotTestCase"
-  s.version      = "2.1.4"
+  s.name         = "iOSSnapshotTestCase"
+  s.version      = "2.1.5"
   s.summary      = "Snapshot view unit tests for iOS"
   s.description  = <<-DESC
                     A "snapshot test case" takes a configured UIView or CALayer
@@ -9,10 +9,10 @@ Pod::Spec.new do |s|
                     stored in your source code repository and fails the test if the
                     two images don't match.
                    DESC
-  s.homepage     = "https://github.com/facebook/ios-snapshot-test-case"
-  s.license      = 'BSD'
-  s.author       = 'Facebook'
-  s.source       = { :git => "https://github.com/facebook/ios-snapshot-test-case.git",
+  s.homepage     = "https://github.com/uber/ios-snapshot-test-case"
+  s.license      = 'MIT'
+  s.author       = 'Uber'
+  s.source       = { :git => "https://github.com/uber/ios-snapshot-test-case.git",
                      :tag => s.version.to_s }
   s.ios.deployment_target  = '7.0'
   s.tvos.deployment_target = '9.0'
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
     cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
   end
   s.subspec 'SwiftSupport' do |cs|
-    cs.dependency 'FBSnapshotTestCase/Core'
+    cs.dependency 'iOSSnapshotTestCase/Core'
     cs.source_files = 'FBSnapshotTestCase/**/*.swift'
   end
 end
