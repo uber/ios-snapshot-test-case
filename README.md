@@ -1,7 +1,9 @@
 iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 ======================
 
-[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) [![Cocoa Pod Version](https://cocoapod-badges.herokuapp.com/v/iOSSnapshotTestCase/badge.svg)](http://cocoadocs.org/docsets/iOSSnapshotTestCase/)
+[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) 
+
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
 
 What it does
 ------------
