@@ -2,7 +2,6 @@ iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 ======================
 
 [![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) 
-
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
 
 What it does
@@ -91,7 +90,7 @@ have separate targets for the two types.
 Authors
 -------
 
-`FBSnapshotTestCase` was written at Facebook by
+`iOSSnapshotTestCase` was written at Facebook by
 [Jonathan Dann](https://facebook.com/j.p.dann) with significant contributions by
 [Todd Krabach](https://facebook.com/toddkrabach).
 
@@ -100,6 +99,6 @@ Today it is maintained by [Uber](https://github.com/uber).
 License
 -------
 
-Portions of `FBSnapshotTestCase` written while under Facebook's ownership are BSD-licensed. See `LICENSE`.
+Portions of `iOSSnapshotTestCase` written while under Facebook's ownership are BSD-licensed. See `LICENSE`.
 
-Subsequent contributions to `FBSnapshotTestCase` are MIT–licensed. See `LICENSE`.
+Subsequent contributions to `iOSSnapshotTestCase` are MIT–licensed. See `LICENSE`.
