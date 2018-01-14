@@ -4,7 +4,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target :'FBSnapshotTestCaseDemoTests' do
-  pod 'FBSnapshotTestCase', :path => '..'
+  pod 'iOSSnapshotTestCase', :path => '..'
 end
 
 post_install do |installer|
