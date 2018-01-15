@@ -65,7 +65,6 @@
 
 - (void)testViewSnapshotWithUIAppearanceResizing
 {
-  // If this works properly you should be able to read the whole "Click me!" title in the snapshot
   [[UIButton appearance] setContentEdgeInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
   
   UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
