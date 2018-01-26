@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.6
+
+  - Fixes to podspec
+
+## 2.1.5
+
+  - Project transferred to Uber; license changed from BSD to MIT
+  - Swift 3.1 support
+  - Fixed broken FB_REFERENCE_IMAGE_DIR preprocessor macro
+
 ## 2.1.4
 
   - Swift 3 support (#194)
