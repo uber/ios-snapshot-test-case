@@ -22,5 +22,5 @@ function ci_demo() {
     popd
 }
 
-ci_lib "iPhone 5" && ci_demo "iPhone 5"
-ci_lib "iPhone 6" && ci_demo "iPhone 6"
+ci_lib "iPhone 7" && ci_demo "iPhone 7"
+ci_lib "iPhone X" && ci_demo "iPhone X"
