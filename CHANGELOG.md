@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0
+
+  - Added ability to have more fine–grained control over snapshot file names using deviceAgnostic with a new flag 'agnosticOptions'.
+  - Updated for Xcode 9.2 and Swift 4.
+  - Fixed a bug where the bounds of a snapshot would be incorrect after UIAppearance triggers a change in the intrinsic content size of the UIView being snapshotted.
+
 ## 2.1.6
 
   - Fixes to podspec
@@ -42,7 +48,7 @@ All notable changes to this project will be documented in this file.
   - Added optional tolerance parameter on Swift (#145)
   - Added images to comparison errors (#146)
   - Fixed build for Xcode 7.3 (#152)
-  
+
 ## 2.0.7
 
   - Change FBSnapshotTestController from private to public (#129)
@@ -69,8 +75,8 @@ All notable changes to this project will be documented in this file.
 
 ## 2.0.2
 
-  - Fix for retina comparisons (#96) 
-  
+  - Fix for retina comparisons (#96)
+
 ## 2.0.1
 
   - Allow usage of Objective-C subspec only, for projects supporting iOS 7 (#93) (Thanks to @x2on)
@@ -86,6 +92,6 @@ All notable changes to this project will be documented in this file.
 
 ## 1.8.0
 
-  - The default directories for snapshots images are now **ReferenceImages_32** (32bit) and **ReferenceImages_64** (64bit) and the suffix depends on the architecture when the test is running. (#77) 
+  - The default directories for snapshots images are now **ReferenceImages_32** (32bit) and **ReferenceImages_64** (64bit) and the suffix depends on the architecture when the test is running. (#77)
   	- If a test fails for a given suffix, it will try to load and compare all other suffixes before failing.
   - Added assertion on setRecordMode. (#76)
