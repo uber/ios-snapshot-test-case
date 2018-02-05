@@ -49,3 +49,31 @@ NSString *FBDeviceAgnosticNormalizedFileName(NSString *fileName)
   
   return fileName;
 }
+
+NSString *FBDeviceAgnosticNormalizedFileNameFromOption(NSString *fileName, FBSnapshotTestCaseAgnosticOption option)
+{
+  if ((option & FBSnapshotTestCaseAgnosticOptionDevice) == FBSnapshotTestCaseAgnosticOptionDevice) {
+    UIDevice *device = [UIDevice currentDevice];
+    fileName = [fileName stringByAppendingFormat:@"_%@", device.model];
+  }
+
+  if ((option & FBSnapshotTestCaseAgnosticOptionOS) == FBSnapshotTestCaseAgnosticOptionOS) {
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *os = device.systemVersion;
+    fileName = [fileName stringByAppendingFormat:@"_%@", os];
+  }
+
+  if ((option & FBSnapshotTestCaseAgnosticOptionScreenSize) == FBSnapshotTestCaseAgnosticOptionScreenSize) {
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    CGSize screenSize = keyWindow.bounds.size;
+    fileName = [fileName stringByAppendingFormat:@"_%.0fx%.0f", screenSize.width, screenSize.height];
+  }
+
+  NSMutableCharacterSet *invalidCharacters = [NSMutableCharacterSet new];
+  [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
+  [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
+  NSArray *validComponents = [fileName componentsSeparatedByCharactersInSet:invalidCharacters];
+  fileName = [validComponents componentsJoinedByString:@"_"];
+
+  return fileName;
+}

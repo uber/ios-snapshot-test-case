@@ -52,6 +52,17 @@
   _snapshotController.deviceAgnostic = deviceAgnostic;
 }
 
+- (FBSnapshotTestCaseAgnosticOption)agnosticOptions
+{
+    return _snapshotController.agnosticOptions;
+}
+
+- (void)setAgnosticOptions:(FBSnapshotTestCaseAgnosticOption)agnosticOptions
+{
+    NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+    _snapshotController.agnosticOptions = agnosticOptions;
+}
+
 - (BOOL)usesDrawViewHierarchyInRect
 {
   return _snapshotController.usesDrawViewHierarchyInRect;

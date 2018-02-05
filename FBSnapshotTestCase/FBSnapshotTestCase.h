@@ -101,6 +101,17 @@
 @property (readwrite, nonatomic, assign, getter=isDeviceAgnostic) BOOL deviceAgnostic;
 
 /**
+ When set, allows fine-grained control over how agnostic you want the file names to be.
+
+ Allows you to combine which agnostic options you want in your snapshot file names.
+
+ The default value is FBSnapshotTestCaseAgnosticOptionNone.
+
+ @attention If deviceAgnostic is YES, this bitmask is ignored. deviceAgnostic will be deprecated in a future version of FBSnapshotTestCase.
+ */
+@property (readwrite, nonatomic, assign) FBSnapshotTestCaseAgnosticOption agnosticOptions;
+
+/**
  When YES, renders a snapshot of the complete view hierarchy as visible onscreen.
  There are several things that do not work if renderInContext: is used.
  - UIVisualEffect #70
