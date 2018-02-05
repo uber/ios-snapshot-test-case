@@ -41,7 +41,7 @@ Installation with CocoaPods
      end
      ```
 
-   If you support iOS 7 use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
+   If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
 
    Replace "Tests" with the name of your test project.
 
