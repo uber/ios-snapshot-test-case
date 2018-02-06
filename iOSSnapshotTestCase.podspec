@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = 'Uber'
   s.source       = { :git => "https://github.com/uber/ios-snapshot-test-case.git",
                      :tag => s.version.to_s }
-  s.ios.deployment_target  = '7.0'
+  s.ios.deployment_target  = '8.1'
   s.tvos.deployment_target = '9.0'
   s.requires_arc = true
   s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
