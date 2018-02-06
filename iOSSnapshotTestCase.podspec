@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
   s.default_subspecs = 'SwiftSupport'
+  s.swift_version = '4.0'
   s.subspec 'Core' do |cs|
     cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
     cs.public_header_files = 'FBSnapshotTestCase/FBSnapshotTestCase.h','FBSnapshotTestCase/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/FBSnapshotTestController.h'
