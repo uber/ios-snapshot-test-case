@@ -14,12 +14,8 @@
 - (UIWindow *)fb_strictKeyWindow
 {
   UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-  if (!keyWindow) {
-    [NSException raise:@"FBSnapshotTestCaseNilKeyWindowException"
-                format:@"Snapshot tests must be hosted by an application with a key window. Please ensure your test"
-                        " host sets up a key window at launch (either via storyboards or programmatically) and doesn't"
-                        " do anything to remove it while snapshot tests are running."];
-  }
+  NSString *message = @"Snapshot tests should be hosted by an application with a key window. Please ensure your test host sets up a key window at launch (either via storyboards or programmatically) and doesn't  do anything to remove it while snapshot tests are running.";
+  NSLog(@"[iOS Snapshot Test Case] : %@", message);
   return keyWindow;
 }
 
