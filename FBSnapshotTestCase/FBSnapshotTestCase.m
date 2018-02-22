@@ -74,13 +74,13 @@
   _snapshotController.usesDrawViewHierarchyInRect = usesDrawViewHierarchyInRect;
 }
 
-- (void)setManualScale:(NSUInteger)manualScale
+- (void)setManualScale:(CGFloat)manualScale
 {
   NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
   _snapshotController.manualScale = manualScale;
 }
 
-- (NSUInteger)manualScale
+- (CGFloat)manualScale
 {
   return _snapshotController.manualScale;
 }

@@ -88,7 +88,7 @@ extern NSString *const FBDiffedImageKey;
 /**
  When set to values different than 0, it uses a specific scale for generating and comparing images rather than using the main screen's default scale.
  */
-@property (readwrite, nonatomic, assign) NSUInteger manualScale;
+@property (readwrite, nonatomic, assign) CGFloat manualScale;
 
 /**
  @param testClass The subclass of FBSnapshotTestCase that is using this controller.
