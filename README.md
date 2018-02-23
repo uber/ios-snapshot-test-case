@@ -29,23 +29,38 @@ it will look to users.
 
 `iOSSnapshotTestCase` was developed to make snapshot tests easy.
 
-Installation with CocoaPods
----------------------------
+Installation
+------------
 
-1. Add the following lines to your Podfile:
+**CocoaPods**
 
-     ```
-     target "Tests" do
-       use_frameworks!
-       pod 'iOSSnapshotTestCase'
-     end
-     ```
+Add the following lines to your Podfile:
 
-   If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
+```
+target "Tests" do
+  use_frameworks!
+  pod 'iOSSnapshotTestCase'
+end
+```
 
-   Replace "Tests" with the name of your test project.
+If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
 
-2. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
+Replace "Tests" with the name of your test project.
+
+**Carthage**
+
+Add the following line to your Cartfile:
+
+```
+github "uber/ios-snapshot-test-case"
+```
+
+Run carthage update
+
+Setup
+-----
+
+There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
 
 |Name|Value|
 |:---|:----|
