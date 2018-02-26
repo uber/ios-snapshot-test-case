@@ -31,7 +31,6 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 
 @implementation FBSnapshotTestController
 {
-  NSString *_testName;
   NSFileManager *_fileManager;
 }
 
@@ -112,10 +111,10 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
       *errorPtr = [NSError errorWithDomain:FBSnapshotTestControllerErrorDomain
                                       code:FBSnapshotTestControllerErrorCodeNeedsRecord
                                   userInfo:@{
-               FBReferenceImageFilePathKey: filePath,
-                 NSLocalizedDescriptionKey: @"Unable to load reference image.",
-          NSLocalizedFailureReasonErrorKey: @"Reference image not found. You need to run the test in record mode",
-                   }];
+                                             FBReferenceImageFilePathKey: filePath,
+                                             NSLocalizedDescriptionKey: @"Unable to load reference image.",
+                                             NSLocalizedFailureReasonErrorKey: @"Reference image not found. You need to run the test in record mode",
+                                             }];
     } else {
       *errorPtr = [NSError errorWithDomain:FBSnapshotTestControllerErrorDomain
                                       code:FBSnapshotTestControllerErrorCodeUnknown
@@ -138,7 +137,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   if (NULL != errorPtr) {
     NSString *errorDescription = sameImageDimensions ? @"Images different" : @"Images different sizes";
     NSString *errorReason = sameImageDimensions ? [NSString stringWithFormat:@"image pixels differed by more than %.2f%% from the reference image", tolerance * 100]
-                                                : [NSString stringWithFormat:@"referenceImage:%@, image:%@", NSStringFromCGSize(referenceImage.size), NSStringFromCGSize(image.size)];
+    : [NSString stringWithFormat:@"referenceImage:%@, image:%@", NSStringFromCGSize(referenceImage.size), NSStringFromCGSize(image.size)];
     FBSnapshotTestControllerErrorCode errorCode = sameImageDimensions ? FBSnapshotTestControllerErrorCodeImagesDifferent : FBSnapshotTestControllerErrorCodeImagesDifferentSizes;
 
     *errorPtr = [NSError errorWithDomain:FBSnapshotTestControllerErrorDomain
@@ -234,6 +233,15 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     fileName = [fileName stringByAppendingFormat:@"_%@", identifier];
   }
 
+  if (self.trimTestPrefixFromImageName) {
+
+    NSString *testPrefix = @"test";
+
+    if ([fileName hasPrefix:testPrefix]) {
+      fileName = [fileName substringFromIndex:testPrefix.length];
+    }
+  }
+
   BOOL noAgnosticOption = (self.agnosticOptions & FBSnapshotTestCaseAgnosticOptionNone) == FBSnapshotTestCaseAgnosticOptionNone;
   if (self.isDeviceAgnostic) {
     fileName = FBDeviceAgnosticNormalizedFileName(fileName);
@@ -254,7 +262,9 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   NSString *fileName = [self _fileNameForSelector:selector
                                        identifier:identifier
                                      fileNameType:FBTestSnapshotFileNameTypeReference];
-  NSString *filePath = [_referenceImagesDirectory stringByAppendingPathComponent:_testName];
+
+  NSString *filePath = [_referenceImagesDirectory stringByAppendingPathComponent:self.testName];
+
   filePath = [filePath stringByAppendingPathComponent:fileName];
   return filePath;
 }
@@ -270,7 +280,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   if (getenv("IMAGE_DIFF_DIR")) {
     folderPath = @(getenv("IMAGE_DIFF_DIR"));
   }
-  NSString *filePath = [folderPath stringByAppendingPathComponent:_testName];
+  NSString *filePath = [folderPath stringByAppendingPathComponent:self.testName];
   filePath = [filePath stringByAppendingPathComponent:fileName];
   return filePath;
 }

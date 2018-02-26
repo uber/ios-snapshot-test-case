@@ -86,6 +86,17 @@ extern NSString *const FBDiffedImageKey;
 @property (readwrite, nonatomic, copy) NSString *referenceImagesDirectory;
 
 /**
+ The name of the test. This will be used to create folders with the specified name.
+ */
+@property (readwrite, nonatomic, copy) NSString *testName;
+
+/**
+ If set to true, this will remove the `test` prefix from the image name.
+ Defaults to false.
+ */
+@property (readwrite, nonatomic, assign) BOOL trimTestPrefixFromImageName;
+
+/**
  @param testClass The subclass of FBSnapshotTestCase that is using this controller.
  @returns An instance of FBSnapshotTestController.
  */
