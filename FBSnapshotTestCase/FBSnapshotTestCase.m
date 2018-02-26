@@ -74,6 +74,28 @@
   _snapshotController.usesDrawViewHierarchyInRect = usesDrawViewHierarchyInRect;
 }
 
+-(NSString *)folderName
+{
+  return _snapshotController.testName;
+}
+
+- (void)setFolderName:(NSString *)folderName
+{
+  NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+  _snapshotController.testName = folderName;
+}
+
+-(void)setTrimTestPrefixFromImageName:(BOOL)trimTestPrefixFromImageName
+{
+  NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+  _snapshotController.trimTestPrefixFromImageName = trimTestPrefixFromImageName;
+}
+
+-(BOOL)trimTestPrefixFromImageName
+{
+  return _snapshotController.trimTestPrefixFromImageName;
+}
+
 #pragma mark - Public API
 
 - (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer

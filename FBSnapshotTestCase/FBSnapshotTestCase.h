@@ -112,6 +112,24 @@
 @property (readwrite, nonatomic, assign) FBSnapshotTestCaseAgnosticOption agnosticOptions;
 
 /**
+ Sets the folder name in which the snapshopt is going to be saved.
+
+ The default name is the name of the class where the tests are being ran.
+
+ This property *must* be called *AFTER* [super setUp].
+*/
+@property (readwrite, nonatomic, copy) NSString *folderName;
+
+/**
+ If set to true, this will remove the `test` prefix from the image name.
+
+ This property *must* be called *AFTER* [super setUp].
+
+ Defaults to false.
+*/
+@property (readwrite, nonatomic, assign) BOOL trimTestPrefixFromImageName;
+
+/**
  When YES, renders a snapshot of the complete view hierarchy as visible onscreen.
  There are several things that do not work if renderInContext: is used.
  - UIVisualEffect #70
