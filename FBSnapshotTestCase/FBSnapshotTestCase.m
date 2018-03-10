@@ -124,7 +124,7 @@
     }
   }
     
-  [self _addAttachmentsWithErrors:errors identifier:identifier];
+  [self _addAttachmentsWithErrors:errors identifier:identifier ranInRecordMode:self.recordMode];
     
   if (self.recordMode) {
     if (errors.count > 0) {
@@ -139,10 +139,10 @@
   return nil;
 }
 
-- (void)_addAttachmentsWithErrors:(NSArray<NSError *> *)errors identifier:(NSString *)identifier
+- (void)_addAttachmentsWithErrors:(NSArray<NSError *> *)errors identifier:(NSString *)identifier ranInRecordMode:(BOOL)ranInRecordMode
 {
 #if defined(__IPHONE_11_0) || defined(__TVOS_11_0)
-    if (self.recordMode) {
+    if (ranInRecordMode) {
         UIImage *image = [_snapshotController referenceImageForSelector:self.invocation.selector identifier:identifier error:nil];
         if (image) {
             XCTAttachment *attachment = [XCTAttachment attachmentWithImage:image];
