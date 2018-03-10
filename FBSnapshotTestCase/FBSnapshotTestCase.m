@@ -144,26 +144,26 @@
     if (self.recordMode) {
         UIImage* image = [_snapshotController referenceImageForSelector:self.invocation.selector identifier:identifier error:nil];
         if (image) {
-            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:image];
-            attachement.name = @"Reference Image";
-            [self addAttachment:attachement];
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:image];
+            attachment.name = @"Reference Image";
+            [self addAttachment:attachment];
         }
     } else if (errors.firstObject != nil) {
         NSError *error = errors.firstObject;
         if (error.userInfo[FBReferenceImageKey] != nil) {
-            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBReferenceImageKey]];
-            attachement.name = @"Reference Image";
-            [self addAttachment:attachement];
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:error.userInfo[FBReferenceImageKey]];
+            attachment.name = @"Reference Image";
+            [self addAttachment:attachment];
         }
         if (error.userInfo[FBCapturedImageKey] != nil) {
-            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBCapturedImageKey]];
-            attachement.name = @"Captured Image";
-            [self addAttachment:attachement];
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:error.userInfo[FBCapturedImageKey]];
+            attachment.name = @"Captured Image";
+            [self addAttachment:attachment];
         }
         if (error.userInfo[FBDiffedImageKey] != nil) {
-            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBDiffedImageKey]];
-            attachement.name = @"Diffed Image";
-            [self addAttachment:attachement];
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:error.userInfo[FBDiffedImageKey]];
+            attachment.name = @"Diffed Image";
+            [self addAttachment:attachment];
         }
     }
 #endif
