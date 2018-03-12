@@ -15,10 +15,21 @@
 
 + (NSImage *)fb_imageForLayer:(CALayer *)layer
 {
-  return nil;
-//  CGRect bounds = layer.bounds;
-//  NSAssert1(CGRectGetWidth(bounds), @"Zero width for layer %@", layer);
-//  NSAssert1(CGRectGetHeight(bounds), @"Zero height for layer %@", layer);
+  NSRect bounds = layer.bounds;
+  NSInteger width = bounds.size.width;
+  NSInteger height = bounds.size.height;
+  NSAssert1(width, @"Zero width for layer %@", layer);
+  NSAssert1(height, @"Zero height for layer %@", layer);
+
+  NSBitmapImageRep * imageRepresentation = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:width pixelsHigh:height bitsPerSample:8 samplesPerPixel:4 hasAlpha:true isPlanar:false colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:0];
+  imageRepresentation.size = bounds.size;
+
+  NSGraphicsContext * context = [NSGraphicsContext graphicsContextWithBitmapImageRep: imageRepresentation];
+  [layer layoutIfNeeded];
+  [layer renderInContext: context.CGContext];
+
+  return [[NSImage alloc] initWithCGImage:imageRepresentation.CGImage size:bounds.size];
+
 //
 //  UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
 //  CGContextRef context = UIGraphicsGetCurrentContext();
@@ -41,7 +52,23 @@
 
 + (NSImage *)fb_imageForView:(NSView *)view
 {
-  return nil;
+  NSRect bounds = view.bounds;
+  NSAssert1(CGRectGetWidth(bounds), @"Zero width for view %@", view);
+  NSAssert1(CGRectGetHeight(bounds), @"Zero height for view %@", view);
+
+  NSSize viewSize = bounds.size;
+
+  NSBitmapImageRep * bir = [view bitmapImageRepForCachingDisplayInRect:bounds];
+  bir.size = viewSize;
+
+  [view cacheDisplayInRect:bounds toBitmapImageRep:bir];
+
+  NSImage* rv = [[NSImage alloc] initWithSize:viewSize];
+  [rv addRepresentation:bir];
+
+  return rv;
+
+
 //  // If the input view is already a UIWindow, then just use that. Otherwise wrap in a window.
 //  UIWindow *window = [view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window;
 //  BOOL removeFromSuperview = NO;
