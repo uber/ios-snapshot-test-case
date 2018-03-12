@@ -13,7 +13,11 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_OSX
+  #import <AppKit/AppKit.h>
+#else
+  #import <UIKit/UIKit.h>
+#endif
 
 #import <XCTest/XCTest.h>
 
@@ -164,7 +168,7 @@
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
-- (BOOL)compareSnapshotOfView:(UIView *)view
+- (BOOL)compareSnapshotOfView:(FBTCView *)view
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
                    identifier:(NSString *)identifier
                     tolerance:(CGFloat)tolerance

@@ -20,20 +20,6 @@
                ReferencedContainer = "container:FBSnapshotTestCase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "147E0EF2205685E40042A773"
-               BuildableName = "FBSnapshotTestCase macOS Tests.xctest"
-               BlueprintName = "FBSnapshotTestCase macOS Tests"
-               ReferencedContainer = "container:FBSnapshotTestCase.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -8,9 +8,15 @@
 *
 */
 
+#if os(OSX)
+  public typealias View = NSView
+#else
+  public typealias View = UIView
+#endif
+
 #if swift(>=3)
   public extension FBSnapshotTestCase {
-    public func FBSnapshotVerifyView(_ view: UIView, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+    public func FBSnapshotVerifyView(_ view: View, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
       FBSnapshotVerifyViewOrLayer(view, identifier: identifier, suffixes: suffixes, tolerance: tolerance, file: file, line: line)
     }
 
@@ -26,9 +32,9 @@
       if let envReferenceImageDirectory = envReferenceImageDirectory {
         for suffix in suffixes {
           let referenceImagesDirectory = "\(envReferenceImageDirectory)\(suffix)"
-          if viewOrLayer.isKind(of: UIView.self) {
+          if viewOrLayer.isKind(of: View.self) {
             do {
-              try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+              try compareSnapshot(of: viewOrLayer as! View, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
               comparisonSuccess = true
             } catch let error1 as NSError {
               error = error1
@@ -43,7 +49,7 @@
               comparisonSuccess = false
             }
           } else {
-            assertionFailure("Only UIView and CALayer classes can be snapshotted")
+            assertionFailure("Only \(View.self) and CALayer classes can be snapshotted")
           }
 
           assert(recordMode == false, message: "Test ran in record mode. Reference image is now saved. Disable record mode to perform an actual snapshot comparison!", file: file, line: line)
@@ -67,7 +73,7 @@
   }
 #else
 public extension FBSnapshotTestCase {
-  public func FBSnapshotVerifyView(view: UIView, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+  public func FBSnapshotVerifyView(view: View, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
     FBSnapshotVerifyViewOrLayer(view, identifier: identifier, suffixes: suffixes, tolerance: tolerance, file: file, line: line)
   }
 
@@ -83,9 +89,9 @@ public extension FBSnapshotTestCase {
     if let envReferenceImageDirectory = envReferenceImageDirectory {
       for suffix in suffixes {
         let referenceImagesDirectory = "\(envReferenceImageDirectory)\(suffix)"
-        if viewOrLayer.isKindOfClass(UIView) {
+        if viewOrLayer.isKindOfClass(View) {
           do {
-            try compareSnapshotOfView(viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+            try compareSnapshotOfView(viewOrLayer as! View, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
             comparisonSuccess = true
           } catch let error1 as NSError {
             error = error1
@@ -100,7 +106,7 @@ public extension FBSnapshotTestCase {
             comparisonSuccess = false
           }
         } else {
-          assertionFailure("Only UIView and CALayer classes can be snapshotted")
+          assertionFailure("Only \(View.self) and CALayer classes can be snapshotted")
         }
 
         assert(recordMode == false, message: "Test ran in record mode. Reference image is now saved. Disable record mode to perform an actual snapshot comparison!", file: file, line: line)

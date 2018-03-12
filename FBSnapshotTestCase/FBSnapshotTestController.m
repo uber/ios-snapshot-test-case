@@ -10,11 +10,22 @@
 
 #import <FBSnapshotTestCase/FBSnapshotTestController.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
-#import <FBSnapshotTestCase/UIImage+Compare.h>
-#import <FBSnapshotTestCase/UIImage+Diff.h>
-#import <FBSnapshotTestCase/UIImage+Snapshot.h>
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_OSX
+  #import <FBSnapshotTestCase/NSImage+ImageWithContentsOfFile.h>
+  #import <FBSnapshotTestCase/NSImage+Compare.h>
+  #import <FBSnapshotTestCase/NSImage+Diff.h>
+  #import <FBSnapshotTestCase/NSImage+Snapshot.h>
+  #import <FBSnapshotTestCase/NSScreen+Scale.h>
+  #import <FBSnapshotTestCase/NSImagePNGRepresentation.h>
+  #import <FBSnapshotTestCase/NSStringFromNSSize.h>
+  #import <AppKit/AppKit.h>
+#else
+  #import <FBSnapshotTestCase/UIImage+Compare.h>
+  #import <FBSnapshotTestCase/UIImage+Diff.h>
+  #import <FBSnapshotTestCase/UIImage+Snapshot.h>
+  #import <UIKit/UIKit.h>
+#endif
 
 NSString *const FBSnapshotTestControllerErrorDomain = @"FBSnapshotTestControllerErrorDomain";
 NSString *const FBReferenceImageFilePathKey = @"FBReferenceImageFilePathKey";
@@ -75,7 +86,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                       error:errorPtr];
 }
 
-- (BOOL)compareSnapshotOfView:(UIView *)view
+- (BOOL)compareSnapshotOfView:(FBTCView *)view
                      selector:(SEL)selector
                    identifier:(NSString *)identifier
                         error:(NSError **)errorPtr
@@ -100,12 +111,12 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   }
 }
 
-- (UIImage *)referenceImageForSelector:(SEL)selector
+- (FBTCImage *)referenceImageForSelector:(SEL)selector
                             identifier:(NSString *)identifier
                                  error:(NSError **)errorPtr
 {
   NSString *filePath = [self _referenceFilePathForSelector:selector identifier:identifier];
-  UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+  FBTCImage *image = [FBTCImage imageWithContentsOfFile:filePath];
   if (nil == image && NULL != errorPtr) {
     BOOL exists = [_fileManager fileExistsAtPath:filePath];
     if (!exists) {
@@ -125,8 +136,8 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   return image;
 }
 
-- (BOOL)compareReferenceImage:(UIImage *)referenceImage
-                      toImage:(UIImage *)image
+- (BOOL)compareReferenceImage:(FBTCImage *)referenceImage
+                      toImage:(FBTCImage *)image
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr
 {
@@ -154,8 +165,8 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   return NO;
 }
 
-- (BOOL)saveFailedReferenceImage:(UIImage *)referenceImage
-                       testImage:(UIImage *)testImage
+- (BOOL)saveFailedReferenceImage:(FBTCImage *)referenceImage
+                       testImage:(FBTCImage *)testImage
                         selector:(SEL)selector
                       identifier:(NSString *)identifier
                            error:(NSError **)errorPtr
@@ -195,7 +206,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                              identifier:identifier
                                            fileNameType:FBTestSnapshotFileNameTypeFailedTestDiff];
 
-  UIImage *diffImage = [referenceImage fb_diffWithImage:testImage];
+  FBTCImage *diffImage = [referenceImage fb_diffWithImage:testImage];
   NSData *diffImageData = UIImagePNGRepresentation(diffImage);
 
   if (![diffImageData writeToFile:diffPath options:NSDataWritingAtomic error:errorPtr]) {
@@ -241,8 +252,8 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     fileName = FBDeviceAgnosticNormalizedFileNameFromOption(fileName, self.agnosticOptions);
   }
 
-  if ([[UIScreen mainScreen] scale] > 1) {
-    fileName = [fileName stringByAppendingFormat:@"@%.fx", [[UIScreen mainScreen] scale]];
+  if ([[FBTCScreen mainScreen] scale] > 1) {
+    fileName = [fileName stringByAppendingFormat:@"@%.fx", [[FBTCScreen mainScreen] scale]];
   }
   fileName = [fileName stringByAppendingPathExtension:@"png"];
   return fileName;
@@ -281,9 +292,9 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                      tolerance:(CGFloat)tolerance
                                          error:(NSError **)errorPtr
 {
-  UIImage *referenceImage = [self referenceImageForSelector:selector identifier:identifier error:errorPtr];
+  FBTCImage *referenceImage = [self referenceImageForSelector:selector identifier:identifier error:errorPtr];
   if (nil != referenceImage) {
-    UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
+    FBTCImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
     BOOL imagesSame = [self compareReferenceImage:referenceImage toImage:snapshot tolerance:tolerance error:errorPtr];
     if (!imagesSame) {
       NSError *saveError = nil;
@@ -301,11 +312,11 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                           identifier:(NSString *)identifier
                                error:(NSError **)errorPtr
 {
-  UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
+  FBTCImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
   return [self _saveReferenceImage:snapshot selector:selector identifier:identifier error:errorPtr];
 }
 
-- (BOOL)_saveReferenceImage:(UIImage *)image
+- (BOOL)_saveReferenceImage:(FBTCImage *)image
                    selector:(SEL)selector
                  identifier:(NSString *)identifier
                       error:(NSError **)errorPtr
@@ -343,18 +354,22 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
   return didWrite;
 }
 
-- (UIImage *)_imageForViewOrLayer:(id)viewOrLayer
+- (FBTCImage *)_imageForViewOrLayer:(id)viewOrLayer
 {
-  if ([viewOrLayer isKindOfClass:[UIView class]]) {
+  if ([viewOrLayer isKindOfClass:[FBTCView class]]) {
     if (_usesDrawViewHierarchyInRect) {
-      return [UIImage fb_imageForView:viewOrLayer];
+      return [FBTCImage fb_imageForView:viewOrLayer];
     } else {
-      return [UIImage fb_imageForViewLayer:viewOrLayer];
+      return [FBTCImage fb_imageForViewLayer:viewOrLayer];
     }
   } else if ([viewOrLayer isKindOfClass:[CALayer class]]) {
-    return [UIImage fb_imageForLayer:viewOrLayer];
+    return [FBTCImage fb_imageForLayer:viewOrLayer];
   } else {
-    [NSException raise:@"Only UIView and CALayer classes can be snapshotted" format:@"%@", viewOrLayer];
+#if TARGET_OS_OSX
+    [NSException raise:@"Only NSImage and CALayer classes can be snapshotted" format:@"%@", viewOrLayer];
+#else
+    [NSException raise:@"Only UIImage and CALayer classes can be snapshotted" format:@"%@", viewOrLayer];
+#endif
   }
   return nil;
 }

@@ -10,6 +10,21 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_OSX
+  #define FBTCImage NSImage
+  #define FBTCScreen NSScreen
+  #define FBTCView NSView
+  #define FBTCWindow NSWindow
+
+  #define UIImagePNGRepresentation NSImagePNGRepresentation
+  #define NSStringFromCGSize NSStringFromNSSize
+#else
+  #define FBTCImage UIImage
+  #define FBTCScreen UIScreen
+  #define FBTCView UIView
+  #define FBTCWindow UIWindow
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
