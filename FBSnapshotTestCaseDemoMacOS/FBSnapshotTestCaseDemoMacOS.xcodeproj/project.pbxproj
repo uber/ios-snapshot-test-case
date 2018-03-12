@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14075E3E2056FA0100C4D6FE /* ViewWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14075E3D2056FA0100C4D6FE /* ViewWithText.swift */; };
 		147E0F592056D48F0042A773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E0F582056D48F0042A773 /* AppDelegate.swift */; };
 		147E0F5B2056D48F0042A773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147E0F5A2056D48F0042A773 /* Assets.xcassets */; };
 		147E0F5E2056D48F0042A773 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147E0F5C2056D48F0042A773 /* MainMenu.xib */; };
 		147E0F6A2056D48F0042A773 /* FBSnapshotTestCaseDemoMacOSSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E0F692056D48F0042A773 /* FBSnapshotTestCaseDemoMacOSSnapshotTests.swift */; };
 		21812F2EDD3840501E3D8C5C /* Pods_FBSnapshotTestCaseDemoMacOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872431363FEC53B49096ADCB /* Pods_FBSnapshotTestCaseDemoMacOSTests.framework */; };
+		4F371207372657A6D6FECD68 /* Pods_FBSnapshotTestCaseDemoMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3CB493F707867F74CBA483 /* Pods_FBSnapshotTestCaseDemoMacOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14075E3D2056FA0100C4D6FE /* ViewWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithText.swift; sourceTree = "<group>"; };
 		147E0F552056D48F0042A773 /* FBSnapshotTestCaseDemoMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBSnapshotTestCaseDemoMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		147E0F582056D48F0042A773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		147E0F5A2056D48F0042A773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,7 +37,10 @@
 		147E0F652056D48F0042A773 /* FBSnapshotTestCaseDemoMacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FBSnapshotTestCaseDemoMacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		147E0F692056D48F0042A773 /* FBSnapshotTestCaseDemoMacOSSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSnapshotTestCaseDemoMacOSSnapshotTests.swift; sourceTree = "<group>"; };
 		147E0F6B2056D48F0042A773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E3CB493F707867F74CBA483 /* Pods_FBSnapshotTestCaseDemoMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBSnapshotTestCaseDemoMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		438DE93FE14BECB3961BA5DB /* Pods-FBSnapshotTestCaseDemoMacOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBSnapshotTestCaseDemoMacOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOS/Pods-FBSnapshotTestCaseDemoMacOS.debug.xcconfig"; sourceTree = "<group>"; };
 		488A7EF1ACA82912E2BCC825 /* Pods-FBSnapshotTestCaseDemoMacOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBSnapshotTestCaseDemoMacOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOSTests/Pods-FBSnapshotTestCaseDemoMacOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		54D78D63FBFBD249F5F98FD7 /* Pods-FBSnapshotTestCaseDemoMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBSnapshotTestCaseDemoMacOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOS/Pods-FBSnapshotTestCaseDemoMacOS.release.xcconfig"; sourceTree = "<group>"; };
 		5DEE49A38ADE15F4EB989C13 /* Pods-FBSnapshotTestCaseDemoMacOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBSnapshotTestCaseDemoMacOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOSTests/Pods-FBSnapshotTestCaseDemoMacOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		872431363FEC53B49096ADCB /* Pods_FBSnapshotTestCaseDemoMacOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBSnapshotTestCaseDemoMacOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -44,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F371207372657A6D6FECD68 /* Pods_FBSnapshotTestCaseDemoMacOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,7 @@
 				147E0F5C2056D48F0042A773 /* MainMenu.xib */,
 				147E0F5F2056D48F0042A773 /* Info.plist */,
 				147E0F602056D48F0042A773 /* FBSnapshotTestCaseDemoMacOS.entitlements */,
+				14075E3D2056FA0100C4D6FE /* ViewWithText.swift */,
 			);
 			path = FBSnapshotTestCaseDemoMacOS;
 			sourceTree = "<group>";
@@ -104,6 +112,8 @@
 			children = (
 				5DEE49A38ADE15F4EB989C13 /* Pods-FBSnapshotTestCaseDemoMacOSTests.debug.xcconfig */,
 				488A7EF1ACA82912E2BCC825 /* Pods-FBSnapshotTestCaseDemoMacOSTests.release.xcconfig */,
+				438DE93FE14BECB3961BA5DB /* Pods-FBSnapshotTestCaseDemoMacOS.debug.xcconfig */,
+				54D78D63FBFBD249F5F98FD7 /* Pods-FBSnapshotTestCaseDemoMacOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -112,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				872431363FEC53B49096ADCB /* Pods_FBSnapshotTestCaseDemoMacOSTests.framework */,
+				2E3CB493F707867F74CBA483 /* Pods_FBSnapshotTestCaseDemoMacOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,9 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 147E0F6E2056D48F0042A773 /* Build configuration list for PBXNativeTarget "FBSnapshotTestCaseDemoMacOS" */;
 			buildPhases = (
+				B4EE8D9517AD94EFF91B9996 /* [CP] Check Pods Manifest.lock */,
 				147E0F512056D48F0042A773 /* Sources */,
 				147E0F522056D48F0042A773 /* Frameworks */,
 				147E0F532056D48F0042A773 /* Resources */,
+				E132BAC1C743A4CE08BD2778 /* [CP] Embed Pods Frameworks */,
+				4F5243BEEC903DB9E9950A4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +264,57 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOSTests/Pods-FBSnapshotTestCaseDemoMacOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4F5243BEEC903DB9E9950A4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOS/Pods-FBSnapshotTestCaseDemoMacOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4EE8D9517AD94EFF91B9996 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FBSnapshotTestCaseDemoMacOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E132BAC1C743A4CE08BD2778 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOS/Pods-FBSnapshotTestCaseDemoMacOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FBSnapshotTestCaseDemoMacOS/Pods-FBSnapshotTestCaseDemoMacOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F09AEF929399C906030422AA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				147E0F592056D48F0042A773 /* AppDelegate.swift in Sources */,
+				14075E3E2056FA0100C4D6FE /* ViewWithText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,10 +483,11 @@
 		};
 		147E0F6F2056D48F0042A773 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 438DE93FE14BECB3961BA5DB /* Pods-FBSnapshotTestCaseDemoMacOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FBSnapshotTestCaseDemoMacOS/FBSnapshotTestCaseDemoMacOS.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -435,10 +502,11 @@
 		};
 		147E0F702056D48F0042A773 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54D78D63FBFBD249F5F98FD7 /* Pods-FBSnapshotTestCaseDemoMacOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FBSnapshotTestCaseDemoMacOS/FBSnapshotTestCaseDemoMacOS.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -456,7 +524,7 @@
 			baseConfigurationReference = 5DEE49A38ADE15F4EB989C13 /* Pods-FBSnapshotTestCaseDemoMacOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -475,7 +543,7 @@
 			baseConfigurationReference = 488A7EF1ACA82912E2BCC825 /* Pods-FBSnapshotTestCaseDemoMacOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";

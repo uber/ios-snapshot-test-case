@@ -11,21 +11,42 @@ import XCTest
 import FBSnapshotTestCase
 
 class FBSnapshotTestCaseDemoMacOSSnapshotTests: FBSnapshotTestCase {
-    
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        recordMode = false
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
+
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let view = ViewWithText(frame: NSRect(x: 0, y: 0, width: 200, height: 100))
+        FBSnapshotVerifyView(view)
     }
-    
+
+    func testExample_DrawHierarchy() {
+        usesDrawViewHierarchyInRect = true
+        let view = ViewWithText(frame: NSRect(x: 0, y: 0, width: 200, height: 100))
+        FBSnapshotVerifyView(view)
+    }
+
+    func testLayer() {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        layer.backgroundColor = NSColor.green.cgColor
+
+        let text = CATextLayer()
+        text.string = "Lorem ipsum"
+        text.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        text.backgroundColor = NSColor.clear.cgColor
+        text.foregroundColor = NSColor.yellow.cgColor
+        text.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        layer.addSublayer(text)
+
+        let rectangle = CALayer()
+        rectangle.frame = CGRect(x: 10, y: 60, width: 180, height: 30)
+        rectangle.backgroundColor = NSColor.red.cgColor
+        layer.addSublayer(rectangle)
+
+        FBSnapshotVerifyLayer(layer)
+    }
 
 }

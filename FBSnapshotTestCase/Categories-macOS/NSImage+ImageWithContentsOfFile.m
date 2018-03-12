@@ -11,7 +11,7 @@
 @implementation NSImage (ImageWithContentsOfFile)
 
 + (instancetype)imageWithContentsOfFile:(NSString *)imageFilePath {
-  return nil;
+  return [[NSImage alloc] initWithContentsOfFile:imageFilePath];
 }
 
 @end
