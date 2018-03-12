@@ -17,8 +17,11 @@ Pod::Spec.new do |s|
                      :tag => s.version.to_s }
   s.ios.deployment_target  = '8.1'
   s.tvos.deployment_target = '9.0'
+  s.osx.deployment_target = '10.10'
   s.requires_arc = true
-  s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
+  s.ios.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
+  s.tvos.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
+  s.osx.frameworks   = 'XCTest','AppKit','Foundation','QuartzCore'
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
   s.default_subspecs = 'SwiftSupport'
@@ -26,7 +29,12 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
     cs.public_header_files = 'FBSnapshotTestCase/FBSnapshotTestCase.h','FBSnapshotTestCase/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/FBSnapshotTestController.h'
-    cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
+    cs.ios.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
+    cs.tvos.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
+    cs.osx.private_header_files = 'FBSnapshotTestCase/Categories-macOS/NSImage+Compare.h','FBSnapshotTestCase/Categories-macOS/NSImage+Diff.h','FBSnapshotTestCase/Categories-macOS/NSImage+Snapshot.h'
+    cs.ios.exclude_files = 'FBSnapshotTestCase/Categories-macOS/*.{h,m}'
+    cs.tvos.exclude_files = 'FBSnapshotTestCase/Categories-macOS/*.{h,m}'
+    cs.osx.exclude_files = 'FBSnapshotTestCase/Categories/*.{h,m}'
   end
   s.subspec 'SwiftSupport' do |cs|
     cs.dependency 'iOSSnapshotTestCase/Core'
