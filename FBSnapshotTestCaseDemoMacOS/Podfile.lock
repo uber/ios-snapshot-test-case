@@ -4,9 +4,11 @@ PODS:
   - iOSSnapshotTestCase/Core (2.2.0)
   - iOSSnapshotTestCase/SwiftSupport (2.2.0):
     - iOSSnapshotTestCase/Core
+  - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - iOSSnapshotTestCase (from `..`)
+  - SnapKit
 
 EXTERNAL SOURCES:
   iOSSnapshotTestCase:
@@ -14,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   iOSSnapshotTestCase: 75e9c92ccaf826144b0fb2ec92689b2cf9132cdf
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 23fc15db0c3233d57acaa5dbafbc9f5f89f2f477
+PODFILE CHECKSUM: 5c8f60f5b08dca25573212cb6bf0a1e9e70e883b
 
 COCOAPODS: 1.4.0
