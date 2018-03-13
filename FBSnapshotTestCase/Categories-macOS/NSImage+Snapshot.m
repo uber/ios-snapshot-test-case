@@ -15,13 +15,24 @@
 
 + (NSImage *)fb_imageForLayer:(CALayer *)layer
 {
+  CGFloat backingScaleFactor = layer.contentsScale;
   NSRect bounds = layer.bounds;
   NSInteger width = bounds.size.width;
   NSInteger height = bounds.size.height;
   NSAssert1(width, @"Zero width for layer %@", layer);
   NSAssert1(height, @"Zero height for layer %@", layer);
 
-  NSBitmapImageRep * imageRepresentation = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:width pixelsHigh:height bitsPerSample:8 samplesPerPixel:4 hasAlpha:true isPlanar:false colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:0];
+  NSBitmapImageRep * imageRepresentation = [[NSBitmapImageRep alloc]
+                                            initWithBitmapDataPlanes:nil
+                                            pixelsWide:width * backingScaleFactor
+                                            pixelsHigh:height * backingScaleFactor
+                                            bitsPerSample:8
+                                            samplesPerPixel:4
+                                            hasAlpha:true
+                                            isPlanar:false
+                                            colorSpaceName:NSDeviceRGBColorSpace
+                                            bytesPerRow:0
+                                            bitsPerPixel:0];
   imageRepresentation.size = bounds.size;
 
   NSGraphicsContext * context = [NSGraphicsContext graphicsContextWithBitmapImageRep: imageRepresentation];

@@ -22,18 +22,16 @@ class FBSnapshotTestCaseDemoMacOSSnapshotTests: FBSnapshotTestCase {
         FBSnapshotVerifyView(view)
     }
 
-    func testExample_DrawHierarchy() {
-        usesDrawViewHierarchyInRect = true
-        let view = ViewWithText(frame: NSRect(x: 0, y: 0, width: 200, height: 100))
-        FBSnapshotVerifyView(view)
-    }
-
     func testLayer() {
+        let backingScaleFactor = NSScreen.main?.backingScaleFactor ?? 1
+
         let layer = CALayer()
+        layer.contentsScale = backingScaleFactor
         layer.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
         layer.backgroundColor = NSColor.green.cgColor
 
         let text = CATextLayer()
+        text.contentsScale = backingScaleFactor
         text.string = "Lorem ipsum"
         text.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         text.backgroundColor = NSColor.clear.cgColor
@@ -42,6 +40,7 @@ class FBSnapshotTestCaseDemoMacOSSnapshotTests: FBSnapshotTestCase {
         layer.addSublayer(text)
 
         let rectangle = CALayer()
+        rectangle.contentsScale = backingScaleFactor
         rectangle.frame = CGRect(x: 10, y: 60, width: 180, height: 30)
         rectangle.backgroundColor = NSColor.red.cgColor
         layer.addSublayer(rectangle)
