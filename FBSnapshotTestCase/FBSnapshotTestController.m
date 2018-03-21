@@ -232,15 +232,6 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     fileName = [fileName stringByAppendingFormat:@"_%@", identifier];
   }
 
-  if (self.trimTestPrefixFromImageName) {
-
-    NSString *testPrefix = @"test";
-
-    if ([fileName hasPrefix:testPrefix]) {
-      fileName = [fileName substringFromIndex:testPrefix.length];
-    }
-  }
-
   BOOL noAgnosticOption = (self.agnosticOptions & FBSnapshotTestCaseAgnosticOptionNone) == FBSnapshotTestCaseAgnosticOptionNone;
   if (self.isDeviceAgnostic) {
     fileName = FBDeviceAgnosticNormalizedFileName(fileName);
