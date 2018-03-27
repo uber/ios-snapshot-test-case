@@ -30,7 +30,7 @@
   return self;
 }
 
-- (NSString * _Nonnull)getFolderName
+- (NSString *)getFolderName
 {
   return NSStringFromClass([self class]);
 }
