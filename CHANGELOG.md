@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0
+
+  - Project has been relicensed to MIT via the original project and Facebook's PATENTS file has been removed with their blessing. Thank you Facebook!
+  - Deployment Target is now iOS 8.1, Base SDK is 11.2.
+  - Updated for CocoaPods 1.4.0.
+
 ## 2.2.0
 
   - Added ability to have more fine–grained control over snapshot file names using deviceAgnostic with a new flag 'agnosticOptions'.
