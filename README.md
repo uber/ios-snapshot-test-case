@@ -99,6 +99,4 @@ Today it is maintained by [Uber](https://github.com/uber).
 License
 -------
 
-Portions of `iOSSnapshotTestCase` written while under Facebook's ownership are BSD-licensed. See `LICENSE`.
-
-Subsequent contributions to `iOSSnapshotTestCase` are MIT–licensed. See `LICENSE`.
+`iOSSnapshotTestCase` is MIT–licensed. See `LICENSE`.
