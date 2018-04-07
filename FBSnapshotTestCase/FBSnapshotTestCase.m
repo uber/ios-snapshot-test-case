@@ -39,6 +39,17 @@
     _snapshotController.recordMode = recordMode;
 }
 
+- (BOOL)autoRecord
+{
+    return _snapshotController.autoRecord;
+}
+
+- (void)setAutoRecord:(BOOL)autoRecord
+{
+    NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+    _snapshotController.autoRecord = autoRecord;
+}
+
 - (FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
     return _snapshotController.fileNameOptions;
@@ -120,16 +131,12 @@
     NSMutableArray *errors = [NSMutableArray array];
 
     if (self.recordMode) {
-        NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffixes.firstObject];
-        BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:(identifier) perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:&error];
-        if (!referenceImageSaved) {
-            [errors addObject:error];
-        }
+        [self _writeReferenceImageOfViewOrLayer:viewOrLayer suffixes:suffixes referenceImageDirectory:referenceImageDirectory identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance errors:errors];
     } else {
         for (NSString *suffix in suffixes) {
             NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffix];
             BOOL referenceImageAvailable = [self referenceImageRecordedInDirectory:referenceImagesDirectory identifier:(identifier) error:&error];
-
+            
             if (referenceImageAvailable) {
                 BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:&error];
                 [errors removeAllObjects];
@@ -139,19 +146,24 @@
                 } else {
                     [errors addObject:error];
                 }
+            } else if (!referenceImageAvailable && self.autoRecord) {
+                [self _writeReferenceImageOfViewOrLayer:viewOrLayer suffixes:suffixes referenceImageDirectory:referenceImageDirectory identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance errors:errors];
             } else {
                 [errors addObject:error];
             }
         }
     }
 
-    if (!testSuccess) {
-        return [NSString stringWithFormat:@"Snapshot comparison failed: %@", errors.firstObject];
-    }
     if (self.recordMode) {
         return @"Test ran in record mode. Reference image is now saved. Disable record mode to perform an actual snapshot comparison!";
     }
-
+    else if (!testSuccess && !self.autoRecord) {
+        return [NSString stringWithFormat:@"Snapshot comparison failed: %@", errors.firstObject];
+    }
+    else if (!testSuccess && self.autoRecord) {
+        return [NSString stringWithFormat:@"No previous reference image. New image has been stored for approval."];
+    }
+    
     return nil;
 }
 
@@ -264,6 +276,22 @@
              referenceImagesDirectory:(NSString *)referenceImagesDirectory
                    imageDiffDirectory:(NSString *)imageDiffDirectory
                            identifier:(NSString *)identifier
+                     overallTolerance:(CGFloat)overallTolerance
+                                error:(NSError **)errorPtr
+{
+    return [self _compareSnapshotOfViewOrLayer:(id)viewOrLayer
+                      referenceImagesDirectory:referenceImagesDirectory
+                            imageDiffDirectory:imageDiffDirectory
+                                    identifier:identifier
+                             perPixelTolerance:0
+                              overallTolerance:overallTolerance
+                                         error:errorPtr];
+}
+
+- (BOOL)_compareSnapshotOfViewOrLayer:(id)viewOrLayer
+             referenceImagesDirectory:(NSString *)referenceImagesDirectory
+                   imageDiffDirectory:(NSString *)imageDiffDirectory
+                           identifier:(NSString *)identifier
                     perPixelTolerance:(CGFloat)perPixelTolerance
                      overallTolerance:(CGFloat)overallTolerance
                                 error:(NSError **)errorPtr
@@ -276,6 +304,23 @@
                                            perPixelTolerance:perPixelTolerance
                                             overallTolerance:overallTolerance
                                                        error:errorPtr];
+}
+
+- (void)_writeReferenceImageOfViewOrLayer:(id)viewOrLayer
+                                 suffixes:(NSOrderedSet *)suffixes
+                  referenceImageDirectory:(NSString *)referenceImageDirectory
+                               identifier:(NSString *)identifier
+                        perPixelTolerance:(CGFloat)perPixelTolerance
+                         overallTolerance:(CGFloat)overallTolerance
+                                   errors:(NSMutableArray *)errors
+{
+    NSError *error = nil;
+    NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffixes.firstObject];
+    NSString *imageDiffDirectory = [self getImageDiffDirectoryWithDefault:nil];
+    BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:(identifier) perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:&error];
+    if (!referenceImageSaved) {
+        [errors addObject:error];
+    }
 }
 
 @end

@@ -137,6 +137,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readwrite, nonatomic, assign) BOOL recordMode;
 
 /**
+ When YES, a test will run and fail when no reference image exists, without needing to run
+ recordMode first. The fail image is stored and can be reviewed and accepted as a reference.
+ */
+@property (readwrite, nonatomic, assign) BOOL autoRecord;
+
+/**
  When set, allows fine-grained control over what you want the file names to include.
 
  Allows you to combine which device or simulator specific details you want in your snapshot file names.
@@ -147,7 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
 
  self.fileNameOptions = (FBSnapshotTestCaseFileNameIncludeOptionDevice | FBSnapshotTestCaseFileNameIncludeOptionOS);
  */
-
 @property (readwrite, nonatomic, assign) FBSnapshotTestCaseFileNameIncludeOption fileNameOptions;
 
 /**
@@ -206,6 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 overallTolerance:(CGFloat)overallTolerance
                        defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
                        defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
+
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
