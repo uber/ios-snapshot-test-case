@@ -20,12 +20,14 @@ extern "C" {
  - FBSnapshotTestCaseAgnosticOptionDevice: The file name should be agnostic on the device name, as returned by UIDevice.currentDevice.model.
  - FBSnapshotTestCaseAgnosticOptionOS: The file name should be agnostic on the OS version, as returned by UIDevice.currentDevice.systemVersion.
  - FBSnapshotTestCaseAgnosticOptionScreenSize: The file name should be agnostic on the screen size of the current keyWindow, as returned by UIApplication.sharedApplication.keyWindow.bounds.size.
+ - FBSnapshotTestCaseAgnosticOptionNoSuffix: The file name should not have a suffix concatenated to it regarding the dimension ("@2x" or "@3x", for instance).
  */
 typedef NS_OPTIONS(NSUInteger, FBSnapshotTestCaseAgnosticOption) {
   FBSnapshotTestCaseAgnosticOptionNone = 1 << 0,
   FBSnapshotTestCaseAgnosticOptionDevice = 1 << 1,
   FBSnapshotTestCaseAgnosticOptionOS = 1 << 2,
-  FBSnapshotTestCaseAgnosticOptionScreenSize = 1 << 3
+  FBSnapshotTestCaseAgnosticOptionScreenSize = 1 << 3,
+  FBSnapshotTestCaseAgnosticOptionNoSuffix = 1 << 4
 };
 
 /**

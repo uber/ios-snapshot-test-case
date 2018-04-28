@@ -108,6 +108,33 @@
   XCTAssertTrue([(NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey] containsString:deviceAgnosticReferencePath]);
 }
 
+- (void)testImageWithoutSuffixIfAgnosticOptionIsUsed
+{
+  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+  [controller setDeviceAgnostic:YES];
+  [controller setAgnosticOptions:FBSnapshotTestCaseAgnosticOptionNoSuffix];
+  [controller setReferenceImagesDirectory:@"/dev/null/"];
+  NSError *error = nil;
+  SEL selector = @selector(isDeviceAgnostic);
+  [controller referenceImageForSelector:selector identifier:@"" error:&error];
+  XCTAssertNotNil(error);
+  NSString *imageFilePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
+  XCTAssertTrue([[imageFilePath componentsSeparatedByString:@"@"] count] == 1);
+}
+
+- (void)testImageWithSuffixIfAgnosticOptionIsNotUsed
+{
+  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+  [controller setDeviceAgnostic:YES];
+  [controller setReferenceImagesDirectory:@"/dev/null/"];
+  NSError *error = nil;
+  SEL selector = @selector(isDeviceAgnostic);
+  [controller referenceImageForSelector:selector identifier:@"" error:&error];
+  XCTAssertNotNil(error);
+  NSString *imageFilePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
+  XCTAssertTrue([[imageFilePath componentsSeparatedByString:@"@"] count] == 2);
+}
+
 #pragma mark - Private helper methods
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
