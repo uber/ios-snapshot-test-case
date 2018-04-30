@@ -85,6 +85,12 @@ extern NSString *const FBDiffedImageKey;
 @property (readwrite, nonatomic, copy) NSString *referenceImagesDirectory;
 
 /**
+ The directory in which failed images will be stored.
+ Default: value of environment variable IMAGE_DIFF_DIR if exist, temporary folder otherwise
+ */
+@property (readwrite, nonatomic, copy) NSString *failedImagesDirectory;
+
+/**
  @param testClass The subclass of FBSnapshotTestCase that is using this controller.
  @returns An instance of FBSnapshotTestController.
  */
