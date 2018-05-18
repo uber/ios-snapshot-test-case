@@ -63,6 +63,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     return [self compareSnapshotOfViewOrLayer:layer
                                      selector:selector
                                    identifier:identifier
+                               pixelTolerance:0
                                     tolerance:0
                                         error:errorPtr];
 }
@@ -75,6 +76,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     return [self compareSnapshotOfViewOrLayer:view
                                      selector:selector
                                    identifier:identifier
+                               pixelTolerance:0
                                     tolerance:0
                                         error:errorPtr];
 }
@@ -85,10 +87,26 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                            tolerance:(CGFloat)tolerance
                                error:(NSError **)errorPtr
 {
+    return [self compareSnapshotOfViewOrLayer:viewOrLayer
+                                     selector:selector
+                                   identifier:identifier
+                               pixelTolerance:0
+                                    tolerance:tolerance
+                                        error:errorPtr];
+}
+
+
+- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
+                            selector:(SEL)selector
+                          identifier:(NSString *)identifier
+                      pixelTolerance:(CGFloat)pixelTolerance
+                           tolerance:(CGFloat)tolerance
+                               error:(NSError **)errorPtr
+{
     if (self.recordMode) {
         return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
     } else {
-        return [self _performPixelComparisonWithViewOrLayer:viewOrLayer selector:selector identifier:identifier tolerance:tolerance error:errorPtr];
+        return [self _performPixelComparisonWithViewOrLayer:viewOrLayer selector:selector identifier:identifier pixelTolerance:pixelTolerance tolerance:tolerance error:errorPtr];
     }
 }
 
@@ -122,8 +140,21 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr
 {
+    return [self compareReferenceImage:referenceImage
+                               toImage:image
+                        pixelTolerance:0
+                             tolerance:tolerance
+                                 error:errorPtr];
+}
+
+- (BOOL)compareReferenceImage:(UIImage *)referenceImage
+                      toImage:(UIImage *)image
+               pixelTolerance:(CGFloat)pixelTolerance
+                    tolerance:(CGFloat)tolerance
+                        error:(NSError **)errorPtr
+{
     BOOL sameImageDimensions = CGSizeEqualToSize(referenceImage.size, image.size);
-    if (sameImageDimensions && [referenceImage fb_compareWithImage:image tolerance:tolerance]) {
+    if (sameImageDimensions && [referenceImage fb_compareWithImage:image pixelTolerance:pixelTolerance tolerance:tolerance]) {
         return YES;
     }
 
@@ -267,13 +298,14 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 - (BOOL)_performPixelComparisonWithViewOrLayer:(id)viewOrLayer
                                       selector:(SEL)selector
                                     identifier:(NSString *)identifier
+                                pixelTolerance:(CGFloat)pixelTolerance
                                      tolerance:(CGFloat)tolerance
                                          error:(NSError **)errorPtr
 {
     UIImage *referenceImage = [self referenceImageForSelector:selector identifier:identifier error:errorPtr];
     if (nil != referenceImage) {
         UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
-        BOOL imagesSame = [self compareReferenceImage:referenceImage toImage:snapshot tolerance:tolerance error:errorPtr];
+        BOOL imagesSame = [self compareReferenceImage:referenceImage toImage:snapshot pixelTolerance:pixelTolerance tolerance:tolerance error:errorPtr];
         if (!imagesSame) {
             NSError *saveError = nil;
             if ([self saveFailedReferenceImage:referenceImage testImage:snapshot selector:selector identifier:identifier error:&saveError] == NO) {

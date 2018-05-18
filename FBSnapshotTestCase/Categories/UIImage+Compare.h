@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Compare)
 
-- (BOOL)fb_compareWithImage:(UIImage *)image tolerance:(CGFloat)tolerance;
+- (BOOL)fb_compareWithImage:(UIImage *)image pixelTolerance:(CGFloat)pixelTolerance tolerance:(CGFloat)tolerance;
 
 @end
 
