@@ -121,6 +121,11 @@
  */
 @property (readwrite, nonatomic, assign) BOOL usesDrawViewHierarchyInRect;
 
+/**
+ When set to values different than 0, it uses a specific scale for generating and comparing images rather than using the main screen's default scale.
+ */
+@property (readwrite, nonatomic, assign) CGFloat manualScale;
+
 - (void)setUp NS_REQUIRES_SUPER;
 - (void)tearDown NS_REQUIRES_SUPER;
 
