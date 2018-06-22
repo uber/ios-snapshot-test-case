@@ -34,7 +34,7 @@ Installation with CocoaPods
 
 1. Add the following lines to your Podfile:
 
-     ```
+     ```ruby
      target "Tests" do
        use_frameworks!
        pod 'iOSSnapshotTestCase'
