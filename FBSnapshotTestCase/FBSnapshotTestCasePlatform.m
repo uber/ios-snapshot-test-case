@@ -34,11 +34,27 @@ NSOrderedSet *FBSnapshotTestCaseDefaultSuffixes(void)
 NSString *FBDeviceAgnosticNormalizedFileName(NSString *fileName)
 {
   UIDevice *device = [UIDevice currentDevice];
-  UIWindow *keyWindow = [[UIApplication sharedApplication] fb_strictKeyWindow];
-  CGSize screenSize = keyWindow.bounds.size;
   NSString *os = device.systemVersion;
   
-  fileName = [NSString stringWithFormat:@"%@_%@%@_%.0fx%.0f", fileName, device.model, os, screenSize.width, screenSize.height];
+  if (getenv("IS_UI_TESTING")) {
+    #if TARGET_IPHONE_SIMULATOR
+        NSString *deviceName = NSProcessInfo.processInfo.environment[@"SIMULATOR_DEVICE_NAME"];
+        NSString *screenWidth = NSProcessInfo.processInfo.environment[@"SIMULATOR_MAINSCREEN_WIDTH"];
+        NSString *screenHeight = NSProcessInfo.processInfo.environment[@"SIMULATOR_MAINSCREEN_HEIGHT"];
+    
+        fileName = [NSString stringWithFormat:@"%@_%@_%@_%@x%@", fileName, deviceName, os, screenWidth, screenHeight];
+    #else
+        struct utsname systemInfo;
+        NSString *model = [NSString stringWithCString:systemInfo.machine
+                                             encoding:NSUTF8StringEncoding];
+        fileName = [NSString stringWithFormat:@"%@_%@_%@", fileName, model, os];
+    #endif
+    
+  } else {
+    UIWindow *keyWindow = [[UIApplication sharedApplication] fb_strictKeyWindow];
+    CGSize screenSize = keyWindow.bounds.size;
+    fileName = [NSString stringWithFormat:@"%@_%@%@_%.0fx%.0f", fileName, device.model, os, screenSize.width, screenSize.height];
+  }
   
   NSMutableCharacterSet *invalidCharacters = [NSMutableCharacterSet new];
   [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
