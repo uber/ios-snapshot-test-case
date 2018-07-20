@@ -112,7 +112,7 @@
 {
   FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
   [controller setDeviceAgnostic:YES];
-  [controller setAgnosticOptions:FBSnapshotTestCaseAgnosticOptionNoSuffix];
+  [controller setAgnosticOptions:FBSnapshotTestCaseAgnosticOptionScreenScale];
   [controller setReferenceImagesDirectory:@"/dev/null/"];
   NSError *error = nil;
   SEL selector = @selector(isDeviceAgnostic);
