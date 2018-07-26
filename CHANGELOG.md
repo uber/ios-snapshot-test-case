@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.1.0
+
+  - Adds the ability to set folder name where snapshots are going to be saved for each test case.
+
 ## 3.0.0
 
   - Project has been relicensed to MIT via the original project and Facebook's PATENTS file has been removed with their blessing. Thank you Facebook!

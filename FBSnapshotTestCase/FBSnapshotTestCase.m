@@ -10,10 +10,6 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import <FBSnapshotTestCase/FBSnapshotTestController.h>
 
-@interface FBSnapshotTestCase ()
-  @property (nonatomic, strong, nonnull) NSString *folderName;
-@end
-
 @implementation FBSnapshotTestCase
 {
   FBSnapshotTestController *_snapshotController;
@@ -21,24 +17,10 @@
 
 #pragma mark - Overrides
 
-- (instancetype)initWithInvocation:(NSInvocation *)invocation
-{
-  if (self = [super initWithInvocation:invocation]) {
-
-    self.folderName = [self getFolderName];
-  }
-  return self;
-}
-
-- (NSString *)getFolderName
-{
-  return NSStringFromClass([self class]);
-}
-
 - (void)setUp
 {
   [super setUp];
-  _snapshotController = [[FBSnapshotTestController alloc] initWithTestName:self.folderName];
+  _snapshotController = [[FBSnapshotTestController alloc] initWithTestClass:[self class]];
 }
 
 - (void)tearDown
@@ -89,6 +71,16 @@
 {
   NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
   _snapshotController.usesDrawViewHierarchyInRect = usesDrawViewHierarchyInRect;
+}
+
+-(NSString *)folderName
+{
+    return _snapshotController.folderName;
+}
+
+- (void)setFolderName:(NSString *)folderName
+{
+    _snapshotController.folderName = folderName;
 }
 
 #pragma mark - Public API
