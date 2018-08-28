@@ -10,7 +10,7 @@ Library Test Bundles were once called _Logic_ Test Bundles in Apple's nomenclatu
 
 ### Application tests
 
-Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a Test Host and at test run time, a Simulator too. The attached Simulator provides access to some iOS APIs that only work inside Application test bundles. In our experience, we've seen these:
+Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a Test Host (an application to run your tests in) and at test run time, a simulator too. The attached Test Host provides access to some iOS APIs that only work inside Application test bundles. In our experience, we've seen these:
 
 * `-[UIControl sendActionsForControlEvents:]` — This API is commonly used to trigger actions at runtime and sometimes you might want to use it inside a test to trigger a particular code path which is ordinarily run when a user performs an action. While it does not work inside a Library test bundle, we've written our own version for unit tests (see 'Code Snippets' below) that works well for this need.
 * `UIAppearance` — Most `UIAppearance` APIs break when there is no test host present.
@@ -18,7 +18,13 @@ Unit tests that test parts of an application (such as UIViewControllers, UIWindo
 * Keychain — Keychain operations require an application test bundle.
 
 ### Library tests
-Unit tests that test parts of a framework or library should be part of a Library test bundle. This does not strictly require a Test Host or a Simulator (though in Xcode 9, Apple still launches a Simulator for these tests). If you are using Buck, removing the `test_host_app` option for `apple_test()` rules will allow Buck and `xctool` to run your test bundles in parallel.
+Unit tests that test parts of a framework or library should be part of a Library test bundle. This does not strictly require a Test Host. Not using a Test Host has some advantages: 
+
+* No need to install anything, which makes running your tests faster and reduces the likelihood of Simulator instability
+* The Test Host application will start an application lifecycle, which is state that can cause instability in your tests
+* Only one host application can run at the same time in a Simulator, so tests with a Test Host cannot parallelize on one simulator. The `xctest` stub process spawned without a Test Hist isn’t a full iOS application, so multiple can run in parallel sharing a single simulator.
+
+If you are using [Buck](https://buckbuild.com/), removing the `test_host_app` option for `apple_test()` rules will allow Buck and `xctool` to run your test bundles in parallel.
 
 ### Code Examples
 #### ub_sendActionsForControlEvents:
