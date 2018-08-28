@@ -89,7 +89,7 @@ In Xcode 5
 and later new projects only offer application tests, but older projects will
 have separate targets for the two types.
 
-However, if you are writing snapshot tests inside a library/framework, you might want to keep your test bundle as a library test bundle without a Test Host or Simulator.
+*However*, if you are writing snapshot tests inside a library/framework, you might want to keep your test bundle as a library test bundle without a Test Host or Simulator.
 
 Read more on this [here](docs/LibraryVsApplicationTestBundles.md).
 

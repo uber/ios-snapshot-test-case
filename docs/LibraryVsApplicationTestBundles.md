@@ -10,13 +10,84 @@ Library Test Bundles were once called _Logic_ Test Bundles in Apple's nomenclatu
 
 ### Application tests
 
-Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a Test Host and at test run time, a Simulator too.
+Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a Test Host and at test run time, a Simulator too. The attached Simulator provides access to some iOS APIs that only work inside Application test bundles. In our experience, we've seen these:
 
-There are some APIs that only work inside Application test bundles. In our testing, we've seen a few. Here are some:
-
-* `-[UIControl sendActionsForControlEvents:]` — This API is commonly used to trigger actions at runtime and sometimes you might want to use it inside a test to trigger a particular code path which is ordinarily run when a user performs an action. While it does not work inside a Library test bundle, [we've written our own version for unit tests](FBSnapshotTestCase/Categories/UIControl+SendActions.h) that works well for this need. If you decide to use that category, make sure it can only be seen inside unit tests and not all of your code.
+* `-[UIControl sendActionsForControlEvents:]` — This API is commonly used to trigger actions at runtime and sometimes you might want to use it inside a test to trigger a particular code path which is ordinarily run when a user performs an action. While it does not work inside a Library test bundle, we've written our own version for unit tests (see 'Code Snippets' below) that works well for this need.
 * `UIAppearance` — Most `UIAppearance` APIs break when there is no test host present.
 * `UIWindow` — You cannot make a `UIWindow` you created during your test the 'key window' because `makeKeyAndVisible` crashes at test run time. One workaround is to instead set `hidden` to `false` on the `UIWindow` instance you created. However there still won't be a 'key window' so if you have code that adds a `UIView` as a subview of the `keyWindow` then that will break.
+* Keychain — Keychain operations require an application test bundle.
 
 ### Library tests
-Unit tests that test parts of a framework or libary should be part of a Library test bundle. This does not require a Test Host or a Simulator (though in Xcode 9, Apple still launches a Simulator for these tests).
+Unit tests that test parts of a framework or library should be part of a Library test bundle. This does not strictly require a Test Host or a Simulator (though in Xcode 9, Apple still launches a Simulator for these tests). If you are using Buck, removing the `test_host_app` option for `apple_test()` rules will allow Buck and `xctool` to run your test bundles in parallel.
+
+### Code Examples
+#### ub_sendActionsForControlEvents:
+This code snippet shows how you might replace `UIControl`'s `sendActionForControlEvents:` in a test that is inside a library  test bundle. Since it doesn't have universal application we haven't included it directly in the project. If you decide to use this category, make sure it can only be seen inside unit tests and not all of your code.
+
+```
+/**
+ Copyright (c) 2018 Uber Technologies, Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+
+#import <UIKit/UIKit.h>
+
+@interface UIControl (SendActions)
+
+/**
+ In library test bundles with no test host, the default sendActionsForControlEvents: does not work.
+
+ This replacement mimics the same idea of that method by finding all the targets associated with the control, finding all the actions on that target for the given control event, and invoking those actions on those targets.
+
+ @param controlEvents A bitmask whose set flags specify the control events for which action messages are sent.
+ */
+- (void)ub_sendActionsForControlEvents:(UIControlEvents)controlEvents;
+
+@end
+
+/**
+ UIControlEvents has options in the range 0-8, 12-13, 16-19. 9-11 are reserved for future UIControlEventTouch* options. 14-15 are reserved for other options. If new options are added after 19, this const will need to be updated.
+ */
+static NSUInteger const UIControlEventsMaxOffset = 19;
+
+
+@implementation UIControl (UberTesting)
+
+- (void)ub_sendActionsForControlEvents:(UIControlEvents)controlEvents
+{
+  for (NSUInteger i = 0; i < UIControlEventsMaxOffset; i++) {
+    UIControlEvents controlEvent = 1 << i;
+    if (controlEvents & controlEvent) {
+      for (id target in self.allTargets) {
+        NSArray<NSString *> *targetActions = [self actionsForTarget:target forControlEvent:controlEvent];
+        for (NSString *action in targetActions) {
+          SEL selector = NSSelectorFromString(action);
+          IMP imp = [target methodForSelector:selector];
+          void (*func)(id, SEL, id) = (void *)imp;
+          func(target, selector, self);
+        }
+      }
+    }
+  }
+}
+
+@end
+
+```
