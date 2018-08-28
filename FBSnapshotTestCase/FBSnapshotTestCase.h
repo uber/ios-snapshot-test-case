@@ -111,6 +111,11 @@
 @property (readwrite, nonatomic, assign) FBSnapshotTestCaseAgnosticOption agnosticOptions;
 
 /**
+ Sets the folder name in which the snapshot is going to be saved. This property *must* be called *AFTER* [super setUp].
+ */
+@property (readwrite, nonatomic, copy) NSString *folderName;
+
+/**
  When YES, renders a snapshot of the complete view hierarchy as visible onscreen.
  There are several things that do not work if renderInContext: is used.
  - UIVisualEffect #70

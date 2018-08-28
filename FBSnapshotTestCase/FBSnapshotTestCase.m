@@ -20,7 +20,7 @@
 - (void)setUp
 {
   [super setUp];
-  _snapshotController = [[FBSnapshotTestController alloc] initWithTestName:NSStringFromClass([self class])];
+  _snapshotController = [[FBSnapshotTestController alloc] initWithTestClass:[self class]];
 }
 
 - (void)tearDown
@@ -71,6 +71,16 @@
 {
   NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
   _snapshotController.usesDrawViewHierarchyInRect = usesDrawViewHierarchyInRect;
+}
+
+-(NSString *)folderName
+{
+    return _snapshotController.folderName;
+}
+
+- (void)setFolderName:(NSString *)folderName
+{
+    _snapshotController.folderName = folderName;
 }
 
 #pragma mark - Public API
