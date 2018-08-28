@@ -8,7 +8,6 @@
  */
 
 #import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
-#import <FBSnapshotTestCase/UIApplication+StrictKeyWindow.h>
 #import <UIKit/UIKit.h>
 
 BOOL FBSnapshotTestCaseIs64Bit(void)
@@ -34,7 +33,7 @@ NSOrderedSet *FBSnapshotTestCaseDefaultSuffixes(void)
 NSString *FBDeviceAgnosticNormalizedFileName(NSString *fileName)
 {
   UIDevice *device = [UIDevice currentDevice];
-  UIWindow *keyWindow = [[UIApplication sharedApplication] fb_strictKeyWindow];
+  UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
   CGSize screenSize = keyWindow.bounds.size;
   NSString *os = device.systemVersion;
   

@@ -8,7 +8,6 @@
  */
 
 #import <FBSnapshotTestCase/UIImage+Snapshot.h>
-#import <FBSnapshotTestCase/UIApplication+StrictKeyWindow.h>
 
 @implementation UIImage (Snapshot)
 
@@ -43,7 +42,7 @@
   UIWindow *window = [view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window;
   BOOL removeFromSuperview = NO;
   if (!window) {
-    window = [[UIApplication sharedApplication] fb_strictKeyWindow];
+    window = [[UIApplication sharedApplication] keyWindow];
   }
 
   if (!view.window && view != window) {

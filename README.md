@@ -1,7 +1,7 @@
 iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 ======================
 
-[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) 
+[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
 
 What it does
@@ -82,10 +82,16 @@ Features
 Notes
 -----
 
-Your unit test must be an "application test", not a "logic test." (That is, it
-must be run within the Simulator so that it has access to UIKit.) In Xcode 5
+Your unit tests _should_ be inside an "application" bundle, not a "logic/library" test bundle. (That is, it
+should be run within the Simulator so that it has access to UIKit.)
+
+In Xcode 5
 and later new projects only offer application tests, but older projects will
 have separate targets for the two types.
+
+*However*, if you are writing snapshot tests inside a library/framework, you might want to keep your test bundle as a library test bundle without a Test Host.
+
+Read more on this [here](docs/LibraryVsApplicationTestBundles.md).
 
 Authors
 -------
