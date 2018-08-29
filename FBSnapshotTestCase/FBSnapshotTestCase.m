@@ -73,14 +73,14 @@
   _snapshotController.usesDrawViewHierarchyInRect = usesDrawViewHierarchyInRect;
 }
 
--(NSString *)folderName
+- (NSString *)folderName
 {
-    return _snapshotController.folderName;
+  return _snapshotController.folderName;
 }
 
 - (void)setFolderName:(NSString *)folderName
 {
-    _snapshotController.folderName = folderName;
+  _snapshotController.folderName = folderName;
 }
 
 #pragma mark - Public API
@@ -101,11 +101,11 @@
   if (suffixes.count == 0) {
     return [NSString stringWithFormat:@"Suffixes set cannot be empty %@", suffixes];
   }
-  
+
   BOOL testSuccess = NO;
   NSError *error = nil;
   NSMutableArray *errors = [NSMutableArray array];
-  
+
   if (self.recordMode) {
     NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffixes.firstObject];
     BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory identifier:(identifier) tolerance:tolerance error:&error];
@@ -116,7 +116,7 @@
     for (NSString *suffix in suffixes) {
       NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffix];
       BOOL referenceImageAvailable = [self referenceImageRecordedInDirectory:referenceImagesDirectory identifier:(identifier) error:&error];
-     
+
       if (referenceImageAvailable) {
         BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory identifier:identifier tolerance:tolerance error:&error];
         [errors removeAllObjects];
@@ -131,7 +131,7 @@
       }
     }
   }
-  
+
   if (!testSuccess) {
     return [NSString stringWithFormat:@"Snapshot comparison failed: %@", errors.firstObject];
   }

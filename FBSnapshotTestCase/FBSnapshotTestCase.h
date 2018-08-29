@@ -70,9 +70,9 @@
 /**
  The base class of view snapshotting tests. If you have small UI component, it's often easier to configure it in a test
  and compare an image of the view to a reference image that write lots of complex layout-code tests.
- 
+
  In order to flip the tests in your subclass to record the reference images set @c recordMode to @c YES.
- 
+
  @attention When recording, the reference image directory should be explicitly
             set, otherwise the images may be written to somewhere inside the
             simulator directory.
@@ -111,7 +111,9 @@
 @property (readwrite, nonatomic, assign) FBSnapshotTestCaseAgnosticOption agnosticOptions;
 
 /**
- Sets the folder name in which the snapshot is going to be saved. This property *must* be called *AFTER* [super setUp].
+ Overrides the folder name in which the snapshot is going to be saved.
+
+ @attention This property *must* be called *AFTER* [super setUp].
  */
 @property (readwrite, nonatomic, copy) NSString *folderName;
 
@@ -121,7 +123,7 @@
  - UIVisualEffect #70
  - UIAppearance #91
  - Size Classes #92
- 
+
  @attention If the view does't belong to a UIWindow, it will create one and add the view as a subview.
  */
 @property (readwrite, nonatomic, assign) BOOL usesDrawViewHierarchyInRect;

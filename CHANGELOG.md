@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## 3.1.0
 
-  - Adds the ability to set folder name where snapshots are going to be saved for each test case.
+  - Adds the ability to override the folder name where snapshots are going to be saved for each test class.
+  - Support for library test bundles.
 
 ## 3.0.0
 
