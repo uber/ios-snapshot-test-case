@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 - (instancetype)initWithTestClass:(Class)testClass;
 {
   if (self = [super init]) {
-    self.folderName = NSStringFromClass(testClass);
+    _folderName = NSStringFromClass(testClass);
     _deviceAgnostic = NO;
     _agnosticOptions = FBSnapshotTestCaseAgnosticOptionNone;
 

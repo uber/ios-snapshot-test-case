@@ -12,6 +12,8 @@
 
 #import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, FBSnapshotTestControllerErrorCode) {
   FBSnapshotTestControllerErrorCodeUnknown,
   FBSnapshotTestControllerErrorCodeNeedsRecord,
@@ -82,7 +84,7 @@ extern NSString *const FBDiffedImageKey;
 /**
  The directory in which reference images are stored.
  */
-@property (readwrite, nonatomic, copy) NSString *referenceImagesDirectory;
+@property (readwrite, nonatomic, copy, nullable) NSString *referenceImagesDirectory;
 
 /**
  The directory in which failed snapshot images are stored.
@@ -110,7 +112,7 @@ extern NSString *const FBDiffedImageKey;
  */
 - (BOOL)compareSnapshotOfLayer:(CALayer *)layer
                       selector:(SEL)selector
-                    identifier:(NSString *)identifier
+                    identifier:(nullable NSString *)identifier
                          error:(NSError **)errorPtr;
 
 /**
@@ -123,7 +125,7 @@ extern NSString *const FBDiffedImageKey;
  */
 - (BOOL)compareSnapshotOfView:(UIView *)view
                      selector:(SEL)selector
-                   identifier:(NSString *)identifier
+                   identifier:(nullable NSString *)identifier
                         error:(NSError **)errorPtr;
 
 /**
@@ -137,7 +139,7 @@ extern NSString *const FBDiffedImageKey;
  */
 - (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
                             selector:(SEL)selector
-                          identifier:(NSString *)identifier
+                          identifier:(nullable NSString *)identifier
                            tolerance:(CGFloat)tolerance
                                error:(NSError **)errorPtr;
 
@@ -148,9 +150,9 @@ extern NSString *const FBDiffedImageKey;
  @param errorPtr An error, if this methods returns nil, the error will be something useful.
  @returns An image.
  */
-- (UIImage *)referenceImageForSelector:(SEL)selector
-                            identifier:(NSString *)identifier
-                                 error:(NSError **)errorPtr;
+- (nullable UIImage *)referenceImageForSelector:(SEL)selector
+                                     identifier:(nullable NSString *)identifier
+                                          error:(NSError **)errorPtr;
 
 /**
  Performs a pixel-by-pixel comparison of the two images with an allowable margin of error.
@@ -177,6 +179,8 @@ extern NSString *const FBDiffedImageKey;
 - (BOOL)saveFailedReferenceImage:(UIImage *)referenceImage
                        testImage:(UIImage *)testImage
                         selector:(SEL)selector
-                      identifier:(NSString *)identifier
+                      identifier:(nullable NSString *)identifier
                            error:(NSError **)errorPtr;
 @end
+
+NS_ASSUME_NONNULL_END

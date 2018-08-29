@@ -13,6 +13,8 @@
 extern "C" {
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  An option mask that allows you to cherry pick which parts you want to 'be agnostic' in the snapshot file name.
 
@@ -61,6 +63,8 @@ NSString *FBDeviceAgnosticNormalizedFileName(NSString *fileName);
  @return An @c NSString object containing the passed @c fileName and optionally, with the device model and/or OS and/or screen size appended at the end.
  */
 NSString *FBDeviceAgnosticNormalizedFileNameFromOption(NSString *fileName, FBSnapshotTestCaseAgnosticOption option);
+
+NS_ASSUME_NONNULL_END
 
 #ifdef __cplusplus
 }
