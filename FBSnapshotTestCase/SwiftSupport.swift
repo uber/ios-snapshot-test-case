@@ -17,15 +17,17 @@ public extension FBSnapshotTestCase {
 
   private func FBSnapshotVerifyViewOrLayer(_ viewOrLayer: AnyObject, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
     let envReferenceImageDirectory = self.getReferenceImageDirectory(withDefault: FB_REFERENCE_IMAGE_DIR)
+    let envImageDiffDirectory = self.getImageDiffDirectory(withDefault: IMAGE_DIFF_DIR)
     var error: NSError?
     var comparisonSuccess = false
 
-    if let envReferenceImageDirectory = envReferenceImageDirectory {
+    if let envReferenceImageDirectory = envReferenceImageDirectory, let envImageDiffDirectory = envImageDiffDirectory {
       for suffix in suffixes {
         let referenceImagesDirectory = "\(envReferenceImageDirectory)\(suffix)"
+        let imageDiffDirectory = envImageDiffDirectory
         if viewOrLayer.isKind(of: UIView.self) {
           do {
-            try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+            try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, tolerance: tolerance)
             comparisonSuccess = true
           } catch let error1 as NSError {
             error = error1
@@ -33,7 +35,7 @@ public extension FBSnapshotTestCase {
           }
         } else if viewOrLayer.isKind(of: CALayer.self) {
           do {
-            try compareSnapshot(of: viewOrLayer as! CALayer, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+            try compareSnapshot(of: viewOrLayer as! CALayer, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, tolerance: tolerance)
             comparisonSuccess = true
           } catch let error1 as NSError {
             error = error1
