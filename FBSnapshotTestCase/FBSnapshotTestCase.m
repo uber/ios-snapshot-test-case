@@ -90,14 +90,22 @@
                                suffixes:(NSOrderedSet *)suffixes
                               tolerance:(CGFloat)tolerance
               defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
+              defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory
 {
   if (nil == viewOrLayer) {
     return @"Object to be snapshotted must not be nil";
   }
+
   NSString *referenceImageDirectory = [self getReferenceImageDirectoryWithDefault:defaultReferenceDirectory];
   if (referenceImageDirectory == nil) {
-    return @"Missing value for referenceImagesDirectory - Set FB_REFERENCE_IMAGE_DIR as Environment variable in your scheme.";
+    return @"Missing value for referenceImagesDirectory - Set FB_REFERENCE_IMAGE_DIR as an Environment variable in your scheme.";
   }
+
+  NSString *imageDiffDirectory = [self getImageDiffDirectoryWithDefault:defaultImageDiffDirectory];
+  if (imageDiffDirectory == nil) {
+    return @"Missing value for imageDiffDirectory - Set IMAGE_DIFF_DIR as an Environment variable in your scheme.";
+  }
+
   if (suffixes.count == 0) {
     return [NSString stringWithFormat:@"Suffixes set cannot be empty %@", suffixes];
   }
@@ -108,7 +116,7 @@
 
   if (self.recordMode) {
     NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffixes.firstObject];
-    BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory identifier:(identifier) tolerance:tolerance error:&error];
+    BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:(identifier) tolerance:tolerance error:&error];
     if (!referenceImageSaved) {
       [errors addObject:error];
     }
@@ -118,7 +126,7 @@
       BOOL referenceImageAvailable = [self referenceImageRecordedInDirectory:referenceImagesDirectory identifier:(identifier) error:&error];
 
       if (referenceImageAvailable) {
-        BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory identifier:identifier tolerance:tolerance error:&error];
+        BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:identifier tolerance:tolerance error:&error];
         [errors removeAllObjects];
         if (comparisonSuccess) {
           testSuccess = YES;
@@ -144,12 +152,14 @@
 
 - (BOOL)compareSnapshotOfLayer:(CALayer *)layer
       referenceImagesDirectory:(NSString *)referenceImagesDirectory
+            imageDiffDirectory:(NSString *)imageDiffDirectory
                     identifier:(NSString *)identifier
                      tolerance:(CGFloat)tolerance
                          error:(NSError **)errorPtr
 {
   return [self _compareSnapshotOfViewOrLayer:layer
                     referenceImagesDirectory:referenceImagesDirectory
+                          imageDiffDirectory:imageDiffDirectory
                                   identifier:identifier
                                    tolerance:tolerance
                                        error:errorPtr];
@@ -157,12 +167,14 @@
 
 - (BOOL)compareSnapshotOfView:(UIView *)view
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
+           imageDiffDirectory:(NSString *)imageDiffDirectory
                    identifier:(NSString *)identifier
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr
 {
   return [self _compareSnapshotOfViewOrLayer:view
                     referenceImagesDirectory:referenceImagesDirectory
+                          imageDiffDirectory:imageDiffDirectory
                                   identifier:identifier
                                    tolerance:tolerance
                                        error:errorPtr];
@@ -193,16 +205,29 @@
   return [[NSBundle bundleForClass:self.class].resourcePath stringByAppendingPathComponent:@"ReferenceImages"];
 }
 
+- (NSString *)getImageDiffDirectoryWithDefault:(NSString *)dir
+{
+  NSString *envImageDiffDirectory = [NSProcessInfo processInfo].environment[@"IMAGE_DIFF_DIR"];
+  if (envImageDiffDirectory) {
+    return envImageDiffDirectory;
+  }
+  if (dir && dir.length > 0) {
+    return dir;
+  }
+  return NSTemporaryDirectory();
+}
 
 #pragma mark - Private API
 
 - (BOOL)_compareSnapshotOfViewOrLayer:(id)viewOrLayer
              referenceImagesDirectory:(NSString *)referenceImagesDirectory
+                   imageDiffDirectory:(NSString *)imageDiffDirectory
                            identifier:(NSString *)identifier
                             tolerance:(CGFloat)tolerance
                                 error:(NSError **)errorPtr
 {
   _snapshotController.referenceImagesDirectory = referenceImagesDirectory;
+  _snapshotController.imageDiffDirectory = imageDiffDirectory;
   return [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
                                                   selector:self.invocation.selector
                                                 identifier:identifier

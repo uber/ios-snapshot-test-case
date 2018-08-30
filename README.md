@@ -52,7 +52,7 @@ Installation with CocoaPods
 |`FB_REFERENCE_IMAGE_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages`|
 |`IMAGE_DIFF_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs`|
 
-Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of failed snapshots.
+Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of failed snapshots. There are also [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L34-L43) to set failed image diff directories.
 
 ![](FBSnapshotTestCaseDemo/Scheme_FB_REFERENCE_IMAGE_DIR.png)
 

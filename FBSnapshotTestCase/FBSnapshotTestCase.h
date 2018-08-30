@@ -31,6 +31,20 @@
 #define FB_REFERENCE_IMAGE_DIR ""
 #endif
 
+/*
+ There are three ways of setting failed image diff directories.
+
+ 1. Set the preprocessor macro IMAGE_DIFF_DIR to a double quoted
+ c-string with the path.
+ 2. Set an environment variable named IMAGE_DIFF_DIR with the path. This
+ takes precedence over the preprocessor macro to allow for run-time override.
+ 3. Keep everything unset, which will cause the failed image diff images to be saved
+ inside a temporary directory.
+ */
+#ifndef IMAGE_DIFF_DIR
+#define IMAGE_DIFF_DIR ""
+#endif
+
 /**
  Similar to our much-loved XCTAssert() macros. Use this to perform your test. No need to write an explanation, though.
  @param view The view to snapshot
@@ -61,7 +75,7 @@
 
 #define FBSnapshotVerifyViewOrLayerWithOptions(what__, viewOrLayer__, identifier__, suffixes__, tolerance__) \
 { \
-  NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ tolerance:tolerance__ defaultReferenceDirectory:(@ FB_REFERENCE_IMAGE_DIR)]; \
+  NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ tolerance:tolerance__ defaultReferenceDirectory:(@ FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@ IMAGE_DIFF_DIR)]; \
   BOOL noErrors = (errorDescription == nil); \
   XCTAssertTrue(noErrors, @"%@", errorDescription); \
 }
@@ -138,18 +152,21 @@
  @param suffixes An NSOrderedSet of strings for the different suffixes
  @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care
  @param defaultReferenceDirectory The directory to default to for reference images.
+ @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
  */
 - (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
                              identifier:(NSString *)identifier
                                suffixes:(NSOrderedSet *)suffixes
                               tolerance:(CGFloat)tolerance
-              defaultReferenceDirectory:(NSString *)defaultReferenceDirectory;
+              defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
+              defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory;
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
  @param layer The Layer to snapshot
  @param referenceImagesDirectory The directory in which reference images are stored.
+ @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
@@ -157,6 +174,7 @@
  */
 - (BOOL)compareSnapshotOfLayer:(CALayer *)layer
       referenceImagesDirectory:(NSString *)referenceImagesDirectory
+            imageDiffDirectory:(NSString *)imageDiffDirectory
                     identifier:(NSString *)identifier
                      tolerance:(CGFloat)tolerance
                          error:(NSError **)errorPtr;
@@ -165,6 +183,7 @@
  Performs the comparison or records a snapshot of the view if recordMode is YES.
  @param view The view to snapshot
  @param referenceImagesDirectory The directory in which reference images are stored.
+ @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
@@ -172,6 +191,7 @@
  */
 - (BOOL)compareSnapshotOfView:(UIView *)view
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
+           imageDiffDirectory:(NSString *)imageDiffDirectory
                    identifier:(NSString *)identifier
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr;
@@ -192,8 +212,17 @@
 
  Helper function used to implement the assert macros.
 
- @param dir directory to use if environment variable not specified. Ignored if null or empty.
+ @param dir Directory to use if environment variable not specified. Ignored if null or empty.
  */
 - (NSString *)getReferenceImageDirectoryWithDefault:(NSString *)dir;
+
+/**
+ Returns the failed image diff directory.
+
+ Helper function used to implement the assert macros.
+
+ @param dir Directory to use if environment variable not specified. Ignored if null or empty.
+ */
+- (NSString *)getImageDiffDirectoryWithDefault:(NSString *)dir;
 
 @end
