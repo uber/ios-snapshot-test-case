@@ -80,6 +80,7 @@
   XCTAssertTrue(noErrors, @"%@", errorDescription); \
 }
 
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  The base class of view snapshotting tests. If you have small UI component, it's often easier to configure it in a test
@@ -129,7 +130,7 @@
 
  @attention This property *must* be called *AFTER* [super setUp].
  */
-@property (readwrite, nonatomic, copy) NSString *folderName;
+@property (readwrite, nonatomic, copy, nullable) NSString *folderName;
 
 /**
  When YES, renders a snapshot of the complete view hierarchy as visible onscreen.
@@ -155,12 +156,12 @@
  @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
  */
-- (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
-                             identifier:(NSString *)identifier
-                               suffixes:(NSOrderedSet *)suffixes
-                              tolerance:(CGFloat)tolerance
-              defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
-              defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory;
+- (nullable NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
+                                      identifier:(nullable NSString *)identifier
+                                        suffixes:(NSOrderedSet *)suffixes
+                                       tolerance:(CGFloat)tolerance
+                       defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
+                       defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
@@ -175,7 +176,7 @@
 - (BOOL)compareSnapshotOfLayer:(CALayer *)layer
       referenceImagesDirectory:(NSString *)referenceImagesDirectory
             imageDiffDirectory:(NSString *)imageDiffDirectory
-                    identifier:(NSString *)identifier
+                    identifier:(nullable NSString *)identifier
                      tolerance:(CGFloat)tolerance
                          error:(NSError **)errorPtr;
 
@@ -192,7 +193,7 @@
 - (BOOL)compareSnapshotOfView:(UIView *)view
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
            imageDiffDirectory:(NSString *)imageDiffDirectory
-                   identifier:(NSString *)identifier
+                   identifier:(nullable NSString *)identifier
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr;
 
@@ -204,7 +205,7 @@
  @returns YES if reference image exists.
  */
 - (BOOL)referenceImageRecordedInDirectory:(NSString *)referenceImagesDirectory
-                               identifier:(NSString *)identifier
+                               identifier:(nullable NSString *)identifier
                                     error:(NSError **)errorPtr;
 
 /**
@@ -214,7 +215,7 @@
 
  @param dir Directory to use if environment variable not specified. Ignored if null or empty.
  */
-- (NSString *)getReferenceImageDirectoryWithDefault:(NSString *)dir;
+- (NSString *)getReferenceImageDirectoryWithDefault:(nullable NSString *)dir;
 
 /**
  Returns the failed image diff directory.
@@ -223,6 +224,8 @@
 
  @param dir Directory to use if environment variable not specified. Ignored if null or empty.
  */
-- (NSString *)getImageDiffDirectoryWithDefault:(NSString *)dir;
+- (NSString *)getImageDiffDirectoryWithDefault:(nullable NSString *)dir;
 
 @end
+
+NS_ASSUME_NONNULL_END

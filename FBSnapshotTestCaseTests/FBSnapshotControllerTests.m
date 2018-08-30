@@ -26,7 +26,8 @@
     UIImage *testImage = [self _bundledImageNamed:@"square-copy" type:@"png"];
     XCTAssertNotNil(testImage);
 
-    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     NSError *error = nil;
     XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage tolerance:0 error:&error]);
     XCTAssertNil(error);
@@ -39,7 +40,8 @@
     UIImage *testImage = [self _bundledImageNamed:@"square_with_text" type:@"png"];
     XCTAssertNotNil(testImage);
 
-    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     NSError *error = nil;
     XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage tolerance:0 error:&error]);
     XCTAssertNotNil(error);
@@ -53,7 +55,8 @@
     UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
     XCTAssertNotNil(testImage);
 
-    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With virtually no margin for error, this should fail to be equal
     NSError *error = nil;
     XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage tolerance:0.0001 error:&error]);
@@ -68,7 +71,8 @@
     UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
     XCTAssertNotNil(testImage);
 
-    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With some tolerance these should be considered the same
     NSError *error = nil;
     XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage tolerance:.001 error:&error]);
@@ -77,17 +81,18 @@
 
 - (void)testCompareReferenceImageWithDifferentSizes
 {
-  UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
-  XCTAssertNotNil(referenceImage);
-  UIImage *testImage = [self _bundledImageNamed:@"rect" type:@"png"];
-  XCTAssertNotNil(testImage);
+    UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+    UIImage *testImage = [self _bundledImageNamed:@"rect" type:@"png"];
+    XCTAssertNotNil(testImage);
   
-  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
-  // With some tolerance these should be considered the same
-  NSError *error = nil;
-  XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage tolerance:0 error:&error]);
-  XCTAssertNotNil(error);
-  XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferentSizes);
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+    // With some tolerance these should be considered the same
+    NSError *error = nil;
+    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage tolerance:0 error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferentSizes);
 }
 
 - (void)testFailedImageWithDeviceAgnosticShouldHaveModelOnName
@@ -97,7 +102,8 @@
   UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
   XCTAssertNotNil(testImage);
   
-  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:nil];
+  id testClass = nil;
+  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
   [controller setDeviceAgnostic:YES];
   [controller setReferenceImagesDirectory:@"/dev/null/"];
   NSError *error = nil;
