@@ -13,60 +13,60 @@
 
 + (UIImage *)fb_imageForLayer:(CALayer *)layer
 {
-  CGRect bounds = layer.bounds;
-  NSAssert1(CGRectGetWidth(bounds), @"Zero width for layer %@", layer);
-  NSAssert1(CGRectGetHeight(bounds), @"Zero height for layer %@", layer);
+    CGRect bounds = layer.bounds;
+    NSAssert1(CGRectGetWidth(bounds), @"Zero width for layer %@", layer);
+    NSAssert1(CGRectGetHeight(bounds), @"Zero height for layer %@", layer);
 
-  UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  NSAssert1(context, @"Could not generate context for layer %@", layer);
-  CGContextSaveGState(context);
-  [layer layoutIfNeeded];
-  [layer renderInContext:context];
-  CGContextRestoreGState(context);
+    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    NSAssert1(context, @"Could not generate context for layer %@", layer);
+    CGContextSaveGState(context);
+    [layer layoutIfNeeded];
+    [layer renderInContext:context];
+    CGContextRestoreGState(context);
 
-  UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  return snapshot;
+    UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snapshot;
 }
 
 + (UIImage *)fb_imageForViewLayer:(UIView *)view
 {
-  [view layoutIfNeeded];
-  return [self fb_imageForLayer:view.layer];
+    [view layoutIfNeeded];
+    return [self fb_imageForLayer:view.layer];
 }
 
 + (UIImage *)fb_imageForView:(UIView *)view
 {
-  // If the input view is already a UIWindow, then just use that. Otherwise wrap in a window.
-  UIWindow *window = [view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window;
-  BOOL removeFromSuperview = NO;
-  if (!window) {
-    window = [[UIApplication sharedApplication] keyWindow];
-  }
+    // If the input view is already a UIWindow, then just use that. Otherwise wrap in a window.
+    UIWindow *window = [view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window;
+    BOOL removeFromSuperview = NO;
+    if (!window) {
+        window = [[UIApplication sharedApplication] keyWindow];
+    }
 
-  if (!view.window && view != window) {
-    [window addSubview:view];
-    removeFromSuperview = YES;
-  }
-  
-  [view layoutIfNeeded];
+    if (!view.window && view != window) {
+        [window addSubview:view];
+        removeFromSuperview = YES;
+    }
 
-  CGRect bounds = view.bounds;
-  NSAssert1(CGRectGetWidth(bounds), @"Zero width for view %@", view);
-  NSAssert1(CGRectGetHeight(bounds), @"Zero height for view %@", view);
-    
-  UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
-  [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    [view layoutIfNeeded];
 
-  UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
+    CGRect bounds = view.bounds;
+    NSAssert1(CGRectGetWidth(bounds), @"Zero width for view %@", view);
+    NSAssert1(CGRectGetHeight(bounds), @"Zero height for view %@", view);
 
-  if (removeFromSuperview) {
-    [view removeFromSuperview];
-  }
+    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
 
-  return snapshot;
+    UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    if (removeFromSuperview) {
+        [view removeFromSuperview];
+    }
+
+    return snapshot;
 }
 
 @end

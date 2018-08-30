@@ -15,11 +15,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, FBSnapshotTestControllerErrorCode) {
-  FBSnapshotTestControllerErrorCodeUnknown,
-  FBSnapshotTestControllerErrorCodeNeedsRecord,
-  FBSnapshotTestControllerErrorCodePNGCreationFailed,
-  FBSnapshotTestControllerErrorCodeImagesDifferentSizes,
-  FBSnapshotTestControllerErrorCodeImagesDifferent,
+    FBSnapshotTestControllerErrorCodeUnknown,
+    FBSnapshotTestControllerErrorCodeNeedsRecord,
+    FBSnapshotTestControllerErrorCodePNGCreationFailed,
+    FBSnapshotTestControllerErrorCodeImagesDifferentSizes,
+    FBSnapshotTestControllerErrorCodeImagesDifferent,
 };
 
 /**

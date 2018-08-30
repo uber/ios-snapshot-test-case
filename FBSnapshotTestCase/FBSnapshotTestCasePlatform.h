@@ -24,10 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
  - FBSnapshotTestCaseAgnosticOptionScreenSize: The file name should be agnostic on the screen size of the current keyWindow, as returned by UIApplication.sharedApplication.keyWindow.bounds.size.
  */
 typedef NS_OPTIONS(NSUInteger, FBSnapshotTestCaseAgnosticOption) {
-  FBSnapshotTestCaseAgnosticOptionNone = 1 << 0,
-  FBSnapshotTestCaseAgnosticOptionDevice = 1 << 1,
-  FBSnapshotTestCaseAgnosticOptionOS = 1 << 2,
-  FBSnapshotTestCaseAgnosticOptionScreenSize = 1 << 3
+    FBSnapshotTestCaseAgnosticOptionNone = 1 << 0,
+    FBSnapshotTestCaseAgnosticOptionDevice = 1 << 1,
+    FBSnapshotTestCaseAgnosticOptionOS = 1 << 2,
+    FBSnapshotTestCaseAgnosticOptionScreenSize = 1 << 3
 };
 
 /**
@@ -46,7 +46,7 @@ BOOL FBSnapshotTestCaseIs64Bit(void);
  @returns An @c NSOrderedSet object containing strings that are appended to the reference images directory.
  */
 NSOrderedSet *FBSnapshotTestCaseDefaultSuffixes(void);
-  
+
 /**
  Returns a fully «normalized» file name.
  Strips punctuation and spaces and replaces them with @c _. Also appends the device model, running OS and screen size to the file name.
