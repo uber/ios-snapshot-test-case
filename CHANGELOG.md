@@ -2,10 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## 3.1.0
+## 4.0.0
 
   - Adds the ability to override the folder name where snapshots are going to be saved for each test class.
   - Support for library test bundles.
+  - Support for setting `IMAGE_DIFF_DIR` using preprocessor or a property on `FBSnapshotTestController`.
+  - Formatted the project using clang-format to escape two space indentation hell.
+  - Added nullability annotations to the entire project to improve portability with Swift and the clang analyzer.
+  - Deprecated `deviceAgnostic` in favour of `agnosticOptions`.
+  - Remove dead Swift code in `SwiftSupport.swift`
+
+  Apologies for the churn in this version. We realised after we had merged #14 that we broke semantic versioning with `3.1.0` so we unpublished that podspec and then merged all of the breaking changes we had on the backlog that were pressing.
 
 ## 3.0.0
 
