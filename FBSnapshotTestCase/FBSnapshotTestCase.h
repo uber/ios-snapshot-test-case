@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
  When @c YES appends the name of the device model and OS to the snapshot file name.
  The default value is @c NO.
  */
-@property (readwrite, nonatomic, assign, getter=isDeviceAgnostic) BOOL deviceAgnostic;
+@property (readwrite, nonatomic, assign, getter=isDeviceAgnostic) BOOL deviceAgnostic DEPRECATED_MSG_ATTRIBUTE("Use agnosticOptions instead. deviceAgnostic will be removed in a future version of iOS Snapshot Test Case.");
 
 /**
  When set, allows fine-grained control over how agnostic you want the file names to be.
