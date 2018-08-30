@@ -53,10 +53,10 @@
  @param tolerance The percentage of pixels that can differ and still count as an 'identical' view
  */
 #define FBSnapshotVerifyViewWithOptions(view__, identifier__, suffixes__, tolerance__) \
-  FBSnapshotVerifyViewOrLayerWithOptions(View, view__, identifier__, suffixes__, tolerance__)
+    FBSnapshotVerifyViewOrLayerWithOptions(View, view__, identifier__, suffixes__, tolerance__)
 
 #define FBSnapshotVerifyView(view__, identifier__) \
-  FBSnapshotVerifyViewWithOptions(view__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
+    FBSnapshotVerifyViewWithOptions(view__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
 
 
 /**
@@ -67,18 +67,18 @@
  @param tolerance The percentage of pixels that can differ and still count as an 'identical' layer
  */
 #define FBSnapshotVerifyLayerWithOptions(layer__, identifier__, suffixes__, tolerance__) \
-  FBSnapshotVerifyViewOrLayerWithOptions(Layer, layer__, identifier__, suffixes__, tolerance__)
+    FBSnapshotVerifyViewOrLayerWithOptions(Layer, layer__, identifier__, suffixes__, tolerance__)
 
 #define FBSnapshotVerifyLayer(layer__, identifier__) \
-  FBSnapshotVerifyLayerWithOptions(layer__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
+    FBSnapshotVerifyLayerWithOptions(layer__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
 
 
-#define FBSnapshotVerifyViewOrLayerWithOptions(what__, viewOrLayer__, identifier__, suffixes__, tolerance__) \
-{ \
-  NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ tolerance:tolerance__ defaultReferenceDirectory:(@ FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@ IMAGE_DIFF_DIR)]; \
-  BOOL noErrors = (errorDescription == nil); \
-  XCTAssertTrue(noErrors, @"%@", errorDescription); \
-}
+#define FBSnapshotVerifyViewOrLayerWithOptions(what__, viewOrLayer__, identifier__, suffixes__, tolerance__)                                                                                                                                           \
+    {                                                                                                                                                                                                                                                  \
+        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ tolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
+        BOOL noErrors = (errorDescription == nil);                                                                                                                                                                                                     \
+        XCTAssertTrue(noErrors, @"%@", errorDescription);                                                                                                                                                                                              \
+    }
 
 NS_ASSUME_NONNULL_BEGIN
 

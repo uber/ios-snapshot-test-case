@@ -6,14 +6,14 @@
  *  LICENSE file in the root directory of this source tree.
  *
  */
- 
+
 #import <UIKit/UIKit.h>
 
 #import "FBAppDelegate.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
-  @autoreleasepool {
-      return UIApplicationMain(argc, argv, nil, NSStringFromClass([FBAppDelegate class]));
-  }
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FBAppDelegate class]));
+    }
 }

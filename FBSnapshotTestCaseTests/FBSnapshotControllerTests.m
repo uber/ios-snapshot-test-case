@@ -7,9 +7,9 @@
  *
  */
 
-#import <XCTest/XCTest.h>
-#import "FBSnapshotTestController.h"
 #import "FBSnapshotTestCasePlatform.h"
+#import "FBSnapshotTestController.h"
+#import <XCTest/XCTest.h>
 
 @interface FBSnapshotControllerTests : XCTestCase
 
@@ -85,7 +85,7 @@
     XCTAssertNotNil(referenceImage);
     UIImage *testImage = [self _bundledImageNamed:@"rect" type:@"png"];
     XCTAssertNotNil(testImage);
-  
+
     id testClass = nil;
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With some tolerance these should be considered the same
@@ -97,31 +97,31 @@
 
 - (void)testFailedImageWithDeviceAgnosticShouldHaveModelOnName
 {
-  UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
-  XCTAssertNotNil(referenceImage);
-  UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
-  XCTAssertNotNil(testImage);
-  
-  id testClass = nil;
-  FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
-  [controller setDeviceAgnostic:YES];
-  [controller setReferenceImagesDirectory:@"/dev/null/"];
-  NSError *error = nil;
-  SEL selector = @selector(isDeviceAgnostic);
-  [controller referenceImageForSelector:selector identifier:@"" error:&error];
-  XCTAssertNotNil(error);
-  NSString *deviceAgnosticReferencePath = FBDeviceAgnosticNormalizedFileName(NSStringFromSelector(selector));
-  XCTAssertTrue([(NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey] containsString:deviceAgnosticReferencePath]);
+    UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+    UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
+    XCTAssertNotNil(testImage);
+
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+    [controller setDeviceAgnostic:YES];
+    [controller setReferenceImagesDirectory:@"/dev/null/"];
+    NSError *error = nil;
+    SEL selector = @selector(isDeviceAgnostic);
+    [controller referenceImageForSelector:selector identifier:@"" error:&error];
+    XCTAssertNotNil(error);
+    NSString *deviceAgnosticReferencePath = FBDeviceAgnosticNormalizedFileName(NSStringFromSelector(selector));
+    XCTAssertTrue([(NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey] containsString:deviceAgnosticReferencePath]);
 }
 
 #pragma mark - Private helper methods
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
 {
-  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-  NSString *path = [bundle pathForResource:name ofType:type];
-  NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-  return [[UIImage alloc] initWithData:data];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:name ofType:type];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    return [[UIImage alloc] initWithData:data];
 }
 
 @end
