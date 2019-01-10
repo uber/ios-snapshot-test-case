@@ -156,11 +156,12 @@
         }
     }
 
+    if (self.recordMode) {
+      return @"Test ran in record mode. Reference image is now saved. Disable record mode to perform an actual snapshot comparison!";
+    }
+  
     if (!testSuccess) {
         return [NSString stringWithFormat:@"Snapshot comparison failed: %@", errors.firstObject];
-    }
-    if (self.recordMode) {
-        return @"Test ran in record mode. Reference image is now saved. Disable record mode to perform an actual snapshot comparison!";
     }
 
     return nil;
