@@ -8,15 +8,15 @@
  */
 
 public extension FBSnapshotTestCase {
-  public func FBSnapshotVerifyView(_ view: UIView, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
-    FBSnapshotVerifyViewOrLayer(view, identifier: identifier, suffixes: suffixes, tolerance: tolerance, file: file, line: line)
+  public func FBSnapshotVerifyView(_ view: UIView, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), pixelTolerance: CGFloat = 0, tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+    FBSnapshotVerifyViewOrLayer(view, identifier: identifier, suffixes: suffixes, pixelTolerance: pixelTolerance, tolerance: tolerance, file: file, line: line)
   }
 
-  public func FBSnapshotVerifyLayer(_ layer: CALayer, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
-    FBSnapshotVerifyViewOrLayer(layer, identifier: identifier, suffixes: suffixes, tolerance: tolerance, file: file, line: line)
+  public func FBSnapshotVerifyLayer(_ layer: CALayer, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), pixelTolerance: CGFloat = 0, tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+    FBSnapshotVerifyViewOrLayer(layer, identifier: identifier, suffixes: suffixes, pixelTolerance: pixelTolerance, tolerance: tolerance, file: file, line: line)
   }
 
-  private func FBSnapshotVerifyViewOrLayer(_ viewOrLayer: AnyObject, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+  private func FBSnapshotVerifyViewOrLayer(_ viewOrLayer: AnyObject, identifier: String = "", suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), pixelTolerance: CGFloat = 0, tolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
     let envReferenceImageDirectory = self.getReferenceImageDirectory(withDefault: FB_REFERENCE_IMAGE_DIR)
     let envImageDiffDirectory = self.getImageDiffDirectory(withDefault: IMAGE_DIFF_DIR)
     var error: NSError?
@@ -27,7 +27,7 @@ public extension FBSnapshotTestCase {
       let imageDiffDirectory = envImageDiffDirectory
       if viewOrLayer.isKind(of: UIView.self) {
         do {
-          try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, tolerance: tolerance)
+          try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, pixelTolerance: pixelTolerance, tolerance: tolerance)
           comparisonSuccess = true
         } catch let error1 as NSError {
           error = error1
@@ -35,7 +35,7 @@ public extension FBSnapshotTestCase {
         }
       } else if viewOrLayer.isKind(of: CALayer.self) {
         do {
-          try compareSnapshot(of: viewOrLayer as! CALayer, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, tolerance: tolerance)
+          try compareSnapshot(of: viewOrLayer as! CALayer, referenceImagesDirectory: referenceImagesDirectory, imageDiffDirectory: imageDiffDirectory, identifier: identifier, pixelTolerance: pixelTolerance, tolerance: tolerance)
           comparisonSuccess = true
         } catch let error1 as NSError {
           error = error1

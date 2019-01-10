@@ -91,6 +91,23 @@
               defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
               defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory
 {
+    return [self snapshotVerifyViewOrLayer:viewOrLayer
+                                identifier:identifier
+                                  suffixes:suffixes
+                            pixelTolerance:0
+                                 tolerance:tolerance
+                 defaultReferenceDirectory:defaultReferenceDirectory
+                 defaultImageDiffDirectory:defaultImageDiffDirectory];
+}
+
+- (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
+                             identifier:(NSString *)identifier
+                               suffixes:(NSOrderedSet *)suffixes
+                         pixelTolerance:(CGFloat)pixelTolerance
+                              tolerance:(CGFloat)tolerance
+              defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
+              defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory
+{
     if (nil == viewOrLayer) {
         return @"Object to be snapshotted must not be nil";
     }
@@ -115,7 +132,7 @@
 
     if (self.recordMode) {
         NSString *referenceImagesDirectory = [NSString stringWithFormat:@"%@%@", referenceImageDirectory, suffixes.firstObject];
-        BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:(identifier) tolerance:tolerance error:&error];
+        BOOL referenceImageSaved = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:(identifier) pixelTolerance:pixelTolerance tolerance:tolerance error:&error];
         if (!referenceImageSaved) {
             [errors addObject:error];
         }
@@ -125,7 +142,7 @@
             BOOL referenceImageAvailable = [self referenceImageRecordedInDirectory:referenceImagesDirectory identifier:(identifier) error:&error];
 
             if (referenceImageAvailable) {
-                BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:identifier tolerance:tolerance error:&error];
+                BOOL comparisonSuccess = [self _compareSnapshotOfViewOrLayer:viewOrLayer referenceImagesDirectory:referenceImagesDirectory imageDiffDirectory:imageDiffDirectory identifier:identifier pixelTolerance:pixelTolerance tolerance:tolerance error:&error];
                 [errors removeAllObjects];
                 if (comparisonSuccess) {
                     testSuccess = YES;
@@ -160,6 +177,24 @@
                       referenceImagesDirectory:referenceImagesDirectory
                             imageDiffDirectory:imageDiffDirectory
                                     identifier:identifier
+                                pixelTolerance:0
+                                     tolerance:tolerance
+                                         error:errorPtr];
+}
+
+- (BOOL)compareSnapshotOfLayer:(CALayer *)layer
+      referenceImagesDirectory:(NSString *)referenceImagesDirectory
+            imageDiffDirectory:(NSString *)imageDiffDirectory
+                    identifier:(NSString *)identifier
+                pixelTolerance:(CGFloat)pixelTolerance
+                     tolerance:(CGFloat)tolerance
+                         error:(NSError **)errorPtr
+{
+    return [self _compareSnapshotOfViewOrLayer:layer
+                      referenceImagesDirectory:referenceImagesDirectory
+                            imageDiffDirectory:(NSString *)imageDiffDirectory
+                                    identifier:identifier
+                                pixelTolerance:pixelTolerance
                                      tolerance:tolerance
                                          error:errorPtr];
 }
@@ -175,6 +210,24 @@
                       referenceImagesDirectory:referenceImagesDirectory
                             imageDiffDirectory:imageDiffDirectory
                                     identifier:identifier
+                                pixelTolerance:0
+                                     tolerance:tolerance
+                                         error:errorPtr];
+}
+
+- (BOOL)compareSnapshotOfView:(UIView *)view
+     referenceImagesDirectory:(NSString *)referenceImagesDirectory
+           imageDiffDirectory:(NSString *)imageDiffDirectory
+                   identifier:(NSString *)identifier
+               pixelTolerance:(CGFloat)pixelTolerance
+                    tolerance:(CGFloat)tolerance
+                        error:(NSError **)errorPtr
+{
+    return [self _compareSnapshotOfViewOrLayer:view
+                      referenceImagesDirectory:referenceImagesDirectory
+                            imageDiffDirectory:(NSString *)imageDiffDirectory
+                                    identifier:identifier
+                                pixelTolerance:pixelTolerance
                                      tolerance:tolerance
                                          error:errorPtr];
 }
@@ -222,6 +275,7 @@
              referenceImagesDirectory:(NSString *)referenceImagesDirectory
                    imageDiffDirectory:(NSString *)imageDiffDirectory
                            identifier:(NSString *)identifier
+                       pixelTolerance:(CGFloat)pixelTolerance
                             tolerance:(CGFloat)tolerance
                                 error:(NSError **)errorPtr
 {
@@ -230,6 +284,7 @@
     return [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
                                                     selector:self.invocation.selector
                                                   identifier:identifier
+                                              pixelTolerance:pixelTolerance
                                                    tolerance:tolerance
                                                        error:errorPtr];
 }

@@ -133,13 +133,30 @@ extern NSString *const FBDiffedImageKey;
  @param viewOrLayer The view or layer to snapshot.
  @param selector The test method being run.
  @param identifier An optional identifier, used is there are muliptle snapshot tests in a given -test method.
- @param tolerance The percentage of pixels that can differ and still be considered 'identical'
+ @param tolerance The percentage of pixels that can differ and still be considered 'identical'.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
 - (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
                             selector:(SEL)selector
                           identifier:(nullable NSString *)identifier
+                           tolerance:(CGFloat)tolerance
+                               error:(NSError **)errorPtr;
+
+/**
+ Performs the comparison of a view or layer.
+ @param viewOrLayer The view or layer to snapshot.
+ @param selector The test method being run.
+ @param identifier An optional identifier, used is there are muliptle snapshot tests in a given -test method.
+ @param pixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'.
+ @param tolerance The percentage of pixels that can differ and still be considered 'identical'.
+ @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
+ @returns YES if the comparison (or saving of the reference image) succeeded.
+ */
+- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
+                            selector:(SEL)selector
+                          identifier:(nullable NSString *)identifier
+                      pixelTolerance:(CGFloat)pixelTolerance
                            tolerance:(CGFloat)tolerance
                                error:(NSError **)errorPtr;
 
@@ -158,12 +175,27 @@ extern NSString *const FBDiffedImageKey;
  Performs a pixel-by-pixel comparison of the two images with an allowable margin of error.
  @param referenceImage The reference (correct) image.
  @param image The image to test against the reference.
- @param tolerance The percentage of pixels that can differ and still be considered 'identical'
+ @param tolerance The percentage of pixels that can differ and still be considered 'identical'.
  @param errorPtr An error that indicates why the comparison failed if it does.
  @returns YES if the comparison succeeded and the images are the same(ish).
  */
 - (BOOL)compareReferenceImage:(UIImage *)referenceImage
                       toImage:(UIImage *)image
+                    tolerance:(CGFloat)tolerance
+                        error:(NSError **)errorPtr;
+
+/**
+ Performs a pixel-by-pixel comparison of the two images with an allowable margin of error.
+ @param referenceImage The reference (correct) image.
+ @param image The image to test against the reference.
+ @param pixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'.
+ @param tolerance The percentage of pixels that can differ and still be considered 'identical'.
+ @param errorPtr An error that indicates why the comparison failed if it does.
+ @returns YES if the comparison succeeded and the images are the same(ish).
+ */
+- (BOOL)compareReferenceImage:(UIImage *)referenceImage
+                      toImage:(UIImage *)image
+               pixelTolerance:(CGFloat)pixelTolerance
                     tolerance:(CGFloat)tolerance
                         error:(NSError **)errorPtr;
 
