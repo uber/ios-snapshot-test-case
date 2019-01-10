@@ -95,23 +95,61 @@
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferentSizes);
 }
 
-- (void)testFailedImageWithDeviceAgnosticShouldHaveModelOnName
+- (void)testFailedImageWithFileNameOptionShouldHaveEachOptionInName
 {
     UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
     XCTAssertNotNil(referenceImage);
     UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
     XCTAssertNotNil(testImage);
+    
+    NSUInteger FBSnapshotTestCaseFileNameIncludeOptionMaxOffset = 4;
+    for (NSUInteger i = 0; i <= FBSnapshotTestCaseFileNameIncludeOptionMaxOffset; i++) {
+        FBSnapshotTestCaseFileNameIncludeOption options = 1 << i;
+        id testClass = nil;
+        FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+        [controller setFileNameOptions:options];
+        
+        NSString *referenceImagesDirectory = @"/dev/null/";
+        [controller setReferenceImagesDirectory:referenceImagesDirectory];
+        NSError *error = nil;
+        SEL selector = @selector(fileNameOptions);
+        [controller referenceImageForSelector:selector identifier:@"" error:&error];
+        XCTAssertNotNil(error);
+        NSString *deviceIncludedReferencePath = FBFileNameIncludeNormalizedFileNameFromOption(NSStringFromSelector(selector), options);
+        NSString *filePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
+        XCTAssertTrue([filePath containsString:deviceIncludedReferencePath]);
+        
+        NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@.png", referenceImagesDirectory, deviceIncludedReferencePath];
+        XCTAssertEqualObjects(expectedFilePath, filePath);
+    }
+}
 
+- (void)testFailedImageWithFileNameOptionShouldHaveAllOptionsInName
+{
+    UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+    UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
+    XCTAssertNotNil(testImage);
+    
+    FBSnapshotTestCaseFileNameIncludeOption options = (FBSnapshotTestCaseFileNameIncludeOptionDevice | FBSnapshotTestCaseFileNameIncludeOptionOS | FBSnapshotTestCaseFileNameIncludeOptionScreenSize | FBSnapshotTestCaseFileNameIncludeOptionScreenScale);
+    
     id testClass = nil;
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
-    [controller setDeviceAgnostic:YES];
-    [controller setReferenceImagesDirectory:@"/dev/null/"];
+    [controller setFileNameOptions:options];
+    
+    NSString *referenceImagesDirectory = @"/dev/null/";
+    [controller setReferenceImagesDirectory:referenceImagesDirectory];
     NSError *error = nil;
-    SEL selector = @selector(isDeviceAgnostic);
+    SEL selector = @selector(fileNameOptions);
     [controller referenceImageForSelector:selector identifier:@"" error:&error];
     XCTAssertNotNil(error);
-    NSString *deviceAgnosticReferencePath = FBDeviceAgnosticNormalizedFileName(NSStringFromSelector(selector));
-    XCTAssertTrue([(NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey] containsString:deviceAgnosticReferencePath]);
+    NSString *allOptionsIncludedReferencePath = FBFileNameIncludeNormalizedFileNameFromOption(NSStringFromSelector(selector), options);
+    NSString *filePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
+    XCTAssertTrue([filePath containsString:allOptionsIncludedReferencePath]);
+    
+    // Manually constructing expected filePath to make sure it looks correct
+    NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@_%@_%@_%.0fx%.0f@%.fx.png", referenceImagesDirectory, NSStringFromSelector(selector), [UIDevice currentDevice].model, [[UIDevice currentDevice].systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"], [[UIApplication sharedApplication] keyWindow].bounds.size.width, [[UIApplication sharedApplication] keyWindow].bounds.size.height, [[UIScreen mainScreen] scale]];
+    XCTAssertEqualObjects(expectedFilePath, filePath);
 }
 
 - (void)testCompareReferenceImageWithLowPixelToleranceShouldNotMatch

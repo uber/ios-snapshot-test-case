@@ -30,38 +30,20 @@ NSOrderedSet *FBSnapshotTestCaseDefaultSuffixes(void)
     return [suffixesSet copy];
 }
 
-NSString *FBDeviceAgnosticNormalizedFileName(NSString *fileName)
+NSString *FBFileNameIncludeNormalizedFileNameFromOption(NSString *fileName, FBSnapshotTestCaseFileNameIncludeOption option)
 {
-    UIDevice *device = [UIDevice currentDevice];
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    CGSize screenSize = keyWindow.bounds.size;
-    NSString *os = device.systemVersion;
-
-    fileName = [NSString stringWithFormat:@"%@_%@%@_%.0fx%.0f", fileName, device.model, os, screenSize.width, screenSize.height];
-
-    NSMutableCharacterSet *invalidCharacters = [NSMutableCharacterSet new];
-    [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
-    [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
-    NSArray *validComponents = [fileName componentsSeparatedByCharactersInSet:invalidCharacters];
-    fileName = [validComponents componentsJoinedByString:@"_"];
-
-    return fileName;
-}
-
-NSString *FBDeviceAgnosticNormalizedFileNameFromOption(NSString *fileName, FBSnapshotTestCaseAgnosticOption option)
-{
-    if ((option & FBSnapshotTestCaseAgnosticOptionDevice) == FBSnapshotTestCaseAgnosticOptionDevice) {
+    if ((option & FBSnapshotTestCaseFileNameIncludeOptionDevice) == FBSnapshotTestCaseFileNameIncludeOptionDevice) {
         UIDevice *device = [UIDevice currentDevice];
         fileName = [fileName stringByAppendingFormat:@"_%@", device.model];
     }
 
-    if ((option & FBSnapshotTestCaseAgnosticOptionOS) == FBSnapshotTestCaseAgnosticOptionOS) {
+    if ((option & FBSnapshotTestCaseFileNameIncludeOptionOS) == FBSnapshotTestCaseFileNameIncludeOptionOS) {
         UIDevice *device = [UIDevice currentDevice];
         NSString *os = device.systemVersion;
         fileName = [fileName stringByAppendingFormat:@"_%@", os];
     }
 
-    if ((option & FBSnapshotTestCaseAgnosticOptionScreenSize) == FBSnapshotTestCaseAgnosticOptionScreenSize) {
+    if ((option & FBSnapshotTestCaseFileNameIncludeOptionScreenSize) == FBSnapshotTestCaseFileNameIncludeOptionScreenSize) {
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
         CGSize screenSize = keyWindow.bounds.size;
         fileName = [fileName stringByAppendingFormat:@"_%.0fx%.0f", screenSize.width, screenSize.height];
@@ -72,6 +54,11 @@ NSString *FBDeviceAgnosticNormalizedFileNameFromOption(NSString *fileName, FBSna
     [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     NSArray *validComponents = [fileName componentsSeparatedByCharactersInSet:invalidCharacters];
     fileName = [validComponents componentsJoinedByString:@"_"];
+    
+    if ((option & FBSnapshotTestCaseFileNameIncludeOptionScreenScale) == FBSnapshotTestCaseFileNameIncludeOptionScreenScale) {
+        CGFloat screenScale = [[UIScreen mainScreen] scale];
+        fileName = [fileName stringByAppendingFormat:@"@%.fx", screenScale];
+    }
 
     return fileName;
 }

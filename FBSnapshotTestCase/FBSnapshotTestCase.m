@@ -39,26 +39,15 @@
     _snapshotController.recordMode = recordMode;
 }
 
-- (BOOL)isDeviceAgnostic
+- (FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
-    return _snapshotController.deviceAgnostic;
+    return _snapshotController.fileNameOptions;
 }
 
-- (void)setDeviceAgnostic:(BOOL)deviceAgnostic
+- (void)setFileNameOptions:(FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
     NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
-    _snapshotController.deviceAgnostic = deviceAgnostic;
-}
-
-- (FBSnapshotTestCaseAgnosticOption)agnosticOptions
-{
-    return _snapshotController.agnosticOptions;
-}
-
-- (void)setAgnosticOptions:(FBSnapshotTestCaseAgnosticOption)agnosticOptions
-{
-    NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
-    _snapshotController.agnosticOptions = agnosticOptions;
+    _snapshotController.fileNameOptions = fileNameOptions;
 }
 
 - (BOOL)usesDrawViewHierarchyInRect

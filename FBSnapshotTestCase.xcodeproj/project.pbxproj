@@ -151,9 +151,9 @@
 				B31987FF1AB782D100B0A900 /* Tests */,
 				B31987F11AB782D000B0A900 /* Products */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		B31987F11AB782D000B0A900 /* Products */ = {
 			isa = PBXGroup;
