@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.1
+
+  - Adds the ability to allow color changes for pixels. You can now set a 'pixel tolerance', which is a percentage for how much of a shift from any given color you allow on a per pixel basis. This can be useful for Xcode upgrades, when you change the iOS version (Base SDK) you use in your Simulator, or even to allow tests to run on multiple iOS versions at the same time. It can be used with `FBSnapshotVerifyViewWithPixelOptions` and `FBSnapshotVerifyLayerWithPixelOptions` (Thanks to @JerryTheIntern).
+
 ## 4.0.0
 
   - Adds the ability to override the folder name where snapshots are going to be saved for each test class.
