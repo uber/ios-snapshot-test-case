@@ -96,14 +96,14 @@
 
 #define FBSnapshotVerifyViewOrLayerWithOptions(what__, viewOrLayer__, identifier__, suffixes__, tolerance__)                                                                                                                                           \
     {                                                                                                                                                                                                                                                  \
-        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ tolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
+        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
         BOOL noErrors = (errorDescription == nil);                                                                                                                                                                                                     \
         XCTAssertTrue(noErrors, @"%@", errorDescription);                                                                                                                                                                                              \
     }
 
 #define FBSnapshotVerifyViewOrLayerWithPixelOptions(what__, viewOrLayer__, identifier__, suffixes__, pixelTolerance__, tolerance__)                                                                                                                                                    \
     {                                                                                                                                                                                                                                                                                  \
-        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ pixelTolerance:pixelTolerance__ tolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
+        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ perPixelTolerance:pixelTolerance__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
         BOOL noErrors = (errorDescription == nil);                                                                                                                                                                                                                                     \
         XCTAssertTrue(noErrors, @"%@", errorDescription);                                                                                                                                                                                                                              \
     }
@@ -179,7 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewOrLayer The UIView or CALayer to snapshot.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param suffixes An NSOrderedSet of strings for the different suffixes.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param defaultReferenceDirectory The directory to default to for reference images.
  @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
@@ -187,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
                              identifier:(nullable NSString *)identifier
                                suffixes:(NSOrderedSet *)suffixes
-                              tolerance:(CGFloat)tolerance
+                       overallTolerance:(CGFloat)overallTolerance
               defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
               defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
 
@@ -196,8 +196,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewOrLayer The UIView or CALayer to snapshot.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param suffixes An NSOrderedSet of strings for the different suffixes.
- @param pixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param defaultReferenceDirectory The directory to default to for reference images.
  @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
@@ -205,8 +205,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
                                       identifier:(nullable NSString *)identifier
                                         suffixes:(NSOrderedSet *)suffixes
-                                  pixelTolerance:(CGFloat)pixelTolerance
-                                       tolerance:(CGFloat)tolerance
+                               perPixelTolerance:(CGFloat)perPixelTolerance
+                                overallTolerance:(CGFloat)overallTolerance
                        defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
                        defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
 
@@ -216,7 +216,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param referenceImagesDirectory The directory in which reference images are stored.
  @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
@@ -224,7 +224,7 @@ NS_ASSUME_NONNULL_BEGIN
       referenceImagesDirectory:(NSString *)referenceImagesDirectory
             imageDiffDirectory:(NSString *)imageDiffDirectory
                     identifier:(nullable NSString *)identifier
-                     tolerance:(CGFloat)tolerance
+              overallTolerance:(CGFloat)overallTolerance
                          error:(NSError **)errorPtr;
 
 /**
@@ -233,8 +233,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param referenceImagesDirectory The directory in which reference images are stored.
  @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
- @param pixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
@@ -242,8 +242,8 @@ NS_ASSUME_NONNULL_BEGIN
       referenceImagesDirectory:(NSString *)referenceImagesDirectory
             imageDiffDirectory:(NSString *)imageDiffDirectory
                     identifier:(nullable NSString *)identifier
-                pixelTolerance:(CGFloat)pixelTolerance
-                     tolerance:(CGFloat)tolerance
+             perPixelTolerance:(CGFloat)perPixelTolerance
+              overallTolerance:(CGFloat)overallTolerance
                          error:(NSError **)errorPtr;
 
 /**
@@ -252,7 +252,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param referenceImagesDirectory The directory in which reference images are stored.
  @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
@@ -260,7 +260,7 @@ NS_ASSUME_NONNULL_BEGIN
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
            imageDiffDirectory:(NSString *)imageDiffDirectory
                    identifier:(nullable NSString *)identifier
-                    tolerance:(CGFloat)tolerance
+             overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr;
 
 /**
@@ -269,8 +269,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param referenceImagesDirectory The directory in which reference images are stored.
  @param imageDiffDirectory The directory in which failed image diffs are stored.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
- @param pixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
- @param tolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+ @param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
+ @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
@@ -278,8 +278,8 @@ NS_ASSUME_NONNULL_BEGIN
      referenceImagesDirectory:(NSString *)referenceImagesDirectory
            imageDiffDirectory:(NSString *)imageDiffDirectory
                    identifier:(nullable NSString *)identifier
-               pixelTolerance:(CGFloat)pixelTolerance
-                    tolerance:(CGFloat)tolerance
+            perPixelTolerance:(CGFloat)perPixelTolerance
+             overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr;
 
 /**
