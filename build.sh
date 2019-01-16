@@ -8,7 +8,12 @@ function ci_lib() {
                -scheme "FBSnapshotTestCase iOS" \
                -destination "platform=iOS Simulator,name=${NAME}" \
                -sdk iphonesimulator \
-               build test
+               build-for-testing
+    xcodebuild -project FBSnapshotTestCase.xcodeproj \
+               -scheme "FBSnapshotTestCase iOS" \
+               -destination "platform=iOS Simulator,name=${NAME}" \
+               -sdk iphonesimulator \
+               test-without-building
 }
 
 function ci_demo() {
@@ -18,7 +23,11 @@ function ci_demo() {
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCaseDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               build test
+               build-for-testing
+    xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
+               -scheme FBSnapshotTestCaseDemo \
+               -destination "platform=iOS Simulator,name=${NAME}" \
+               test-without-building
     popd
 }
 
