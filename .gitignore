@@ -16,3 +16,5 @@ DerivedData
 *.hmap
 *.xccheckout
 Pods
+iOSSnapshotTestCaseCarthageDemo/Carthage/Checkouts
+iOSSnapshotTestCaseCarthageDemo/Carthage/Build
