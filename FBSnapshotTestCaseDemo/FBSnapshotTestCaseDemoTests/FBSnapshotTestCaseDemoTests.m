@@ -47,7 +47,7 @@
         [parentView addSubview:visualEffectView];
 
         self.usesDrawViewHierarchyInRect = YES;
-        FBSnapshotVerifyView(parentView, nil);
+        FBSnapshotVerifyViewWithPixelOptions(parentView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.09, 0); // lowest perPixelTolerance for iPhone X is 0.04, but for iPhone 7 is 0.09
     }
 }
 
@@ -59,7 +59,7 @@
     control.on = YES;
 
     self.usesDrawViewHierarchyInRect = YES;
-    FBSnapshotVerifyView(control, nil);
+    FBSnapshotVerifyViewWithPixelOptions(control, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.65, 0);
 }
 
 - (void)testViewSnapshotWithUIAppearanceResizing
@@ -80,7 +80,7 @@
     [button sizeToFit];
 
     self.usesDrawViewHierarchyInRect = YES;
-    FBSnapshotVerifyView(button, nil);
+    FBSnapshotVerifyViewWithPixelOptions(button, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.25, 0);
 }
 
 - (void)testViewSnapshotWithDifferentBackgroundColorPerArchitecture
