@@ -3,6 +3,7 @@ iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 
 [![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 What it does
 ------------
