@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 6.0.0
+
+  - We deleted the `agnosticOptions` and `deviceAgnostic` properties. We didn't want to do this initially but we thought it was good to make a clean break from the old properties that had incorrect naming, as well as adding a new property (`fileNameOptions`) that includes screen scale as an option, so users of the library can choose to omit the screen scale from their file names.
+  - Deployment Target set to iOS 10.0. For our own sanity, we only want to support three major versions of iOS at a time. If you need to support iOS 8 and/or 9, you need to use version 5.0 of the library.
+
 ## 5.0.2
 
   - Adds the ability to allow color changes for pixels. You can now set a 'pixel tolerance', which is a percentage for how much of a shift from any given color you allow on a per pixel basis. This can be useful for Xcode upgrades, when you change the iOS version (Base SDK) you use in your Simulator, or even to allow tests to run on multiple iOS versions at the same time. It can be used with `FBSnapshotVerifyViewWithPixelOptions` and `FBSnapshotVerifyLayerWithPixelOptions` (Thanks to @JerryTheIntern).

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "iOSSnapshotTestCase"
   s.module_name  = "FBSnapshotTestCase"
-  s.version      = "5.0.2"
+  s.version      = "6.0.0"
   s.summary      = "Snapshot view unit tests for iOS"
   s.description  = <<-DESC
                     A "snapshot test case" takes a configured UIView or CALayer
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = 'Uber'
   s.source       = { :git => "https://github.com/uber/ios-snapshot-test-case.git",
                      :tag => s.version.to_s }
-  s.ios.deployment_target  = '8.1'
+  s.ios.deployment_target  = '10.0'
   s.tvos.deployment_target = '9.0'
   s.requires_arc = true
   s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
