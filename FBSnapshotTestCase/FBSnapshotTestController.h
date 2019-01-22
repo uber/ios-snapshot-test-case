@@ -60,21 +60,17 @@ extern NSString *const FBDiffedImageKey;
 @property (readwrite, nonatomic, assign) BOOL recordMode;
 
 /**
- When @c YES appends the name of the device model and OS to the snapshot file name.
- The default value is @c NO.
+ When set, allows fine-grained control over what you want the file names to include.
+
+ Allows you to combine which device or simulator specific details you want in your snapshot file names.
+
+ The default value is FBSnapshotTestCaseFileNameIncludeOptionScreenScale.
+
+ @discussion If you are migrating from the now deleted FBSnapshotTestCaseAgnosticOption to FBSnapshotTestCaseFileNameIncludeOption, we default to using FBSnapshotTestCaseFileNameIncludeOptionScreenScale for fileNameOptions to make the transition easier. If you don't want to have the screen scale included in your file name, you need to set fileNameOptions to a mask that doesn't include FBSnapshotTestCaseFileNameIncludeOptionScreenScale:
+
+ self.fileNameOptions = (FBSnapshotTestCaseFileNameIncludeOptionDevice | FBSnapshotTestCaseFileNameIncludeOptionOS);
  */
-@property (readwrite, nonatomic, assign, getter=isDeviceAgnostic) BOOL deviceAgnostic;
-
-/**
- When set, allows fine-grained control over how agnostic you want the file names to be.
-
- Allows you to combine which agnostic options you want in your snapshot file names.
-
- The default value is FBSnapshotTestCaseAgnosticOptionNone.
-
- @attention If deviceAgnostic is YES, this bitmask is ignored. deviceAgnostic will be deprecated in a future version of FBSnapshotTestCase.
- */
-@property (readwrite, nonatomic, assign) FBSnapshotTestCaseAgnosticOption agnosticOptions;
+@property (readwrite, nonatomic, assign) FBSnapshotTestCaseFileNameIncludeOption fileNameOptions;
 
 /**
  Uses drawViewHierarchyInRect:afterScreenUpdates: to draw the image instead of renderInContext:

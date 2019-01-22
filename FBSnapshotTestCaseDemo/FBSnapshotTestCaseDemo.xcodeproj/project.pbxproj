@@ -91,9 +91,9 @@
 				0CC44285F6C476327AB77B9C /* Pods */,
 				8F54C791A73198B06F3A32A6 /* Frameworks */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		B30449031AB794320067C75D /* Products */ = {
 			isa = PBXGroup;
