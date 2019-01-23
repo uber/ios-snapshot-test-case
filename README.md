@@ -78,7 +78,7 @@ Features
   in a single test method.
 - Support for `CALayer` via `FBSnapshotVerifyLayer`.
 - `usesDrawViewHierarchyInRect` to handle cases like `UIVisualEffect`, `UIAppearance` and Size Classes.
-- `isDeviceAgnostic` to allow appending the device model (`iPhone`, `iPad`, `iPod Touch`, etc), OS version and screen size to the images (allowing to have multiple tests for the same «snapshot» for different `OS`s and devices).
+- `fileNameOptions` to control appending the device model (`iPhone`, `iPad`, `iPod Touch`, etc), OS version, screen size and screen scale to the images (allowing to have multiple tests for the same «snapshot» for different `OS`s and devices).
 
 Notes
 -----
