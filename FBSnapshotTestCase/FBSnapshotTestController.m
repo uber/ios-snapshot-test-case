@@ -103,7 +103,11 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                error:(NSError **)errorPtr
 {
     if (self.recordMode) {
-        return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
+        if ([self _saveImagesInRecordMode]) {
+            return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
+        }else {
+            return [self _imageForViewOrLayer:viewOrLayer] != nil;
+        }
     } else {
         return [self _performPixelComparisonWithViewOrLayer:viewOrLayer selector:selector identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
     }
@@ -231,6 +235,17 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 }
 
 #pragma mark - Private API
+
+- (BOOL)_saveImagesInRecordMode
+{
+  NSString *saveImagesInRecordMode = [NSProcessInfo processInfo].environment[@"SNAPSHOT_TESTS_SAVE_IMAGES_IN_RECORD_MODE"];
+  if ([saveImagesInRecordMode isEqualToString:@"YES"]) {
+    return YES;
+  } else if ([saveImagesInRecordMode isEqualToString:@"NO"]) {
+    return NO;
+  }
+  return YES;
+}
 
 - (NSString *)_fileNameForSelector:(SEL)selector
                         identifier:(NSString *)identifier
