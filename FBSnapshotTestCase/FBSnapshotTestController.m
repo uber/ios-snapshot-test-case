@@ -103,9 +103,9 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                error:(NSError **)errorPtr
 {
     if (self.recordMode) {
-        if ([self _saveImagesInRecordMode]) {
+        if (!self.dontSaveImagesInRecordMode) {
             return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
-        }else {
+        } else {
             return [self _imageForViewOrLayer:viewOrLayer] != nil;
         }
     } else {
@@ -235,17 +235,6 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 }
 
 #pragma mark - Private API
-
-- (BOOL)_saveImagesInRecordMode
-{
-  NSString *saveImagesInRecordMode = [NSProcessInfo processInfo].environment[@"SNAPSHOT_TESTS_SAVE_IMAGES_IN_RECORD_MODE"];
-  if ([saveImagesInRecordMode isEqualToString:@"YES"]) {
-    return YES;
-  } else if ([saveImagesInRecordMode isEqualToString:@"NO"]) {
-    return NO;
-  }
-  return YES;
-}
 
 - (NSString *)_fileNameForSelector:(SEL)selector
                         identifier:(NSString *)identifier

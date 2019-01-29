@@ -39,6 +39,17 @@
     _snapshotController.recordMode = recordMode;
 }
 
+- (BOOL)dontSaveImagesInRecordMode
+{
+    return _snapshotController.dontSaveImagesInRecordMode;
+}
+
+- (void)setDontSaveImagesInRecordMode:(BOOL)dontSaveImagesInRecordMode
+{
+    NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+    _snapshotController.dontSaveImagesInRecordMode = dontSaveImagesInRecordMode;
+}
+
 - (FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
     return _snapshotController.fileNameOptions;
