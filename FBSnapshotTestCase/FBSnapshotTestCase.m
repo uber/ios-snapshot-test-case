@@ -270,12 +270,46 @@
 {
     _snapshotController.referenceImagesDirectory = referenceImagesDirectory;
     _snapshotController.imageDiffDirectory = imageDiffDirectory;
-    return [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
+    BOOL success = [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
                                                     selector:self.invocation.selector
                                                   identifier:identifier
                                            perPixelTolerance:perPixelTolerance
                                             overallTolerance:overallTolerance
                                                        error:errorPtr];
+    if (errorPtr) {
+        [self _attachImagesToFailingTestCaseWithError:*errorPtr];
+    }
+    return success;
+}
+
+- (void)_attachImagesToFailingTestCaseWithError:(NSError *)error
+{
+    UIImage *referenceImage = error.userInfo[FBReferenceImageKey];
+    if (referenceImage) {
+        [XCTContext runActivityNamed:@"Reference Image" block:^(id<XCTActivity>  _Nonnull activity) {
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:referenceImage];
+            attachment.name = @"Reference Image";
+            [activity addAttachment:attachment];
+        }];
+    }
+
+    UIImage *capturedImage = error.userInfo[FBCapturedImageKey];
+    if (capturedImage) {
+        [XCTContext runActivityNamed:@"Captured Image" block:^(id<XCTActivity>  _Nonnull activity) {
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:capturedImage];
+            attachment.name = @"Captured Image";
+            [activity addAttachment:attachment];
+        }];
+    }
+
+    UIImage *diffedImage = error.userInfo[FBDiffedImageKey];
+    if (diffedImage) {
+        [XCTContext runActivityNamed:@"Diffed Image" block:^(id<XCTActivity>  _Nonnull activity) {
+            XCTAttachment *attachment = [XCTAttachment attachmentWithImage:diffedImage];
+            attachment.name = @"Diffed Image";
+            [activity addAttachment:attachment];
+        }];
+    }
 }
 
 @end
