@@ -55,6 +55,11 @@ extern NSString *const FBDiffedImageKey;
 @interface FBSnapshotTestController : NSObject
 
 /**
+ Auto record snapshots on first run of new tests.
+ */
+@property (readwrite, nonatomic, assign) BOOL autoRecord;
+
+/**
  Record snapshots.
  */
 @property (readwrite, nonatomic, assign) BOOL recordMode;
