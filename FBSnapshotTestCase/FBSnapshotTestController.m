@@ -13,7 +13,8 @@
 #import <FBSnapshotTestCase/UIImage+Diff.h>
 #import <FBSnapshotTestCase/UIImage+Snapshot.h>
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+@import XCTest;
 
 NSString *const FBSnapshotTestControllerErrorDomain = @"FBSnapshotTestControllerErrorDomain";
 NSString *const FBReferenceImageFilePathKey = @"FBReferenceImageFilePathKey";
@@ -183,6 +184,11 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
 {
     NSData *referencePNGData = UIImagePNGRepresentation(referenceImage);
     NSData *testPNGData = UIImagePNGRepresentation(testImage);
+
+    [XCTContext runActivityNamed:identifier block:^(id<XCTActivity>  _Nonnull activity) {
+        [activity addAttachment:[XCTAttachment attachmentWithImage:referenceImage]];
+        [activity addAttachment:[XCTAttachment attachmentWithImage:testImage]];
+    }];
 
     NSString *referencePath = [self _failedFilePathForSelector:selector
                                                     identifier:identifier
