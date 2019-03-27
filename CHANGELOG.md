@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 6.0.1
+
+  - Update for Swift 5 compiler.
+
 ## 6.0.0
 
   - We deleted the `agnosticOptions` and `deviceAgnostic` properties. We didn't want to do this initially but we thought it was good to make a clean break from the old properties that had incorrect naming, as well as adding a new property (`fileNameOptions`) that includes screen scale as an option, so users of the library can choose to omit the screen scale from their file names.
