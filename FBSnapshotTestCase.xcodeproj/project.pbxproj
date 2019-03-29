@@ -327,7 +327,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					827137791C63AB6F00354E42 = {
@@ -338,7 +338,7 @@
 					};
 					B31987EF1AB782D000B0A900 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 					};
 					B31987FA1AB782D100B0A900 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -348,10 +348,11 @@
 			};
 			buildConfigurationList = B31987EA1AB782D000B0A900 /* Build configuration list for PBXProject "FBSnapshotTestCase" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B31987E61AB782D000B0A900;
 			productRefGroup = B31987F11AB782D000B0A900 /* Products */;
@@ -573,6 +574,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -631,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -705,8 +708,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.FBSnapshotTestCase;
 				PRODUCT_NAME = FBSnapshotTestCase;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -736,8 +738,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.FBSnapshotTestCase;
 				PRODUCT_NAME = FBSnapshotTestCase;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
