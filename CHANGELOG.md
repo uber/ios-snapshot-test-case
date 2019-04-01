@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## 6.0.1
+## 6.0.3
+
+  - This is a compatibility release for Swift 5 — we're building the Carthage pre–compiled framework with Xcode 10.2 and the Swift 5 compiler. If you haven't updated to Xcode 10.2, you don't need to worry about this version.
+
+## 6.0.2
 
   - Update for Swift 5 compiler.
 
