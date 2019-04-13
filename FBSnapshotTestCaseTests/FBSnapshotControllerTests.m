@@ -48,6 +48,20 @@
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferent);
 }
 
+- (void)testCompareOptimisedReferenceImageToImageShouldBeEqual
+{
+    UIImage *referenceImage = [self _bundledImageNamed:@"square_with_graphics_imageoptim" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+    UIImage *testImage = [self _bundledImageNamed:@"square_with_graphics" type:@"png"];
+    XCTAssertNotNil(testImage);
+
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+    NSError *error = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    XCTAssertNil(error);
+}
+
 - (void)testCompareReferenceImageWithVeryLowToleranceShouldNotMatch
 {
     UIImage *referenceImage = [self _bundledImageNamed:@"square" type:@"png"];

@@ -85,6 +85,7 @@ Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of fa
 - Support for `CALayer` via `FBSnapshotVerifyLayer`.
 - `usesDrawViewHierarchyInRect` to handle cases like `UIVisualEffect`, `UIAppearance` and Size Classes.
 - `fileNameOptions` to control appending the device model (`iPhone`, `iPad`, `iPod Touch`, etc), OS version, screen size and screen scale to the images (allowing to have multiple tests for the same «snapshot» for different `OS`s and devices).
+- Support of reference images optimized for reduced size.
 
 ## Notes
 
@@ -94,6 +95,14 @@ should be run within the Simulator so that it has access to UIKit.)
 *However*, if you are writing snapshot tests inside a library/framework, you might want to keep your test bundle as a library test bundle without a Test Host.
 
 Read more on this [here](docs/LibraryVsApplicationTestBundles.md).
+
+## Optimizing reference images to reduce size
+
+Recorded reference image PNG can be optimised to reduce its size using lossless compression.
+
+Once you have final reference images recorded, you can manually optimise them using tools like [ImageOptim](https://imageoptim.com). ImageOptim will reduce size of the image without loss of any visual information. The savings in image sizes can be significant (up to 80%+ depending on the original image).
+
+If you are committing reference images to repository, optimizing them reduces their impact growing to repo size.
 
 ## Authors
 
