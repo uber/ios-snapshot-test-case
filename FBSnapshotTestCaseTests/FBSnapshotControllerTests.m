@@ -148,7 +148,7 @@
     XCTAssertTrue([filePath containsString:allOptionsIncludedReferencePath]);
     
     // Manually constructing expected filePath to make sure it looks correct
-    NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@_%@_%@_%.0fx%.0f@%.fx.png", referenceImagesDirectory, NSStringFromSelector(selector), [UIDevice currentDevice].model, [[UIDevice currentDevice].systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"], [[UIApplication sharedApplication] keyWindow].bounds.size.width, [[UIApplication sharedApplication] keyWindow].bounds.size.height, [[UIScreen mainScreen] scale]];
+    NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@_%@_%@_%.0fx%.0f@%.fx.png", referenceImagesDirectory, NSStringFromSelector(selector), [UIDevice currentDevice].model, [[UIDevice currentDevice].systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"], [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height, [[UIScreen mainScreen] scale]];
     XCTAssertEqualObjects(expectedFilePath, filePath);
 }
 

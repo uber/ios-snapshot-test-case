@@ -44,8 +44,7 @@ NSString *FBFileNameIncludeNormalizedFileNameFromOption(NSString *fileName, FBSn
     }
 
     if ((option & FBSnapshotTestCaseFileNameIncludeOptionScreenSize) == FBSnapshotTestCaseFileNameIncludeOptionScreenSize) {
-        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-        CGSize screenSize = keyWindow.bounds.size;
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
         fileName = [fileName stringByAppendingFormat:@"_%.0fx%.0f", screenSize.width, screenSize.height];
     }
 
