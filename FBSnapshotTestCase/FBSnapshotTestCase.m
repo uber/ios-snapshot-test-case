@@ -270,12 +270,42 @@
 {
     _snapshotController.referenceImagesDirectory = referenceImagesDirectory;
     _snapshotController.imageDiffDirectory = imageDiffDirectory;
-    return [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
-                                                    selector:self.invocation.selector
-                                                  identifier:identifier
-                                           perPixelTolerance:perPixelTolerance
-                                            overallTolerance:overallTolerance
-                                                       error:errorPtr];
+    BOOL success = [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
+                                                            selector:self.invocation.selector
+                                                          identifier:identifier
+                                                   perPixelTolerance:perPixelTolerance
+                                                    overallTolerance:overallTolerance
+                                                               error:errorPtr];
+    [self addAttachmentsWithError:errorPtr identifier:identifier];
+    return success;
+}
+
+- (void)addAttachmentsWithError:(NSError **)errorPtr identifier:(NSString *)identifier {
+    if (self.recordMode) {
+        UIImage* image = [_snapshotController referenceImageForSelector:self.invocation.selector identifier:identifier error:nil];
+        if (image) {
+            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:image];
+            attachement.name = @"Reference Image";
+            [self addAttachment:attachement];
+        }
+    } else if (NULL != errorPtr) {
+        NSError* error = *errorPtr;
+        if (error.userInfo[FBReferenceImageKey] != nil) {
+            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBReferenceImageKey]];
+            attachement.name = @"Reference Image";
+            [self addAttachment:attachement];
+        }
+        if (error.userInfo[FBCapturedImageKey] != nil) {
+            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBCapturedImageKey]];
+            attachement.name = @"Captured Image";
+            [self addAttachment:attachement];
+        }
+        if (error.userInfo[FBDiffedImageKey] != nil) {
+            XCTAttachment *attachement = [XCTAttachment attachmentWithImage:error.userInfo[FBDiffedImageKey]];
+            attachement.name = @"Diffed Image";
+            [self addAttachment:attachement];
+        }
+    }
 }
 
 @end
