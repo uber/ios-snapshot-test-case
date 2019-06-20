@@ -14,6 +14,7 @@
 #import <FBSnapshotTestCase/UIImage+Snapshot.h>
 
 #import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
 NSString *const FBSnapshotTestControllerErrorDomain = @"FBSnapshotTestControllerErrorDomain";
 NSString *const FBReferenceImageFilePathKey = @"FBReferenceImageFilePathKey";
@@ -181,6 +182,23 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                       identifier:(NSString *)identifier
                            error:(NSError **)errorPtr
 {
+    UIImage *diffImage = [referenceImage fb_diffWithImage:testImage];
+
+    [XCTContext runActivityNamed:identifier ?: NSStringFromSelector(selector) block:^(id<XCTActivity> _Nonnull activity) {
+        XCTAttachment *referenceAttachment = [XCTAttachment attachmentWithImage:referenceImage];
+        referenceAttachment.name = @"Reference Image";
+
+        XCTAttachment *failedAttachment = [XCTAttachment attachmentWithImage:testImage];
+        failedAttachment.name = @"Failed Image";
+
+        XCTAttachment *diffAttachment = [XCTAttachment attachmentWithImage:diffImage];
+        diffAttachment.name = @"Diffed Image";
+
+        [activity addAttachment:referenceAttachment];
+        [activity addAttachment:failedAttachment];
+        [activity addAttachment:diffAttachment];
+    }];
+
     NSData *referencePNGData = UIImagePNGRepresentation(referenceImage);
     NSData *testPNGData = UIImagePNGRepresentation(testImage);
 
@@ -216,7 +234,6 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                                identifier:identifier
                                              fileNameType:FBTestSnapshotFileNameTypeFailedTestDiff];
 
-    UIImage *diffImage = [referenceImage fb_diffWithImage:testImage];
     NSData *diffImageData = UIImagePNGRepresentation(diffImage);
 
     if (![diffImageData writeToFile:diffPath options:NSDataWritingAtomic error:errorPtr]) {
@@ -317,6 +334,13 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                error:(NSError **)errorPtr
 {
     UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
+
+    [XCTContext runActivityNamed:identifier ?: NSStringFromSelector(selector) block:^(id<XCTActivity> _Nonnull activity) {
+        XCTAttachment *recordedAttachment = [XCTAttachment attachmentWithImage:snapshot];
+        recordedAttachment.name = @"Recorded Image";
+        [activity addAttachment:recordedAttachment];
+    }];
+
     return [self _saveReferenceImage:snapshot selector:selector identifier:identifier error:errorPtr];
 }
 
