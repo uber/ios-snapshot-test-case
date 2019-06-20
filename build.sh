@@ -46,7 +46,9 @@ function ci_carthage_demo() {
     popd
 }
 
+ci_lib "iPhone 5" && ci_demo "iPhone 5"
 ci_lib "iPhone 7" && ci_demo "iPhone 7"
 ci_lib "iPhone X" && ci_demo "iPhone X"
+ci_lib "iPhone 5" && ci_carthage_demo "iPhone 5"
 ci_lib "iPhone 7" && ci_carthage_demo "iPhone 7"
 ci_lib "iPhone X" && ci_carthage_demo "iPhone X"

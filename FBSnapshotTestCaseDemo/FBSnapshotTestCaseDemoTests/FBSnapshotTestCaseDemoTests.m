@@ -92,11 +92,4 @@
     FBSnapshotVerifyView(view, nil);
 }
 
-- (void)testViewSnapshotRecordedOnlyFor64BitArchitecture
-{
-    UIView *greenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    greenView.backgroundColor = [UIColor greenColor];
-    FBSnapshotVerifyView(greenView, nil);
-}
-
 @end
