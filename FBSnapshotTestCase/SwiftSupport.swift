@@ -17,8 +17,8 @@ public extension FBSnapshotTestCase {
   }
 
   private func FBSnapshotVerifyViewOrLayer(_ viewOrLayer: AnyObject, identifier: String? = nil, suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
-    let envReferenceImageDirectory = self.getReferenceImageDirectory(withDefault: FB_REFERENCE_IMAGE_DIR)
-    let envImageDiffDirectory = self.getImageDiffDirectory(withDefault: IMAGE_DIFF_DIR)
+    let envReferenceImageDirectory = self.getReferenceImageDirectory(withDefault: nil)
+    let envImageDiffDirectory = self.getImageDiffDirectory(withDefault: nil)
     var error: NSError?
     var comparisonSuccess = false
 
