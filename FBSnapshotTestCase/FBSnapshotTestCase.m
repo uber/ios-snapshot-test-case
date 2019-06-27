@@ -97,7 +97,7 @@
               defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
               defaultImageDiffDirectory:(NSString *)defaultImageDiffDirectory
 {
-    if (nil == viewOrLayer) {
+    if (viewOrLayer == nil) {
         return @"Object to be snapshotted must not be nil";
     }
 
