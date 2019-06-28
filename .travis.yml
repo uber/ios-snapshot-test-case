@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode10.2
 before_script:
-  - gem install cocoapods -v 1.6.1 --no-document
+  - gem install cocoapods -v 1.7.2 --no-document
 script:
   ./build.sh

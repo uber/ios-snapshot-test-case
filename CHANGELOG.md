@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 6.1.0
+
+- Added support for Xcode 9 attachments. ([#86](https://github.com/uber/ios-snapshot-test-case/pull/86))
+- Updated the default suffixes to only contain the currently targetted architecture. ([#87](https://github.com/uber/ios-snapshot-test-case/pull/87))
+- Use the main screen instead of the key window to calculate the correct size in tests that do not have a host application. ([#79](https://github.com/uber/ios-snapshot-test-case/pull/79))
+- Display the correct error message when tests are run in record mode. ([#65](https://github.com/uber/ios-snapshot-test-case/pull/65))
+- Updated for Xcode 10.2.1 and Swift 5.0.1.
+
 ## 6.0.3
 
   - This is a compatibility release for Swift 5 — we're building the Carthage pre–compiled framework with Xcode 10.2 and the Swift 5 compiler. If you haven't updated to Xcode 10.2, you don't need to worry about this version.
