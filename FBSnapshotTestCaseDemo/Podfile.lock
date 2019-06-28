@@ -1,8 +1,8 @@
 PODS:
-  - iOSSnapshotTestCase (6.0.3):
-    - iOSSnapshotTestCase/SwiftSupport (= 6.0.3)
-  - iOSSnapshotTestCase/Core (6.0.3)
-  - iOSSnapshotTestCase/SwiftSupport (6.0.3):
+  - iOSSnapshotTestCase (6.1.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.1.0)
+  - iOSSnapshotTestCase/Core (6.1.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.1.0):
     - iOSSnapshotTestCase/Core
 
 DEPENDENCIES:
@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: ".."
 
 SPEC CHECKSUMS:
-  iOSSnapshotTestCase: 944a73f6d9676302811a86c0cf35f0e6ef5ab2a0
+  iOSSnapshotTestCase: e2327510ffdcd92a71a8864465c0758e6eef3859
 
 PODFILE CHECKSUM: 7497b446d0ae369712f3801ef5b32886254e66ef
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.7.2
