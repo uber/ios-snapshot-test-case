@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Added support for Xcode 9 attachments. ([#86](https://github.com/uber/ios-snapshot-test-case/pull/86))
 - Updated the default suffixes to only contain the currently targetted architecture. ([#87](https://github.com/uber/ios-snapshot-test-case/pull/87))
+- Use [UIGraphicsImageRenderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) to generate the image for a UIView instead of a custom graphics context ([#95](https://github.com/uber/ios-snapshot-test-case/pull/95))
 - Use the main screen instead of the key window to calculate the correct size in tests that do not have a host application. ([#79](https://github.com/uber/ios-snapshot-test-case/pull/79))
 - Display the correct error message when tests are run in record mode. ([#65](https://github.com/uber/ios-snapshot-test-case/pull/65))
 - Updated for Xcode 10.2.1 and Swift 5.0.1.
