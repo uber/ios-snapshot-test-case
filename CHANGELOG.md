@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Upcoming Release
+
+- Fixed issue where images without the screen scale in the file name were failing. ([#100](https://github.com/uber/ios-snapshot-test-case/pull/100))
+
 ## 6.1.0
 
 - Added support for Xcode 9 attachments. ([#86](https://github.com/uber/ios-snapshot-test-case/pull/86))
