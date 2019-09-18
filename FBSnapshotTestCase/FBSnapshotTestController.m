@@ -153,14 +153,17 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
              overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr
 {
-    BOOL sameImageDimensions = CGSizeEqualToSize(referenceImage.size, image.size);
+    CGSize referenceImageSize = CGSizeMake(CGImageGetWidth(referenceImage.CGImage), CGImageGetHeight(referenceImage.CGImage));
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));
+
+    BOOL sameImageDimensions = CGSizeEqualToSize(referenceImageSize, imageSize);
     if (sameImageDimensions && [referenceImage fb_compareWithImage:image perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance]) {
         return YES;
     }
 
     if (errorPtr != NULL) {
         NSString *errorDescription = sameImageDimensions ? @"Images different" : @"Images different sizes";
-        NSString *errorReason = sameImageDimensions ? [NSString stringWithFormat:@"image pixels differed by more than %.2f%% from the reference image", overallTolerance * 100] : [NSString stringWithFormat:@"referenceImage:%@, image:%@", NSStringFromCGSize(referenceImage.size), NSStringFromCGSize(image.size)];
+        NSString *errorReason = sameImageDimensions ? [NSString stringWithFormat:@"image pixels differed by more than %.2f%% from the reference image", overallTolerance * 100] : [NSString stringWithFormat:@"referenceImage:%@, image:%@", NSStringFromCGSize(referenceImageSize), NSStringFromCGSize(imageSize)];
         FBSnapshotTestControllerErrorCode errorCode = sameImageDimensions ? FBSnapshotTestControllerErrorCodeImagesDifferent : FBSnapshotTestControllerErrorCodeImagesDifferentSizes;
 
         *errorPtr = [NSError errorWithDomain:FBSnapshotTestControllerErrorDomain
