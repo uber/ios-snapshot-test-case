@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Upcoming Release
 
 - Fixed issue where images without the screen scale in the file name were failing. ([#100](https://github.com/uber/ios-snapshot-test-case/pull/100))
+- Updated for Xcode 10.11 and Swift 5.1.
 
 ## 6.1.0
 
