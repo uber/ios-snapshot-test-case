@@ -61,7 +61,7 @@ function ci_carthage_demo() {
     popd
 }
 
-ci_lib "iPhone 7" && ci_demo "iPhone 7" && ci_demo_preprocessor "iPhone 7"
-ci_lib "iPhone X" && ci_demo "iPhone X" && ci_demo_preprocessor "iPhone X"
-ci_lib "iPhone 7" && ci_carthage_demo "iPhone 7"
-ci_lib "iPhone X" && ci_carthage_demo "iPhone X"
+ci_lib "iPhone 8" && ci_demo "iPhone 8" && ci_demo_preprocessor "iPhone 8"
+ci_lib "iPhone 11" && ci_demo "iPhone 11" && ci_demo_preprocessor "iPhone 11"
+ci_lib "iPhone 8" && ci_carthage_demo "iPhone 8"
+ci_lib "iPhone 11" && ci_carthage_demo "iPhone 11"

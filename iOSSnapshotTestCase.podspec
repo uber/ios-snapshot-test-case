@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
                      :tag => s.version.to_s }
   s.ios.deployment_target  = '10.0'
   s.tvos.deployment_target = '10.0'
-  s.swift_version = '5.0.1'
+  s.swift_version = '5.1'
   s.requires_arc = true
   s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
