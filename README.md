@@ -44,9 +44,18 @@ Installation with CocoaPods
 
    If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
 
-   Replace "Tests" with the name of your test project.
+Installation Carthage
+---------------------------
 
-2. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
+1. Add the following line to your Cartfile:
+
+``github "uber/ios-snapshot-test-case" ~> 6.1.0``
+
+Setup Test Scheme
+---------------------------
+Replace "Tests" with the name of your test project.
+
+1. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
 
 |Name|Value|
 |:---|:----|
