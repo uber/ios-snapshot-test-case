@@ -30,8 +30,10 @@ it will look to users.
 
 `iOSSnapshotTestCase` was developed to make snapshot tests easy.
 
-Installation with CocoaPods
+Installation
 ---------------------------
+
+#### CocoaPods
 
 1. Add the following lines to your Podfile:
 
@@ -44,12 +46,13 @@ Installation with CocoaPods
 
    If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
 
-Installation Carthage
----------------------------
+#### Carthage
 
 1. Add the following line to your Cartfile:
 
-``github "uber/ios-snapshot-test-case" ~> 6.1.0``
+    ````
+    github "uber/ios-snapshot-test-case" ~> 6.1.0
+    ````
 
 Setup Test Scheme
 ---------------------------
