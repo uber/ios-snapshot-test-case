@@ -6,7 +6,7 @@
 
 ## What it does
 
-A "snapshot test case" takes a configured `UIView` or `CALayer` and uses the necessary UIKit or Core Animation methods generate an image snapshot of its contents. It
+A "snapshot test case" takes a configured `UIView` or `CALayer` and uses the necessary UIKit or Core Animation methods to generate an image snapshot of its contents. It
 compares this snapshot to a "reference image" stored in your source code
 repository and fails the test if the two images don't match.
 
