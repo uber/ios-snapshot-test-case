@@ -1,6 +1,6 @@
 language: objective-c
-osx_image: xcode11
+osx_image: xcode11.1
 before_script:
-  - gem install cocoapods -v 1.8.0 --no-document
+  - gem install cocoapods -v 1.8.3 --no-document
 script:
-  ./build.sh
+  travis_wait 30 ./build.sh

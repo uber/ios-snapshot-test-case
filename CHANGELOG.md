@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Fixed issue where images without the screen scale in the file name were failing. ([#100](https://github.com/uber/ios-snapshot-test-case/pull/100))
 - Add convenience FBSnapshotVerifyViewController() function for Swift users ([#101](https://github.com/uber/ios-snapshot-test-case/pull/101))
-- Updated for Xcode 10.11 and Swift 5.1.
+- Updated for Xcode 11.1 and Swift 5.1.
 
 ## 6.1.0
 

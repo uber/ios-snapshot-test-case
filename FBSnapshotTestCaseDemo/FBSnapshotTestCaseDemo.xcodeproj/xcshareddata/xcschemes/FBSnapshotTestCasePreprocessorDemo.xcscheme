@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1110"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30B49E6322C2D92000E19965"
+               BlueprintIdentifier = "308E5A2722C2E15600A0DAF9"
                BuildableName = "FBSnapshotTestCasePreprocessorDemoTests.xctest"
                BlueprintName = "FBSnapshotTestCasePreprocessorDemoTests"
                ReferencedContainer = "container:FBSnapshotTestCaseDemo.xcodeproj">
@@ -41,6 +41,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B30449011AB794320067C75D"
+            BuildableName = "FBSnapshotTestCaseDemo.app"
+            BlueprintName = "FBSnapshotTestCaseDemo"
+            ReferencedContainer = "container:FBSnapshotTestCaseDemo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -53,17 +62,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B30449011AB794320067C75D"
-            BuildableName = "FBSnapshotTestCaseDemo.app"
-            BlueprintName = "FBSnapshotTestCaseDemo"
-            ReferencedContainer = "container:FBSnapshotTestCaseDemo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -85,8 +83,6 @@
             ReferencedContainer = "container:FBSnapshotTestCaseDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
