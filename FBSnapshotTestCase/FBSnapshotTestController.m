@@ -104,7 +104,11 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                error:(NSError **)errorPtr
 {
     if (self.recordMode) {
-        return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
+        if (!self.dontSaveImagesInRecordMode) {
+            return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
+        } else {
+            return [self _imageForViewOrLayer:viewOrLayer] != nil;
+        }
     } else {
         return [self _performPixelComparisonWithViewOrLayer:viewOrLayer selector:selector identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
     }

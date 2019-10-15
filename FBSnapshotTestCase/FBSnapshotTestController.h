@@ -60,6 +60,13 @@ extern NSString *const FBDiffedImageKey;
 @property (readwrite, nonatomic, assign) BOOL recordMode;
 
 /**
+  When recordMode=YES and dontSaveImagesInRecordMode=YES tests will neither save reference images nor perform comparison, they will skip
+  When recordMode=YES and dontSaveImagesInRecordMode=NO tests will save reference images rather than performing an actual test.
+  When recordMode=NO dontSaveImagesInRecordMode has no effect.
+ */
+@property (readwrite, nonatomic, assign) BOOL dontSaveImagesInRecordMode;
+
+/**
  When set, allows fine-grained control over what you want the file names to include.
 
  Allows you to combine which device or simulator specific details you want in your snapshot file names.
