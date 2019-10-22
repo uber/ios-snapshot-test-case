@@ -28,7 +28,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <FBSnapshotTestCase/UIImage+Diff.h>
+#import "UIImage+Diff.h"
 
 @implementation UIImage (Diff)
 

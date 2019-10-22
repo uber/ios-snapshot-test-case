@@ -28,7 +28,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <FBSnapshotTestCase/UIImage+Compare.h>
+#import "UIImage+Compare.h"
 
 // This makes debugging much more fun
 typedef union {
