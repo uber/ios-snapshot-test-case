@@ -17,14 +17,20 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
-            name: "FBSnapshotTestCase",
+            name: "FBSnapshotTestCaseCore",
             path: "FBSnapshotTestCase",
             sources: ["Core"],
             publicHeadersPath: "Core"
         ),
+        .target(
+            name: "FBSnapshotTestCase",
+            dependencies: ["FBSnapshotTestCaseCore"],
+            path: "FBSnapshotTestCase",
+            sources: ["Core-Support"]
+        ),
         .testTarget(
             name: "FBSnapshotTestCaseTests",
-            dependencies: ["FBSnapshotTestCase"],
+            dependencies: ["FBSnapshotTestCaseCore"],
             path: "FBSnapshotTestCaseTests",
             sources: ["Core"]
         ),
