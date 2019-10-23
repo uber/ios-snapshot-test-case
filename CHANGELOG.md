@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 6.2.1
+
+- Added support to Swift Package Manager
+
 ## 6.2.0
 
 - Fixed issue where images without the screen scale in the file name were failing. ([#100](https://github.com/uber/ios-snapshot-test-case/pull/100))
