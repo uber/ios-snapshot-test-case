@@ -1,0 +1,43 @@
+PODS:
+  - Bits (1.0.0):
+    - Bits/Default (= 1.0.0)
+  - Bits/Default (1.0.0)
+  - Core (2.0.1):
+    - Core/Default (= 2.0.1)
+  - Core/Default (2.0.1):
+    - Bits (~> 1.0)
+    - Core/libc
+    - Debugging (~> 1.0)
+  - Core/libc (2.0.1)
+  - Debugging (1.0.0):
+    - Debugging/Default (= 1.0.0)
+  - Debugging/Default (1.0.0)
+  - iOSSnapshotTestCase (6.2.0):
+    - iOSSnapshotTestCase/Core (= 6.2.0)
+    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
+  - iOSSnapshotTestCase/Core (6.2.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
+    - Core
+
+DEPENDENCIES:
+  - iOSSnapshotTestCase (from `..`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Bits
+    - Core
+    - Debugging
+
+EXTERNAL SOURCES:
+  iOSSnapshotTestCase:
+    :path: ".."
+
+SPEC CHECKSUMS:
+  Bits: 9290c3ecc5d4f31f579d26aea770ad65979d6720
+  Core: 661407ca4df71911247661ec76c4a1ca8081f505
+  Debugging: 08333eb2b90d8208113c610b7a5016f3453f6072
+  iOSSnapshotTestCase: ecac5739ed8070be8b42e6be03b2c2bf382599fd
+
+PODFILE CHECKSUM: 35ff607c3424eed6ccbd8fdacc2d5c1ea41a5a0c
+
+COCOAPODS: 1.8.0.beta.1

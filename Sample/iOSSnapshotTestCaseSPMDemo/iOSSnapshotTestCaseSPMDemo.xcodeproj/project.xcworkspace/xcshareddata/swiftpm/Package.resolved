@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FBSnapshotTestCase",
+        "repositoryURL": "https://github.com/bfernandesbfs/ios-snapshot-test-case",
+        "state": {
+          "branch": "spm",
+          "revision": "b6947366aa37a3e6e5768cd3623fc8926cc23552",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

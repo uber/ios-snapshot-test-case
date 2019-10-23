@@ -1,0 +1,12 @@
+use_frameworks!
+
+# Need one pod
+pod 'Forgeries'
+
+target 'BootstrapTests' do
+  pod 'Quick'
+  pod 'Nimble'
+  pod 'iOSSnapshotTestCase', '~> 6.0'
+
+  pod 'Nimble-Snapshots', :path => "../"
+end

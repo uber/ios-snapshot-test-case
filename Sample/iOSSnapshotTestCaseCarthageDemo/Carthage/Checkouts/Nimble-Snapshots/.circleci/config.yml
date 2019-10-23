@@ -1,0 +1,71 @@
+references:
+    defaults: &defaults
+        macos:
+            xcode: "10.2.1"
+        shell: /bin/bash --login -eo pipefail
+        working_directory: ~/Nimble-Snapshots
+        environment:
+            BUNDLE_PATH: vendor/bundle
+            
+    restore_bundle_cache: &restore_bundle_cache
+        restore_cache:
+            keys:
+                - v1-gems-{{ checksum "Gemfile.lock" }}
+                # Fall back to using the latest cache if no exact match is found.
+                - v1-gems-
+
+    save_bundle_cache: &save_bundle_cache
+        save_cache:
+            key: v1-gems-{{ checksum "Gemfile.lock" }}
+            paths:
+                - vendor/bundle
+
+    bunde_install: &bunde_install
+        run:
+          name: "Install bundle"
+          command: bundle check || bundle install
+
+version: 2
+jobs:
+  tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - *restore_bundle_cache
+      - *bunde_install
+      - *save_bundle_cache
+      - run:
+          name: "Run Danger"
+          command: bundle exec danger
+      - run:
+          name: "Create output dir"
+          command: mkdir output
+      - run:
+          name: "Run tests in Swift 4.2"
+          command: xcodebuild -workspace 'Bootstrap/Bootstrap.xcworkspace' -sdk 'iphonesimulator' -scheme 'Bootstrap' -destination 'name=iPhone 8' SWIFT_VERSION=4.2 build test | tee output/xcodebuild_swift4.2.log | xcpretty --color --simple
+      - run:
+          name: "Run tests in Swift 5.0"
+          command: xcodebuild -workspace 'Bootstrap/Bootstrap.xcworkspace' -sdk 'iphonesimulator' -scheme 'Bootstrap' -destination 'name=iPhone 8' SWIFT_VERSION=5.0 build test | tee output/xcodebuild_swift5.0.log | xcpretty --color --simple
+      - run:
+          name: "Run Carthage integration test"
+          command: carthage bootstrap --platform iOS && xcodebuild | xcpretty --color --simple
+      - run:
+          name: "Swiftlint"
+          command: |
+               HOMEBREW_NO_AUTO_UPDATE=1 brew install swiftlint
+               swiftlint lint --no-cache --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_artifacts:
+          path: output/
+      - store_artifacts:
+          path: ~/Nimble-Snapshots/Bootstrap/BootstrapTests/FailureDiffs/
+      - store_test_results:
+          path: result.xml
+          path: output/
+      
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - tests

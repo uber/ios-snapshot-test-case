@@ -1,0 +1,20 @@
+opt_in_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - conditional_returns_on_newline
+  - empty_count
+  - explicit_init
+  - first_where
+  - force_unwrapping
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - sorted_imports
+  - switch_case_on_newline
+
+disabled_rules:
+  - function_body_length
+  - implicitly_unwrapped_optional
+
+line_length: 200

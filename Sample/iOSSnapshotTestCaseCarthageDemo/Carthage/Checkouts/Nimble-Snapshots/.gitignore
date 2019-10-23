@@ -1,0 +1,20 @@
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control?
+#
+# Pods/
+
+Bootstrap/Bootstrap.xcodeproj/xcuserdata/
+Bootstrap/Bootstrap.xcworkspace/xcuserdata/
+Bootstrap/Pods/Pods.xcodeproj/xcuserdata/
+
+Nimble_Snapshots.xcodeproj/project.xcworkspace/xcuserdata/
+Nimble_Snapshots.xcodeproj/xcuserdata/
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build
+
+.DS_Store

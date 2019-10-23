@@ -1,0 +1,12 @@
+SDKROOT[sdk=iphone*] = iphoneos
+SDKROOT[sdk=appletv*] = appletvos
+SUPPORTED_PLATFORMS = appletvsimulator appletvos iphonesimulator iphoneos
+
+FRAMEWORK_SEARCH_PATHS[sdk=iphone*] = $(PROJECT_DIR)/Carthage/Build/iOS/ $(inherited) $(PLATFORM_DIR)/Developer/Library/Frameworks
+
+FRAMEWORK_SEARCH_PATHS[sdk=appletv*] = $(PROJECT_DIR)/Carthage/Build/tvOS/ $(inherited) $(PLATFORM_DIR)/Developer/Library/Frameworks
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
+TVOS_DEPLOYMENT_TARGET = 9.0
+
+TARGETED_DEVICE_FAMILY = 1, 2, 3

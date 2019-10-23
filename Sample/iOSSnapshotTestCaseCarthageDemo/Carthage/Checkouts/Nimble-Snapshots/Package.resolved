@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ios-snapshot-test-case",
+        "repositoryURL": "https://github.com/bfernandesbfs/ios-snapshot-test-case.git",
+        "state": {
+          "branch": "spm",
+          "revision": "fed7bc849fe97ee14d68db048e45bce72494a642",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
