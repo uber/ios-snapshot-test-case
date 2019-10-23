@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "FBSnapshotTestCase",
     platforms: [
-        .iOS(.v8), .tvOS(.v10),
+        .iOS(.v10), .tvOS(.v10),
     ],
     products: [
         .library(
