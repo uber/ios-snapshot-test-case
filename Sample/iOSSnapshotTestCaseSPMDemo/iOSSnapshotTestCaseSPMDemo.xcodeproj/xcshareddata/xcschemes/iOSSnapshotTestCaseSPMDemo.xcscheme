@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "65B276DD2360F6F800B13755"
+            BuildableName = "iOSSnapshotTestCaseSPMDemoTests.xctest"
+            BlueprintName = "iOSSnapshotTestCaseSPMDemoTests"
+            ReferencedContainer = "container:iOSSnapshotTestCaseSPMDemo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "IMAGE_DIFF_DIR"

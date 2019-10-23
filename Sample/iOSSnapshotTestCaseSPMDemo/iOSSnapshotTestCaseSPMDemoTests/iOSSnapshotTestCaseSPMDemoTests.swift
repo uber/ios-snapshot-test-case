@@ -13,7 +13,7 @@ class iOSSnapshotTestCaseSPMDemoTests: FBSnapshotTestCase {
 
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
 
     func testExample() {
