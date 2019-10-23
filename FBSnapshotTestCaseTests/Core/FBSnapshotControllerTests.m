@@ -7,7 +7,7 @@
  *
  */
 
-@import FBSnapshotTestCaseCore;
+@import FBSnapshotTestCase;
 #import <XCTest/XCTest.h>
 
 @interface FBSnapshotControllerTests : XCTestCase

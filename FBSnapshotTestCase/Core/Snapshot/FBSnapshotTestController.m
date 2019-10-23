@@ -9,9 +9,9 @@
 
 #import "FBSnapshotTestCasePlatform.h"
 #import "FBSnapshotTestController.h"
-#import "Categories/UIImage+Compare.h"
-#import "Categories/UIImage+Diff.h"
-#import "Categories/UIImage+Snapshot.h"
+#import "UIImage+Compare.h"
+#import "UIImage+Diff.h"
+#import "UIImage+Snapshot.h"
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
