@@ -19,18 +19,6 @@
 		65B276842360E43C00B13755 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276702360E43C00B13755 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65B276852360E43C00B13755 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276712360E43C00B13755 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65B276862360E43C00B13755 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276712360E43C00B13755 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65B276872360E43C00B13755 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276732360E43C00B13755 /* UIImage+Diff.h */; };
-		65B276882360E43C00B13755 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276732360E43C00B13755 /* UIImage+Diff.h */; };
-		65B276892360E43C00B13755 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276742360E43C00B13755 /* UIImage+Snapshot.m */; };
-		65B2768A2360E43C00B13755 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276742360E43C00B13755 /* UIImage+Snapshot.m */; };
-		65B2768B2360E43C00B13755 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276752360E43C00B13755 /* UIImage+Compare.m */; };
-		65B2768C2360E43C00B13755 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276752360E43C00B13755 /* UIImage+Compare.m */; };
-		65B2768D2360E43C00B13755 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276762360E43C00B13755 /* UIImage+Diff.m */; };
-		65B2768E2360E43C00B13755 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276762360E43C00B13755 /* UIImage+Diff.m */; };
-		65B2768F2360E43C00B13755 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276772360E43C00B13755 /* UIImage+Compare.h */; };
-		65B276902360E43C00B13755 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276772360E43C00B13755 /* UIImage+Compare.h */; };
-		65B276912360E43C00B13755 /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276782360E43C00B13755 /* UIImage+Snapshot.h */; };
-		65B276922360E43C00B13755 /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276782360E43C00B13755 /* UIImage+Snapshot.h */; };
 		65B276932360E43C00B13755 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2767A2360E43C00B13755 /* SwiftSupport.swift */; };
 		65B276942360E43C00B13755 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2767A2360E43C00B13755 /* SwiftSupport.swift */; };
 		65B2769E2360E48900B13755 /* FBSnapshotControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276962360E48900B13755 /* FBSnapshotControllerTests.m */; };
@@ -47,6 +35,18 @@
 		65B276A92360E48900B13755 /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B2769C2360E48900B13755 /* rect.png */; };
 		65B276AA2360E48900B13755 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B2769D2360E48900B13755 /* square.png */; };
 		65B276AB2360E48900B13755 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B2769D2360E48900B13755 /* square.png */; };
+		65B276FC236107F700B13755 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276F6236107F600B13755 /* UIImage+Compare.h */; };
+		65B276FD236107F700B13755 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276F6236107F600B13755 /* UIImage+Compare.h */; };
+		65B276FE236107F700B13755 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276F7236107F600B13755 /* UIImage+Diff.m */; };
+		65B276FF236107F700B13755 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276F7236107F600B13755 /* UIImage+Diff.m */; };
+		65B27700236107F700B13755 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276F8236107F600B13755 /* UIImage+Diff.h */; };
+		65B27701236107F700B13755 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276F8236107F600B13755 /* UIImage+Diff.h */; };
+		65B27702236107F700B13755 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276F9236107F600B13755 /* UIImage+Snapshot.m */; };
+		65B27703236107F700B13755 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276F9236107F600B13755 /* UIImage+Snapshot.m */; };
+		65B27704236107F700B13755 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276FA236107F600B13755 /* UIImage+Compare.m */; };
+		65B27705236107F700B13755 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B276FA236107F600B13755 /* UIImage+Compare.m */; };
+		65B27706236107F700B13755 /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276FB236107F600B13755 /* UIImage+Snapshot.h */; };
+		65B27707236107F700B13755 /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B276FB236107F600B13755 /* UIImage+Snapshot.h */; };
 		827137841C63AB7000354E42 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8271377A1C63AB6F00354E42 /* FBSnapshotTestCase.framework */; };
 		B31987FC1AB782D100B0A900 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31987F01AB782D000B0A900 /* FBSnapshotTestCase.framework */; };
 /* End PBXBuildFile section */
@@ -75,12 +75,6 @@
 		65B2766F2360E43C00B13755 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		65B276702360E43C00B13755 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		65B276712360E43C00B13755 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSnapshotTestController.h; sourceTree = "<group>"; };
-		65B276732360E43C00B13755 /* UIImage+Diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Diff.h"; sourceTree = "<group>"; };
-		65B276742360E43C00B13755 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Snapshot.m"; sourceTree = "<group>"; };
-		65B276752360E43C00B13755 /* UIImage+Compare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compare.m"; sourceTree = "<group>"; };
-		65B276762360E43C00B13755 /* UIImage+Diff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Diff.m"; sourceTree = "<group>"; };
-		65B276772360E43C00B13755 /* UIImage+Compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compare.h"; sourceTree = "<group>"; };
-		65B276782360E43C00B13755 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Snapshot.h"; sourceTree = "<group>"; };
 		65B2767A2360E43C00B13755 /* SwiftSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSupport.swift; sourceTree = "<group>"; };
 		65B276962360E48900B13755 /* FBSnapshotControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotControllerTests.m; sourceTree = "<group>"; };
 		65B276982360E48900B13755 /* rect_shade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect_shade.png; sourceTree = "<group>"; };
@@ -89,6 +83,12 @@
 		65B2769B2360E48900B13755 /* square_with_pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_with_pixel.png; sourceTree = "<group>"; };
 		65B2769C2360E48900B13755 /* rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect.png; sourceTree = "<group>"; };
 		65B2769D2360E48900B13755 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		65B276F6236107F600B13755 /* UIImage+Compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compare.h"; sourceTree = "<group>"; };
+		65B276F7236107F600B13755 /* UIImage+Diff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Diff.m"; sourceTree = "<group>"; };
+		65B276F8236107F600B13755 /* UIImage+Diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Diff.h"; sourceTree = "<group>"; };
+		65B276F9236107F600B13755 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		65B276FA236107F600B13755 /* UIImage+Compare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compare.m"; sourceTree = "<group>"; };
+		65B276FB236107F600B13755 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Snapshot.h"; sourceTree = "<group>"; };
 		8271377A1C63AB6F00354E42 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827137831C63AB7000354E42 /* FBSnapshotTestCase tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FBSnapshotTestCase tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31987F01AB782D000B0A900 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,8 +134,13 @@
 		65B2766A2360E43C00B13755 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				65B276F6236107F600B13755 /* UIImage+Compare.h */,
+				65B276FA236107F600B13755 /* UIImage+Compare.m */,
+				65B276F8236107F600B13755 /* UIImage+Diff.h */,
+				65B276F7236107F600B13755 /* UIImage+Diff.m */,
+				65B276FB236107F600B13755 /* UIImage+Snapshot.h */,
+				65B276F9236107F600B13755 /* UIImage+Snapshot.m */,
 				65B2766B2360E43C00B13755 /* Snapshot */,
-				65B276722360E43C00B13755 /* Categories */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -151,19 +156,6 @@
 				65B2766E2360E43C00B13755 /* FBSnapshotTestController.m */,
 			);
 			path = Snapshot;
-			sourceTree = "<group>";
-		};
-		65B276722360E43C00B13755 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				65B276732360E43C00B13755 /* UIImage+Diff.h */,
-				65B276762360E43C00B13755 /* UIImage+Diff.m */,
-				65B276772360E43C00B13755 /* UIImage+Compare.h */,
-				65B276752360E43C00B13755 /* UIImage+Compare.m */,
-				65B276782360E43C00B13755 /* UIImage+Snapshot.h */,
-				65B276742360E43C00B13755 /* UIImage+Snapshot.m */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 		65B276792360E43C00B13755 /* Core-Support */ = {
@@ -264,10 +256,10 @@
 			files = (
 				65B2767E2360E43C00B13755 /* FBSnapshotTestCase.h in Headers */,
 				65B276862360E43C00B13755 /* FBSnapshotTestController.h in Headers */,
+				65B27701236107F700B13755 /* UIImage+Diff.h in Headers */,
+				65B276FD236107F700B13755 /* UIImage+Compare.h in Headers */,
+				65B27707236107F700B13755 /* UIImage+Snapshot.h in Headers */,
 				65B276842360E43C00B13755 /* FBSnapshotTestCasePlatform.h in Headers */,
-				65B276902360E43C00B13755 /* UIImage+Compare.h in Headers */,
-				65B276882360E43C00B13755 /* UIImage+Diff.h in Headers */,
-				65B276922360E43C00B13755 /* UIImage+Snapshot.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +269,10 @@
 			files = (
 				65B2767D2360E43C00B13755 /* FBSnapshotTestCase.h in Headers */,
 				65B276852360E43C00B13755 /* FBSnapshotTestController.h in Headers */,
+				65B27700236107F700B13755 /* UIImage+Diff.h in Headers */,
+				65B276FC236107F700B13755 /* UIImage+Compare.h in Headers */,
+				65B27706236107F700B13755 /* UIImage+Snapshot.h in Headers */,
 				65B276832360E43C00B13755 /* FBSnapshotTestCasePlatform.h in Headers */,
-				65B2768F2360E43C00B13755 /* UIImage+Compare.h in Headers */,
-				65B276872360E43C00B13755 /* UIImage+Diff.h in Headers */,
-				65B276912360E43C00B13755 /* UIImage+Snapshot.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,13 +447,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B2768C2360E43C00B13755 /* UIImage+Compare.m in Sources */,
 				65B2767C2360E43C00B13755 /* FBSnapshotTestCasePlatform.m in Sources */,
-				65B2768E2360E43C00B13755 /* UIImage+Diff.m in Sources */,
-				65B2768A2360E43C00B13755 /* UIImage+Snapshot.m in Sources */,
 				65B276822360E43C00B13755 /* FBSnapshotTestCase.m in Sources */,
+				65B276FF236107F700B13755 /* UIImage+Diff.m in Sources */,
 				65B276942360E43C00B13755 /* SwiftSupport.swift in Sources */,
 				65B276802360E43C00B13755 /* FBSnapshotTestController.m in Sources */,
+				65B27705236107F700B13755 /* UIImage+Compare.m in Sources */,
+				65B27703236107F700B13755 /* UIImage+Snapshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,13 +469,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B2768B2360E43C00B13755 /* UIImage+Compare.m in Sources */,
 				65B2767B2360E43C00B13755 /* FBSnapshotTestCasePlatform.m in Sources */,
-				65B2768D2360E43C00B13755 /* UIImage+Diff.m in Sources */,
-				65B276892360E43C00B13755 /* UIImage+Snapshot.m in Sources */,
 				65B276812360E43C00B13755 /* FBSnapshotTestCase.m in Sources */,
+				65B276FE236107F700B13755 /* UIImage+Diff.m in Sources */,
 				65B276932360E43C00B13755 /* SwiftSupport.swift in Sources */,
 				65B2767F2360E43C00B13755 /* FBSnapshotTestController.m in Sources */,
+				65B27704236107F700B13755 /* UIImage+Compare.m in Sources */,
+				65B27702236107F700B13755 /* UIImage+Snapshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
