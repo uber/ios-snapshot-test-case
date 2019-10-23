@@ -7,8 +7,8 @@
  *
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
-#import <FBSnapshotTestCase/FBSnapshotTestController.h>
+#import "FBSnapshotTestCasePlatform.h"
+#import "FBSnapshotTestController.h"
 
 #import <QuartzCore/QuartzCore.h>
 

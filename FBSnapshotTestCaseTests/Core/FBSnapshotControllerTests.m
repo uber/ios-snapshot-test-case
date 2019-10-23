@@ -7,8 +7,7 @@
  *
  */
 
-#import "FBSnapshotTestCasePlatform.h"
-#import "FBSnapshotTestController.h"
+@import FBSnapshotTestCase;
 #import <XCTest/XCTest.h>
 
 @interface FBSnapshotControllerTests : XCTestCase
@@ -194,8 +193,9 @@
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:name ofType:type];
+    NSURL *url = [[NSURL fileURLWithPath: @__FILE__] URLByDeletingLastPathComponent];
+    url = [url URLByAppendingPathComponent:@"Resources"];
+    NSString *path = [[url URLByAppendingPathComponent: [NSString stringWithFormat:@"%@.%@", name, type]] path];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     return [[UIImage alloc] initWithData:data];
 }

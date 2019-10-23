@@ -4,25 +4,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "ios-snapshot-test-case",
+    name: "FBSnapshotTestCase",
     platforms: [
         .iOS(.v8), .tvOS(.v10),
     ],
     products: [
         .library(
-            name: "ios-snapshot-test-case",
-            targets: ["ios-snapshot-test-case"]),
+            name: "FBSnapshotTestCase",
+            type: .dynamic,
+            targets: ["FBSnapshotTestCase"]),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "ios-snapshot-test-case",
-            dependencies: [],
+            name: "FBSnapshotTestCase",
             path: "FBSnapshotTestCase",
-            sources: ["Categories", "Core/*.m"]
-        )
-//        .testTarget(
-//            name: "ios-snapshot-test-caseTests",
-//            dependencies: ["ios-snapshot-test-case"]),
+            sources: ["Core"],
+            publicHeadersPath: "Core"
+        ),
+        .testTarget(
+            name: "FBSnapshotTestCaseTests",
+            dependencies: ["FBSnapshotTestCase"],
+            path: "FBSnapshotTestCaseTests",
+            sources: ["Core"]
+        ),
     ]
 )

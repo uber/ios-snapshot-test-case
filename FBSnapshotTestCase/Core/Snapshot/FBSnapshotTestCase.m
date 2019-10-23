@@ -7,8 +7,8 @@
  *
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <FBSnapshotTestCase/FBSnapshotTestController.h>
+#import "FBSnapshotTestCase.h"
+#import "FBSnapshotTestController.h"
 
 @implementation FBSnapshotTestCase {
     FBSnapshotTestController *_snapshotController;
@@ -18,7 +18,7 @@
 
 - (void)setUp
 {
-    [super setUp];
+    //[super setUp];
     _snapshotController = [[FBSnapshotTestController alloc] initWithTestClass:[self class]];
 }
 
