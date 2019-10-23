@@ -12,25 +12,25 @@ let package = Package(
         .library(
             name: "FBSnapshotTestCase",
             type: .dynamic,
-            targets: ["FBSnapshotTestCase"]),
+            targets: ["FBSnapshotTestCase", "FBSnapshotTestCaseCore"]),
     ],
     dependencies: [],
     targets: [
-        .target(
-            name: "FBSnapshotTestCaseCore",
-            path: "FBSnapshotTestCase",
-            sources: ["Core"],
-            publicHeadersPath: "Core"
-        ),
         .target(
             name: "FBSnapshotTestCase",
             dependencies: ["FBSnapshotTestCaseCore"],
             path: "FBSnapshotTestCase",
             sources: ["Core-Support"]
         ),
+        .target(
+            name: "FBSnapshotTestCaseCore",
+            path: "FBSnapshotTestCase",
+            sources: ["Core"],
+            publicHeadersPath: "Core"
+        ),
         .testTarget(
             name: "FBSnapshotTestCaseTests",
-            dependencies: ["FBSnapshotTestCaseCore"],
+            dependencies: ["FBSnapshotTestCase"],
             path: "FBSnapshotTestCaseTests",
             sources: ["Core"]
         ),
