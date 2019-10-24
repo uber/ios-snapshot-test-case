@@ -22,14 +22,14 @@ Pod::Spec.new do |s|
   s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
-  #s.default_subspecs = 'SwiftSupport'
+  s.default_subspecs = 'SwiftSupport'
   s.subspec 'Core' do |cs|
-    cs.source_files = 'FBSnapshotTestCase/Core/**/*.{h,m}', 'FBSnapshotTestCase/Core/*.{h,m}'
-    cs.public_header_files = 'FBSnapshotTestCase/Core/Snapshot/FBSnapshotTestCase.h','FBSnapshotTestCase/Snapshot/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/Snapshot/FBSnapshotTestController.h'
-    cs.private_header_files = 'FBSnapshotTestCase/Core/Categories/UIImage+Compare.h','FBSnapshotTestCase/Core/Categories/UIImage+Diff.h','FBSnapshotTestCase/Core/Categories/UIImage+Snapshot.h'
+    cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
+    cs.public_header_files = 'FBSnapshotTestCase/FBSnapshotTestCase.h','FBSnapshotTestCase/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/FBSnapshotTestController.h'
+    cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
   end
   s.subspec 'SwiftSupport' do |cs|
-    cs.dependency 'Core'
-    cs.source_files = 'FBSnapshotTestCase/Core-Support/**/*.swift'
+    cs.dependency 'iOSSnapshotTestCase/Core'
+    cs.source_files = 'FBSnapshotTestCase/**/*.swift'
   end
 end
