@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 6.2.1
 
-- Added support to Swift Package Manager
+- Added support to Swift Package Manager ([#107](https://github.com/uber/ios-snapshot-test-case/pull/107))
+- Project folders organization for compatibility to structure Swift Package Manager
+- Samples Apps grouped folders
 
 ## 6.2.0
 
