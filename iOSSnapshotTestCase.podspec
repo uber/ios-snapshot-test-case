@@ -23,13 +23,13 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
   s.default_subspecs = 'SwiftSupport'
-  s.subspec 'Core' do |cs|
-    cs.source_files = 'FBSnapshotTestCase/Core/**/*.{h,m}', 'FBSnapshotTestCase/Core/*.{h,m}'
-    cs.public_header_files = 'FBSnapshotTestCase/Core/Snapshot/FBSnapshotTestCase.h','FBSnapshotTestCase/Snapshot/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/Snapshot/FBSnapshotTestController.h'
-    cs.private_header_files = 'FBSnapshotTestCase/Core/UIImage+Compare.h','FBSnapshotTestCase/Core/UIImage+Diff.h','FBSnapshotTestCase/Core/UIImage+Snapshot.h'
+  s.subspec 'Core' do |core|
+    core.source_files = 'FBSnapshotTestCase/Core/**/*.{h,m}', 'FBSnapshotTestCase/Core/**/*.{h,m}'
+    core.public_header_files = 'FBSnapshotTestCase/Core/Snapshot/*.h'
+    core.private_header_files = 'FBSnapshotTestCase/Core/UIImage+Compare.h','FBSnapshotTestCase/Core/UIImage+Diff.h','FBSnapshotTestCase/Core/UIImage+Snapshot.h'
   end
-  s.subspec 'SwiftSupport' do |cs|
-    cs.dependency 'Core'
-    cs.source_files = 'FBSnapshotTestCase/Core-Support/**/*.swift'
+  s.subspec 'SwiftSupport' do |support|
+    support.source_files = 'FBSnapshotTestCase/Core-Support/**/*.swift'
+    support.dependency 'iOSSnapshotTestCase/Core'
   end
 end

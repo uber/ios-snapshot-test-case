@@ -1,14 +1,24 @@
-source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
-use_frameworks!
-
-target :'FBSnapshotTestCaseDemoTests' do
-  pod 'iOSSnapshotTestCase', :path => '..'
+def snap 
+  pod 'iOSSnapshotTestCase', :path => '../..'
 end
 
-target :'FBSnapshotTestCasePreprocessorDemoTests' do
-  pod 'iOSSnapshotTestCase', :path => '..'
+target 'FBSnapshotTestCaseDemo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for FBSnapshotTestCaseDemo
+
+  target 'FBSnapshotTestCaseDemoTests' do
+    inherit! :search_paths
+    snap
+  end
+
+  target 'FBSnapshotTestCasePreprocessorDemoTests' do
+    inherit! :search_paths
+    snap
+  end
 end
 
 post_install do |installer|
