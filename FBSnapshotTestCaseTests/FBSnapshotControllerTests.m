@@ -29,7 +29,8 @@
     id testClass = nil;
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     NSError *error = nil;
-    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error differentPixels:&differentPixels]);
     XCTAssertNil(error);
 }
 
@@ -43,7 +44,8 @@
     id testClass = nil;
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     NSError *error = nil;
-    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error differentPixels:&differentPixels]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferent);
 }
@@ -59,7 +61,8 @@
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With virtually no margin for error, this should fail to be equal
     NSError *error = nil;
-    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:.0001 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:.0001 error:&error differentPixels:&differentPixels]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferent);
 }
@@ -75,7 +78,8 @@
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With some tolerance these should be considered the same
     NSError *error = nil;
-    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:.001 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:.001 error:&error differentPixels:&differentPixels]);
     XCTAssertNil(error);
 }
 
@@ -90,7 +94,8 @@
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With some tolerance these should be considered the same
     NSError *error = nil;
-    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error differentPixels:&differentPixels]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferentSizes);
 }
@@ -170,7 +175,8 @@
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With virtually no margin for error, this should fail to be equal
     NSError *error = nil;
-    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage perPixelTolerance:.06 overallTolerance:0 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertFalse([controller compareReferenceImage:referenceImage toImage:testImage perPixelTolerance:.06 overallTolerance:0 error:&error differentPixels:&differentPixels]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, FBSnapshotTestControllerErrorCodeImagesDifferent);
 }
@@ -186,7 +192,8 @@
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     // With some tolerance these should be considered the same
     NSError *error = nil;
-    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage perPixelTolerance:.06 overallTolerance:0 error:&error]);
+    NSMutableArray *differentPixels = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage perPixelTolerance:.06 overallTolerance:0 error:&error differentPixels:&differentPixels]);
     XCTAssertNil(error);
 }
 

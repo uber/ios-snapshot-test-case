@@ -39,6 +39,17 @@
     _snapshotController.recordMode = recordMode;
 }
 
+- (BOOL)highlightDifferentPixels
+{
+    return _snapshotController.highlightDifferentPixels;
+}
+
+- (void)setHighlightDifferentPixels:(BOOL)highlightDifferentPixels
+{
+    NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
+    _snapshotController.highlightDifferentPixels = highlightDifferentPixels;
+}
+
 - (FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
     return _snapshotController.fileNameOptions;

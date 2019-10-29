@@ -139,12 +139,14 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                       toImage:(UIImage *)image
              overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr
+              differentPixels:(NSMutableArray **)differentPixels
 {
     return [self compareReferenceImage:referenceImage
                                toImage:image
                      perPixelTolerance:0
                       overallTolerance:overallTolerance
-                                 error:errorPtr];
+                                 error:errorPtr
+                       differentPixels:differentPixels];
 }
 
 - (BOOL)compareReferenceImage:(UIImage *)referenceImage
@@ -152,12 +154,13 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
             perPixelTolerance:(CGFloat)perPixelTolerance
              overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr
+              differentPixels:(NSMutableArray **)differentPixels
 {
     CGSize referenceImageSize = CGSizeMake(CGImageGetWidth(referenceImage.CGImage), CGImageGetHeight(referenceImage.CGImage));
     CGSize imageSize = CGSizeMake(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));
 
     BOOL sameImageDimensions = CGSizeEqualToSize(referenceImageSize, imageSize);
-    if (sameImageDimensions && [referenceImage fb_compareWithImage:image perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance]) {
+    if (sameImageDimensions && [referenceImage fb_compareWithImage:image perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance differentPixels:differentPixels]) {
         return YES;
     }
 
@@ -173,7 +176,7 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                                         NSLocalizedFailureReasonErrorKey : errorReason,
                                         FBReferenceImageKey : referenceImage,
                                         FBCapturedImageKey : image,
-                                        FBDiffedImageKey : [referenceImage fb_diffWithImage:image],
+                                        FBDiffedImageKey : [referenceImage fb_diffWithImage:image differentPixels:*differentPixels],
                                     }];
     }
     return NO;
@@ -184,8 +187,9 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                         selector:(SEL)selector
                       identifier:(NSString *)identifier
                            error:(NSError **)errorPtr
+                 differentPixels:(NSArray *)differentPixels
 {
-    UIImage *diffImage = [referenceImage fb_diffWithImage:testImage];
+    UIImage *diffImage = [referenceImage fb_diffWithImage:testImage differentPixels:differentPixels];
 
     [XCTContext runActivityNamed:identifier ?: NSStringFromSelector(selector) block:^(id<XCTActivity> _Nonnull activity) {
         XCTAttachment *referenceAttachment = [XCTAttachment attachmentWithImage:referenceImage];
@@ -319,10 +323,26 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     UIImage *referenceImage = [self referenceImageForSelector:selector identifier:identifier error:errorPtr];
     if (referenceImage != nil) {
         UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
-        BOOL imagesSame = [self compareReferenceImage:referenceImage toImage:snapshot perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
+        
+        NSMutableArray *differentPixels = nil;
+        if (self.highlightDifferentPixels) {
+            differentPixels = [NSMutableArray array];
+        }
+        
+        BOOL imagesSame = [self compareReferenceImage:referenceImage
+                                              toImage:snapshot
+                                    perPixelTolerance:perPixelTolerance
+                                     overallTolerance:overallTolerance
+                                                error:errorPtr
+                                      differentPixels:&differentPixels];
         if (!imagesSame) {
             NSError *saveError = nil;
-            if ([self saveFailedReferenceImage:referenceImage testImage:snapshot selector:selector identifier:identifier error:&saveError] == NO) {
+            if ([self saveFailedReferenceImage:referenceImage
+                                     testImage:snapshot
+                                      selector:selector
+                                    identifier:identifier
+                                         error:&saveError
+                               differentPixels:differentPixels] == NO) {
                 NSLog(@"Error saving test images: %@", saveError);
             }
         }
