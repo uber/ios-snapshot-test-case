@@ -137,6 +137,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readwrite, nonatomic, assign) BOOL recordMode;
 
 /**
+ When YES, will cause hightlighting different fixels on test failure.
+ */
+@property (readwrite, nonatomic, assign) BOOL highlightDifferentPixels;
+
+/**
  When set, allows fine-grained control over what you want the file names to include.
 
  Allows you to combine which device or simulator specific details you want in your snapshot file names.

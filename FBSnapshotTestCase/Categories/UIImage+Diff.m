@@ -32,7 +32,7 @@
 
 @implementation UIImage (Diff)
 
-- (UIImage *)fb_diffWithImage:(UIImage *)image
+- (UIImage *)fb_diffWithImage:(UIImage *)image differentPixels:(NSArray *)differentPixels
 {
     if (!image) {
         return nil;
@@ -48,6 +48,20 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, CGRectMake(0, 0, self.size.width, self.size.height));
     CGContextEndTransparencyLayer(context);
+    
+    if (differentPixels) {
+        CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+        
+        CGFloat screenScale = [[UIScreen mainScreen] scale];
+        const NSUInteger pixelCount = differentPixels.count;
+        for (NSUInteger n = 0; n < pixelCount; ++n) {
+            int pixelNumber = [differentPixels[n] intValue] / screenScale;
+            CGFloat x = (pixelNumber % ((int) roundf(self.size.width)));
+            CGFloat y = ((pixelNumber - x) / (self.size.width * screenScale));
+
+            CGContextFillRect(context, CGRectMake(x, y, 1, 1));
+        }
+    }
     UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return returnImage;

@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param overallTolerance The overall percentage of pixels that are allowed to change from the pixels in the reference image.
  @return A BOOL which represents if the image is the same or not.
  */
-- (BOOL)fb_compareWithImage:(UIImage *)image perPixelTolerance:(CGFloat)perPixelTolerance overallTolerance:(CGFloat)overallTolerance;
+- (BOOL)fb_compareWithImage:(UIImage *)image perPixelTolerance:(CGFloat)perPixelTolerance overallTolerance:(CGFloat)overallTolerance differentPixels:(NSMutableArray **)differentPixels;
 
 @end
 

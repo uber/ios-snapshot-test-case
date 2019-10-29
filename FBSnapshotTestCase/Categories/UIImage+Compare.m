@@ -44,7 +44,7 @@ typedef union {
 
 @implementation UIImage (Compare)
 
-- (BOOL)fb_compareWithImage:(UIImage *)image perPixelTolerance:(CGFloat)perPixelTolerance overallTolerance:(CGFloat)overallTolerance
+- (BOOL)fb_compareWithImage:(UIImage *)image perPixelTolerance:(CGFloat)perPixelTolerance overallTolerance:(CGFloat)overallTolerance differentPixels:(NSMutableArray **)differentPixels
 {
     CGSize referenceImageSize = CGSizeMake(CGImageGetWidth(self.CGImage), CGImageGetHeight(self.CGImage));
     CGSize imageSize = CGSizeMake(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));
@@ -96,7 +96,7 @@ typedef union {
     FBComparePixel *p2 = imagePixels;
 
     // Do a fast compare if we can
-    if (overallTolerance == 0 && perPixelTolerance == 0) {
+    if (overallTolerance == 0 && perPixelTolerance == 0 && !*differentPixels) {
         imageEqual = (memcmp(referenceImagePixels, imagePixels, referenceImageSizeBytes) == 0);
     } else {
         const NSUInteger pixelCount = referenceImageSize.width * referenceImageSize.height;
@@ -105,7 +105,8 @@ typedef union {
                                                  overallTolerance:overallTolerance
                                                        pixelCount:pixelCount
                                                   referencePixels:p1
-                                                      imagePixels:p2];
+                                                      imagePixels:p2
+                                                  differentPixels:differentPixels];
     }
 
     free(referenceImagePixels);
@@ -155,6 +156,7 @@ typedef union {
                                     pixelCount:(NSUInteger)pixelCount
                                referencePixels:(FBComparePixel *)referencePixel
                                    imagePixels:(FBComparePixel *)imagePixel
+                               differentPixels:(NSMutableArray **)differentPixels
 {
     NSUInteger numDiffPixels = 0;
     for (NSUInteger n = 0; n < pixelCount; ++n) {
@@ -162,17 +164,29 @@ typedef union {
         // if we have hit our limit.
         BOOL isIdenticalPixel = [self _comparePixelWithPerPixelTolerance:perPixelTolerance referencePixel:referencePixel imagePixel:imagePixel];
         if (!isIdenticalPixel) {
+            [*differentPixels addObject:[NSNumber numberWithInteger:n]];
+            
             numDiffPixels++;
-
-            CGFloat percent = (CGFloat)numDiffPixels / (CGFloat)pixelCount;
-            if (percent > overallTolerance) {
-                return NO;
+            
+            if (!*differentPixels) {
+                CGFloat percent = (CGFloat)numDiffPixels / (CGFloat)pixelCount;
+                if (percent > overallTolerance) {
+                    return NO;
+                }
             }
         }
 
         referencePixel++;
         imagePixel++;
     }
+    
+    if (*differentPixels) {
+        CGFloat percent = (CGFloat)numDiffPixels / (CGFloat)pixelCount;
+        if (percent > overallTolerance) {
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
