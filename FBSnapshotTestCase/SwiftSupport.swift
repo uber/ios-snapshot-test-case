@@ -24,6 +24,40 @@ public extension FBSnapshotTestCase {
     FBSnapshotVerifyViewOrLayer(layer, identifier: identifier, suffixes: suffixes, perPixelTolerance: perPixelTolerance, overallTolerance: overallTolerance, file: file, line: line)
   }
 
+    func FBSnapshotVeriyViewForLightDarkMode(_ view: UIView, identifier: String? = nil, delay: TimeInterval = 0, perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+      let viewController = UIViewController()
+      viewController.view.addSubview(view)
+
+      FBSnapshotVerifyViewControllerForLightDarkMode(viewController, identifier: identifier, delay: delay, perPixelTolerance: perPixelTolerance, overallTolerance: overallTolerance, file: file, line: line)
+    }
+
+    func FBSnapshotVerifyViewControllerForLightDarkMode(_ viewController: UIViewController, identifier: String? = nil, delay: TimeInterval = 0, perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+      if #available(iOS 13.0, *) {
+        let navigationController = UINavigationController(rootViewController: viewController)
+        let window = UIWindow()
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+
+        // Take Light Mode snapshot
+        navigationController.overrideUserInterfaceStyle = .light
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: delay))
+
+        let lightId = [identifier, "light"].compactMap { $0 }.joined(separator: "_")
+        FBSnapshotVerifyView(navigationController.view, identifier: lightId, suffixes: ["Light"], perPixelTolerance: 0, overallTolerance: 0, file: file, line: line)
+
+        // Take Dark Mode snapshot
+        window.rootViewController = nil
+        window.rootViewController = navigationController
+        navigationController.overrideUserInterfaceStyle = .dark
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: delay))
+
+        let darkId = [identifier, "dark"].compactMap { $0 }.joined(separator: "_")
+        FBSnapshotVerifyView(navigationController.view, identifier: darkId, suffixes: ["Dark"], perPixelTolerance: 0, overallTolerance: 0, file: file, line: line)
+
+        window.rootViewController = nil
+      }
+    }
+
   private func FBSnapshotVerifyViewOrLayer(_ viewOrLayer: AnyObject, identifier: String? = nil, suffixes: NSOrderedSet = FBSnapshotTestCaseDefaultSuffixes(), perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
     let envReferenceImageDirectory = self.getReferenceImageDirectory(withDefault: nil)
     let envImageDiffDirectory = self.getImageDiffDirectory(withDefault: nil)
