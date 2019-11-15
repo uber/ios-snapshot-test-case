@@ -24,7 +24,7 @@ public extension FBSnapshotTestCase {
     FBSnapshotVerifyViewOrLayer(layer, identifier: identifier, suffixes: suffixes, perPixelTolerance: perPixelTolerance, overallTolerance: overallTolerance, file: file, line: line)
   }
 
-    func FBSnapshotVeriyViewForLightDarkMode(_ view: UIView, identifier: String? = nil, delay: TimeInterval = 0, perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
+    func FBSnapshotVerifyViewForLightDarkMode(_ view: UIView, identifier: String? = nil, delay: TimeInterval = 0, perPixelTolerance: CGFloat = 0, overallTolerance: CGFloat = 0, file: StaticString = #file, line: UInt = #line) {
       let viewController = UIViewController()
       viewController.view.addSubview(view)
 
