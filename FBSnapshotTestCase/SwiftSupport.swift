@@ -38,14 +38,14 @@ public extension FBSnapshotTestCase {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
-        // Take Light Mode snapshot
+        // Take snapshot in light mode
         navigationController.overrideUserInterfaceStyle = .light
         RunLoop.main.run(until: Date(timeIntervalSinceNow: delay))
 
         let lightId = [identifier, "light"].compactMap { $0 }.joined(separator: "_")
         FBSnapshotVerifyView(navigationController.view, identifier: lightId, suffixes: ["Light"], perPixelTolerance: 0, overallTolerance: 0, file: file, line: line)
 
-        // Take Dark Mode snapshot
+        // Take snapshot in dark mode
         window.rootViewController = nil
         window.rootViewController = navigationController
         navigationController.overrideUserInterfaceStyle = .dark
