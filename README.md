@@ -51,6 +51,16 @@ Add the following line to your Cartfile:
 github "uber/ios-snapshot-test-case" ~> 6.1.0
 ```
 
+#### Swift Package Manager
+
+Add the following line to your `Package.swift`:
+
+```spm
+dependencies: [
+  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", .exact("6.2.1")),
+],
+```
+
 ### Step 2: Setup Test Scheme
 Replace "Tests" with the name of your test project.
 
