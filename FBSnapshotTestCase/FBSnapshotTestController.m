@@ -10,19 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#if SWIFT_PACKAGE
 #import "FBSnapshotTestCasePlatform.h"
 #import "FBSnapshotTestController.h"
 #import "Categories/UIImage+Compare.h"
 #import "Categories/UIImage+Diff.h"
 #import "Categories/UIImage+Snapshot.h"
-#else
-#import <FBSnapshotTestCasePlatform.h>
-#import <FBSnapshotTestController.h>
-#import <FBSnapshotTestCase/UIImage+Compare.h>
-#import <FBSnapshotTestCase/UIImage+Diff.h>
-#import <FBSnapshotTestCase/UIImage+Snapshot.h>
-#endif
 
 NSString *const FBSnapshotTestControllerErrorDomain = @"FBSnapshotTestControllerErrorDomain";
 NSString *const FBReferenceImageFilePathKey = @"FBReferenceImageFilePathKey";

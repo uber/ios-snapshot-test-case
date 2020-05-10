@@ -8,13 +8,7 @@
  */
 
 #import <XCTest/XCTest.h>
-
-#if SWIFT_PACKAGE
-@import FBSnapshotTestCaseCore;
-#else
-#import "FBSnapshotTestCasePlatform.h"
-#import "FBSnapshotTestController.h"
-#endif
+#import "FBSnapshotTestCase.h"
 
 @interface FBSnapshotControllerTests : XCTestCase
 
