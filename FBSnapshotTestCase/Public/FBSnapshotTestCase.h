@@ -7,14 +7,17 @@
  *
  */
 
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
+
+#if SWIFT_PACKAGE
+#import "FBSnapshotTestCasePlatform.h"
+#import "FBSnapshotTestController.h"
+#else
 #import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
 #import <FBSnapshotTestCase/FBSnapshotTestController.h>
-
-#import <QuartzCore/QuartzCore.h>
-
-#import <UIKit/UIKit.h>
-
-#import <XCTest/XCTest.h>
+#endif
 
 /*
  There are three ways of setting reference image directories.

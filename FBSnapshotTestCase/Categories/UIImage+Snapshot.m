@@ -7,7 +7,11 @@
  *
  */
 
+#if SWIFT_PACKAGE
+#import "UIImage+Snapshot.h"
+#else
 #import <FBSnapshotTestCase/UIImage+Snapshot.h>
+#endif
 
 @implementation UIImage (Snapshot)
 

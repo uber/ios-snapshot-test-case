@@ -7,8 +7,14 @@
  *
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#if SWIFT_PACKAGE
+#import "Public/FBSnapshotTestCase.h"
+#import "Public/FBSnapshotTestController.h"
+#else
+#import <FBSnapshotTestCase.h>
 #import <FBSnapshotTestCase/FBSnapshotTestController.h>
+#endif
+
 
 @implementation FBSnapshotTestCase {
     FBSnapshotTestController *_snapshotController;
