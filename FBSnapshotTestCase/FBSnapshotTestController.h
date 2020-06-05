@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
+#import "FBSnapshotTestCase/FBSnapshotTestCasePlatform.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

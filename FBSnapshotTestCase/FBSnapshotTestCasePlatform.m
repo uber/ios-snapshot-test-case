@@ -7,7 +7,7 @@
  *
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCasePlatform.h>
+#import "FBSnapshotTestCase/FBSnapshotTestCasePlatform.h"
 #import <UIKit/UIKit.h>
 
 BOOL FBSnapshotTestCaseIs64Bit(void)

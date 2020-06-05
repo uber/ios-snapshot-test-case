@@ -7,7 +7,7 @@
  *
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import "FBSnapshotTestCase/FBSnapshotTestCase.h"
 
 @interface FBSnapshotTestCaseDemoTests : FBSnapshotTestCase
 
