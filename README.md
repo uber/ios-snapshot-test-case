@@ -51,15 +51,17 @@ Add the following line to your Cartfile:
 github "uber/ios-snapshot-test-case" ~> 6.1.0
 ```
 
-### Step 2: Setup Test Scheme
+### Step 2: Setup Test Environment
 Replace "Tests" with the name of your test project.
 
-1. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
+1. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` as an environment variable. This should point to the directory where you want reference images to be stored. We normally use this:
 
 |Name|Value|
 |:---|:----|
 |`FB_REFERENCE_IMAGE_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages`|
 |`IMAGE_DIFF_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs`|
+  
+If your scheme uses test plans, add these key-value pairs to their respective configuration(s).
 
 Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of failed snapshots. There are also [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L34-L43) to set failed image diff directories.
 
