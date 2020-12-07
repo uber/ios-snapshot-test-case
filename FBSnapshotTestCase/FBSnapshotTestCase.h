@@ -53,7 +53,7 @@
  @param tolerance The overall percentage of pixels that can differ and still count as an 'identical' view.
  */
 #define FBSnapshotVerifyViewWithOptions(view__, identifier__, suffixes__, tolerance__) \
-    FBSnapshotVerifyViewOrLayerWithOptions(View, view__, identifier__, suffixes__, tolerance__)
+    FBSnapshotVerifyViewOrLayerOrImageWithOptions(View, view__, identifier__, suffixes__, tolerance__)
 
 /**
  Similar to our much-loved XCTAssert() macros. Use this to perform your test. No need to write an explanation, though.
@@ -64,7 +64,7 @@
  @param tolerance The overall percentage of pixels that can differ and still count as an 'identical' layer.
  */
 #define FBSnapshotVerifyViewWithPixelOptions(view__, identifier__, suffixes__, pixelTolerance__, tolerance__) \
-    FBSnapshotVerifyViewOrLayerWithPixelOptions(View, view__, identifier__, suffixes__, pixelTolerance__, tolerance__)
+    FBSnapshotVerifyViewOrLayerOrImageWithPixelOptions(View, view__, identifier__, suffixes__, pixelTolerance__, tolerance__)
 
 #define FBSnapshotVerifyView(view__, identifier__) \
     FBSnapshotVerifyViewWithOptions(view__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
@@ -79,7 +79,7 @@
  @param tolerance The overall percentage of pixels that can differ and still count as an 'identical' layer.
  */
 #define FBSnapshotVerifyLayerWithPixelOptions(layer__, identifier__, suffixes__, pixelTolerance__, tolerance__) \
-    FBSnapshotVerifyViewOrLayerWithPixelOptions(Layer, layer__, identifier__, suffixes__, pixelTolerance__, tolerance__)
+    FBSnapshotVerifyViewOrLayerOrImageWithPixelOptions(Layer, layer__, identifier__, suffixes__, pixelTolerance__, tolerance__)
 
 /**
  Similar to our much-loved XCTAssert() macros. Use this to perform your test. No need to write an explanation, though.
@@ -89,21 +89,21 @@
  @param tolerance The overall percentage of pixels that can differ and still count as an 'identical' layer.
  */
 #define FBSnapshotVerifyLayerWithOptions(layer__, identifier__, suffixes__, tolerance__) \
-    FBSnapshotVerifyViewOrLayerWithOptions(Layer, layer__, identifier__, suffixes__, tolerance__)
+    FBSnapshotVerifyViewOrLayerOrImageWithOptions(Layer, layer__, identifier__, suffixes__, tolerance__)
 
 #define FBSnapshotVerifyLayer(layer__, identifier__) \
     FBSnapshotVerifyLayerWithOptions(layer__, identifier__, FBSnapshotTestCaseDefaultSuffixes(), 0)
 
-#define FBSnapshotVerifyViewOrLayerWithOptions(what__, viewOrLayer__, identifier__, suffixes__, tolerance__)                                                                                                                                           \
+#define FBSnapshotVerifyViewOrLayerOrImageWithOptions(what__, viewOrLayerOrImage__, identifier__, suffixes__, tolerance__)                                                                                                                                           \
     {                                                                                                                                                                                                                                                  \
-        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
+        NSString *errorDescription = [self snapshotVerifyViewOrLayerOrImage:viewOrLayerOrImage__ identifier:identifier__ suffixes:suffixes__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
         BOOL noErrors = (errorDescription == nil);                                                                                                                                                                                                     \
         XCTAssertTrue(noErrors, @"%@", errorDescription);                                                                                                                                                                                              \
     }
 
-#define FBSnapshotVerifyViewOrLayerWithPixelOptions(what__, viewOrLayer__, identifier__, suffixes__, pixelTolerance__, tolerance__)                                                                                                                                                    \
+#define FBSnapshotVerifyViewOrLayerOrImageWithPixelOptions(what__, viewOrLayerOrImage__, identifier__, suffixes__, pixelTolerance__, tolerance__)                                                                                                                                                    \
     {                                                                                                                                                                                                                                                                                  \
-        NSString *errorDescription = [self snapshotVerifyViewOrLayer:viewOrLayer__ identifier:identifier__ suffixes:suffixes__ perPixelTolerance:pixelTolerance__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
+        NSString *errorDescription = [self snapshotVerifyViewOrLayerOrImage:viewOrLayerOrImage__ identifier:identifier__ suffixes:suffixes__ perPixelTolerance:pixelTolerance__ overallTolerance:tolerance__ defaultReferenceDirectory:(@FB_REFERENCE_IMAGE_DIR) defaultImageDiffDirectory:(@IMAGE_DIFF_DIR)]; \
         BOOL noErrors = (errorDescription == nil);                                                                                                                                                                                                                                     \
         XCTAssertTrue(noErrors, @"%@", errorDescription);                                                                                                                                                                                                                              \
     }
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
- @param viewOrLayer The UIView or CALayer to snapshot.
+ @param viewOrLayerOrImage The UIView or CALayer to snapshot.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param suffixes An NSOrderedSet of strings for the different suffixes.
  @param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
@@ -181,16 +181,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
  */
-- (NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
-                             identifier:(nullable NSString *)identifier
-                               suffixes:(NSOrderedSet *)suffixes
-                       overallTolerance:(CGFloat)overallTolerance
-              defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
-              defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
+- (NSString *)snapshotVerifyViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                    identifier:(nullable NSString *)identifier
+                                      suffixes:(NSOrderedSet *)suffixes
+                              overallTolerance:(CGFloat)overallTolerance
+                     defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
+                     defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
- @param viewOrLayer The UIView or CALayer to snapshot.
+ @param viewOrLayerOrImage The UIView or CALayer to snapshot.
  @param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
  @param suffixes An NSOrderedSet of strings for the different suffixes.
  @param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
@@ -199,13 +199,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param defaultImageDiffDirectory The directory to default to for failed image diffs.
  @returns nil if the comparison (or saving of the reference image) succeeded. Otherwise it contains an error description.
  */
-- (nullable NSString *)snapshotVerifyViewOrLayer:(id)viewOrLayer
-                                      identifier:(nullable NSString *)identifier
-                                        suffixes:(NSOrderedSet *)suffixes
-                               perPixelTolerance:(CGFloat)perPixelTolerance
-                                overallTolerance:(CGFloat)overallTolerance
-                       defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
-                       defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
+- (nullable NSString *)snapshotVerifyViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                             identifier:(nullable NSString *)identifier
+                                               suffixes:(NSOrderedSet *)suffixes
+                                      perPixelTolerance:(CGFloat)perPixelTolerance
+                                       overallTolerance:(CGFloat)overallTolerance
+                              defaultReferenceDirectory:(nullable NSString *)defaultReferenceDirectory
+                              defaultImageDiffDirectory:(nullable NSString *)defaultImageDiffDirectory;
 
 /**
  Performs the comparison or records a snapshot of the layer if recordMode is YES.
@@ -278,6 +278,42 @@ NS_ASSUME_NONNULL_BEGIN
             perPixelTolerance:(CGFloat)perPixelTolerance
              overallTolerance:(CGFloat)overallTolerance
                         error:(NSError **)errorPtr;
+
+/**
+Performs the comparison or records a snapshot if recordMode is YES.
+@param image snapshot.
+@param referenceImagesDirectory The directory in which reference images are stored.
+@param imageDiffDirectory The directory in which failed image diffs are stored.
+@param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
+@param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+@param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
+@returns YES if the comparison (or saving of the reference image) succeeded.
+*/
+- (BOOL)compareSnapshotOfImage:(UIImage *)image
+      referenceImagesDirectory:(NSString *)referenceImagesDirectory
+            imageDiffDirectory:(NSString *)imageDiffDirectory
+                    identifier:(nullable NSString *)identifier
+              overallTolerance:(CGFloat)overallTolerance
+                         error:(NSError **)errorPtr;
+
+/**
+Performs the comparison or records a snapshot if recordMode is YES.
+@param image snapshot.
+@param referenceImagesDirectory The directory in which reference images are stored.
+@param imageDiffDirectory The directory in which failed image diffs are stored.
+@param identifier An optional identifier, used if there are multiple snapshot tests in a given -test method.
+@param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'. Each color shade difference represents a 0.390625% change.
+@param overallTolerance The percentage difference to still count as identical - 0 mean pixel perfect, 1 means I don't care.
+@param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
+@returns YES if the comparison (or saving of the reference image) succeeded.
+*/
+- (BOOL)compareSnapshotOfImage:(UIImage *)image
+      referenceImagesDirectory:(NSString *)referenceImagesDirectory
+            imageDiffDirectory:(NSString *)imageDiffDirectory
+                    identifier:(nullable NSString *)identifier
+             perPixelTolerance:(CGFloat)perPixelTolerance
+              overallTolerance:(CGFloat)overallTolerance
+                         error:(NSError **)errorPtr;
 
 /**
  Checks if reference image with identifier based name exists in the reference images directory.
