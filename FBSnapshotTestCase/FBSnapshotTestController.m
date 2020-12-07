@@ -60,12 +60,12 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                     identifier:(NSString *)identifier
                          error:(NSError **)errorPtr
 {
-    return [self compareSnapshotOfViewOrLayer:layer
-                                     selector:selector
-                                   identifier:identifier
-                            perPixelTolerance:0
-                             overallTolerance:0
-                                        error:errorPtr];
+    return [self compareSnapshotOfViewOrLayerOrImage:layer
+                                            selector:selector
+                                          identifier:identifier
+                                   perPixelTolerance:0
+                                    overallTolerance:0
+                                               error:errorPtr];
 }
 
 - (BOOL)compareSnapshotOfView:(UIView *)view
@@ -73,40 +73,40 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                    identifier:(NSString *)identifier
                         error:(NSError **)errorPtr
 {
-    return [self compareSnapshotOfViewOrLayer:view
-                                     selector:selector
-                                   identifier:identifier
-                            perPixelTolerance:0
-                             overallTolerance:0
-                                        error:errorPtr];
+    return [self compareSnapshotOfViewOrLayerOrImage:view
+                                            selector:selector
+                                          identifier:identifier
+                                   perPixelTolerance:0
+                                    overallTolerance:0
+                                               error:errorPtr];
 }
 
-- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
-                            selector:(SEL)selector
-                          identifier:(NSString *)identifier
-                    overallTolerance:(CGFloat)overallTolerance
-                               error:(NSError **)errorPtr
+- (BOOL)compareSnapshotOfViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                   selector:(SEL)selector
+                                 identifier:(NSString *)identifier
+                           overallTolerance:(CGFloat)overallTolerance
+                                      error:(NSError **)errorPtr
 {
-    return [self compareSnapshotOfViewOrLayer:viewOrLayer
-                                     selector:selector
-                                   identifier:identifier
-                            perPixelTolerance:0
-                             overallTolerance:overallTolerance
-                                        error:errorPtr];
+    return [self compareSnapshotOfViewOrLayerOrImage:viewOrLayerOrImage
+                                            selector:selector
+                                          identifier:identifier
+                                   perPixelTolerance:0
+                                    overallTolerance:overallTolerance
+                                               error:errorPtr];
 }
 
 
-- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
-                            selector:(SEL)selector
-                          identifier:(NSString *)identifier
-                   perPixelTolerance:(CGFloat)perPixelTolerance
-                    overallTolerance:(CGFloat)overallTolerance
-                               error:(NSError **)errorPtr
+- (BOOL)compareSnapshotOfViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                   selector:(SEL)selector
+                                 identifier:(NSString *)identifier
+                          perPixelTolerance:(CGFloat)perPixelTolerance
+                           overallTolerance:(CGFloat)overallTolerance
+                                      error:(NSError **)errorPtr
 {
     if (self.recordMode) {
-        return [self _recordSnapshotOfViewOrLayer:viewOrLayer selector:selector identifier:identifier error:errorPtr];
+        return [self _recordSnapshotOfViewOrLayerOrImage:viewOrLayerOrImage selector:selector identifier:identifier error:errorPtr];
     } else {
-        return [self _performPixelComparisonWithViewOrLayer:viewOrLayer selector:selector identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
+        return [self _performPixelComparisonWithViewOrLayerOrImage:viewOrLayerOrImage selector:selector identifier:identifier perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
     }
 }
 
@@ -309,16 +309,16 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     return filePath;
 }
 
-- (BOOL)_performPixelComparisonWithViewOrLayer:(id)viewOrLayer
-                                      selector:(SEL)selector
-                                    identifier:(NSString *)identifier
-                             perPixelTolerance:(CGFloat)perPixelTolerance
-                              overallTolerance:(CGFloat)overallTolerance
-                                         error:(NSError **)errorPtr
+- (BOOL)_performPixelComparisonWithViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                             selector:(SEL)selector
+                                           identifier:(NSString *)identifier
+                                    perPixelTolerance:(CGFloat)perPixelTolerance
+                                     overallTolerance:(CGFloat)overallTolerance
+                                                error:(NSError **)errorPtr
 {
     UIImage *referenceImage = [self referenceImageForSelector:selector identifier:identifier error:errorPtr];
     if (referenceImage != nil) {
-        UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
+        UIImage *snapshot = [self _imageForViewOrLayerOrImage:viewOrLayerOrImage];
         BOOL imagesSame = [self compareReferenceImage:referenceImage toImage:snapshot perPixelTolerance:perPixelTolerance overallTolerance:overallTolerance error:errorPtr];
         if (!imagesSame) {
             NSError *saveError = nil;
@@ -331,12 +331,12 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     return NO;
 }
 
-- (BOOL)_recordSnapshotOfViewOrLayer:(id)viewOrLayer
-                            selector:(SEL)selector
-                          identifier:(NSString *)identifier
-                               error:(NSError **)errorPtr
+- (BOOL)_recordSnapshotOfViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                   selector:(SEL)selector
+                                 identifier:(NSString *)identifier
+                                      error:(NSError **)errorPtr
 {
-    UIImage *snapshot = [self _imageForViewOrLayer:viewOrLayer];
+    UIImage *snapshot = [self _imageForViewOrLayerOrImage:viewOrLayerOrImage];
 
     [XCTContext runActivityNamed:identifier ?: NSStringFromSelector(selector) block:^(id<XCTActivity> _Nonnull activity) {
         XCTAttachment *recordedAttachment = [XCTAttachment attachmentWithImage:snapshot];
@@ -385,18 +385,20 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
     return didWrite;
 }
 
-- (UIImage *)_imageForViewOrLayer:(id)viewOrLayer
+- (UIImage *)_imageForViewOrLayerOrImage:(id)viewOrLayerOrImage
 {
-    if ([viewOrLayer isKindOfClass:[UIView class]]) {
+    if ([viewOrLayerOrImage isKindOfClass:[UIView class]]) {
         if (_usesDrawViewHierarchyInRect) {
-            return [UIImage fb_imageForView:viewOrLayer];
+            return [UIImage fb_imageForView:viewOrLayerOrImage];
         } else {
-            return [UIImage fb_imageForViewLayer:viewOrLayer];
+            return [UIImage fb_imageForViewLayer:viewOrLayerOrImage];
         }
-    } else if ([viewOrLayer isKindOfClass:[CALayer class]]) {
-        return [UIImage fb_imageForLayer:viewOrLayer];
+    } else if ([viewOrLayerOrImage isKindOfClass:[CALayer class]]) {
+        return [UIImage fb_imageForLayer:viewOrLayerOrImage];
+    } else if ([viewOrLayerOrImage isKindOfClass:[UIImage class]]) {
+        return (UIImage *)viewOrLayerOrImage;
     } else {
-        [NSException raise:@"Only UIView and CALayer classes can be snapshotted" format:@"%@", viewOrLayer];
+        [NSException raise:@"Only UIView, CALayer and UIImage classes can be snapshotted" format:@"%@", viewOrLayerOrImage];
     }
     return nil;
 }

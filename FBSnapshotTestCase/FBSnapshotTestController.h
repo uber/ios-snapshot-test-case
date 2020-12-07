@@ -126,22 +126,22 @@ extern NSString *const FBDiffedImageKey;
 
 /**
  Performs the comparison of a view or layer.
- @param viewOrLayer The view or layer to snapshot.
+ @param viewOrLayerOrImage The view or layer to snapshot.
  @param selector The test method being run.
  @param identifier An optional identifier, used is there are muliptle snapshot tests in a given -test method.
  @param overallTolerance The percentage of pixels that can differ and still be considered 'identical'.
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
-- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
-                            selector:(SEL)selector
-                          identifier:(nullable NSString *)identifier
-                    overallTolerance:(CGFloat)overallTolerance
-                               error:(NSError **)errorPtr;
+- (BOOL)compareSnapshotOfViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                   selector:(SEL)selector
+                                 identifier:(nullable NSString *)identifier
+                           overallTolerance:(CGFloat)overallTolerance
+                                      error:(NSError **)errorPtr;
 
 /**
  Performs the comparison of a view or layer.
- @param viewOrLayer The view or layer to snapshot.
+ @param viewOrLayerOrImage The view or layer to snapshot.
  @param selector The test method being run.
  @param identifier An optional identifier, used is there are muliptle snapshot tests in a given -test method.
  @param perPixelTolerance The percentage a given pixel's R,G,B and A components can differ and still be considered 'identical'.
@@ -149,12 +149,12 @@ extern NSString *const FBDiffedImageKey;
  @param errorPtr An error to log in an XCTAssert() macro if the method fails (missing reference image, images differ, etc).
  @returns YES if the comparison (or saving of the reference image) succeeded.
  */
-- (BOOL)compareSnapshotOfViewOrLayer:(id)viewOrLayer
-                            selector:(SEL)selector
-                          identifier:(nullable NSString *)identifier
-                   perPixelTolerance:(CGFloat)perPixelTolerance
-                    overallTolerance:(CGFloat)overallTolerance
-                               error:(NSError **)errorPtr;
+- (BOOL)compareSnapshotOfViewOrLayerOrImage:(id)viewOrLayerOrImage
+                                   selector:(SEL)selector
+                                 identifier:(nullable NSString *)identifier
+                          perPixelTolerance:(CGFloat)perPixelTolerance
+                           overallTolerance:(CGFloat)overallTolerance
+                                      error:(NSError **)errorPtr;
 
 /**
  Loads a reference image.
