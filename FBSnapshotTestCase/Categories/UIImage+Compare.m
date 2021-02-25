@@ -91,21 +91,21 @@ typedef union {
     CGContextRelease(referenceImageContext);
     CGContextRelease(imageContext);
 
-    BOOL imageEqual = YES;
     FBComparePixel *p1 = referenceImagePixels;
     FBComparePixel *p2 = imagePixels;
 
+    BOOL imageEqual = (memcmp(referenceImagePixels, imagePixels, referenceImageSizeBytes) == 0);
     // Do a fast compare if we can
-    if (overallTolerance == 0 && perPixelTolerance == 0) {
-        imageEqual = (memcmp(referenceImagePixels, imagePixels, referenceImageSizeBytes) == 0);
-    } else {
-        const NSUInteger pixelCount = referenceImageSize.width * referenceImageSize.height;
-        // Go through each pixel in turn and see if it is different
-        imageEqual = [self _compareAllPixelsWithPerPixelTolerance:perPixelTolerance
-                                                 overallTolerance:overallTolerance
-                                                       pixelCount:pixelCount
-                                                  referencePixels:p1
-                                                      imagePixels:p2];
+    if (!imageEqual) {
+        if (overallTolerance != 0 || perPixelTolerance != 0) {
+            const NSUInteger pixelCount = referenceImageSize.width * referenceImageSize.height;
+            // Go through each pixel in turn and see if it is different
+            imageEqual = [self _compareAllPixelsWithPerPixelTolerance:perPixelTolerance
+                                                     overallTolerance:overallTolerance
+                                                           pixelCount:pixelCount
+                                                      referencePixels:p1
+                                                          imagePixels:p2];
+        }
     }
 
     free(referenceImagePixels);
