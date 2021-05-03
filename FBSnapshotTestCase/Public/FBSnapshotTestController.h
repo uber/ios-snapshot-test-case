@@ -58,6 +58,11 @@ extern NSString *const FBDiffedImageKey;
 @property (readwrite, nonatomic, assign) BOOL recordMode;
 
 /**
+ The bundleResourcePath can be manually set to the root folder where reference images are stored.
+ */
+@property (readwrite, nonatomic, copy, nullable) NSString *bundleResourcePath;
+
+/**
  When set, allows fine-grained control over what you want the file names to include.
 
  Allows you to combine which device or simulator specific details you want in your snapshot file names.
