@@ -39,6 +39,16 @@
     _snapshotController.recordMode = recordMode;
 }
 
+- (NSBundle *)bundleResourcePath
+{
+    return _snapshotController.bundleResourcePath;
+}
+
+- (void)setBundleResourcePath:(NSBundle *)bundleResourcePath
+{
+    _snapshotController.bundleResourcePath = bundleResourcePath;
+}
+
 - (FBSnapshotTestCaseFileNameIncludeOption)fileNameOptions
 {
     return _snapshotController.fileNameOptions;
@@ -242,7 +252,13 @@
     if (dir && dir.length > 0) {
         return dir;
     }
-    return [[NSBundle bundleForClass:self.class].resourcePath stringByAppendingPathComponent:@"ReferenceImages"];
+    NSString* _Nonnull bundleResourcePath;
+    if (_snapshotController.bundleResourcePath == nil) {
+        bundleResourcePath = [NSBundle bundleForClass:self.class].resourcePath;
+    } else {
+        bundleResourcePath = _snapshotController.bundleResourcePath;
+    }
+    return [bundleResourcePath stringByAppendingPathComponent:@"ReferenceImages"];
 }
 
 - (NSString *)getImageDiffDirectoryWithDefault:(NSString *)dir
