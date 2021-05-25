@@ -15,6 +15,7 @@ DerivedData
 .idea/
 *.hmap
 *.xccheckout
+.swiftpm/
 Pods
 FBSnapshotTestCaseDemo/FBSnapshotTestCaseDemoTests/FailedSnapshotImages
 iOSSnapshotTestCaseCarthageDemo/Carthage/Checkouts
