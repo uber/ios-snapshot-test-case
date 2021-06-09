@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The base class of view snapshotting tests. If you have small UI component, it's often easier to configure it in a test
- and compare an image of the view to a reference image that write lots of complex layout-code tests.
+ and compare an image of the view to a reference image than write lots of complex layout-code tests.
 
  In order to flip the tests in your subclass to record the reference images set @c recordMode to @c YES.
 
