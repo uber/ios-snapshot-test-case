@@ -15,7 +15,7 @@ class FBSnapshotTestCaseSwiftTest: FBSnapshotTestCase {
     recordMode = false
   }
 
-  func testExample() {
+  func testExample() throws {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
     view.backgroundColor = UIColor.blue
     FBSnapshotVerifyView(view)

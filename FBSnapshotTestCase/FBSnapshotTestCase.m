@@ -20,6 +20,7 @@
 {
     [super setUp];
     _snapshotController = [[FBSnapshotTestController alloc] initWithTestClass:[self class]];
+    _removesErrorSuffix = YES;
 }
 
 - (void)tearDown
@@ -226,7 +227,7 @@
 {
     NSAssert1(_snapshotController, @"%s cannot be called before [super setUp]", __FUNCTION__);
     _snapshotController.referenceImagesDirectory = referenceImagesDirectory;
-    UIImage *referenceImage = [_snapshotController referenceImageForSelector:self.invocation.selector
+    UIImage *referenceImage = [_snapshotController referenceImageForSelector:[self adjustedCurrentTestSelector]
                                                                   identifier:identifier
                                                                        error:errorPtr];
 
@@ -269,12 +270,28 @@
 {
     _snapshotController.referenceImagesDirectory = referenceImagesDirectory;
     _snapshotController.imageDiffDirectory = imageDiffDirectory;
+
+
     return [_snapshotController compareSnapshotOfViewOrLayer:viewOrLayer
-                                                    selector:self.invocation.selector
+                                                    selector:[self adjustedCurrentTestSelector]
                                                   identifier:identifier
                                            perPixelTolerance:perPixelTolerance
                                             overallTolerance:overallTolerance
                                                        error:errorPtr];
+}
+
+- (SEL)adjustedCurrentTestSelector {
+    SEL selector = self.invocation.selector;
+    if (!self.removesErrorSuffix || self.invocation.methodSignature.numberOfArguments != 3) {
+        return selector;
+    }
+
+    NSString *name = NSStringFromSelector(selector);
+    if ([name hasSuffix:@"AndReturnError:"]) {
+        return NSSelectorFromString([name stringByReplacingOccurrencesOfString:@"AndReturnError:" withString:@""]);
+    }
+
+    return selector;
 }
 
 @end
