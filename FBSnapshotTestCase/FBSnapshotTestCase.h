@@ -168,6 +168,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (readwrite, nonatomic, assign) BOOL usesDrawViewHierarchyInRect;
 
+/// Whether to remove the "AndReturnError" suffix used when a test `throws` in Swift.
+/// This allows to change a test between throwing and not throwing without recording snapshots again.
+/// The default is YES.
+@property (readwrite, nonatomic, assign) BOOL removesErrorSuffix;
+
 - (void)setUp NS_REQUIRES_SUPER;
 - (void)tearDown NS_REQUIRES_SUPER;
 
