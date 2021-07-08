@@ -17,7 +17,7 @@
     NSAssert1(CGRectGetWidth(bounds), @"Zero width for layer %@", layer);
     NSAssert1(CGRectGetHeight(bounds), @"Zero height for layer %@", layer);
 
-    UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(bounds.size, YES, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSAssert1(context, @"Could not generate context for layer %@", layer);
     CGContextSaveGState(context);
