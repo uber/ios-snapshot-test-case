@@ -39,12 +39,12 @@
     _snapshotController.recordMode = recordMode;
 }
 
-- (NSBundle *)bundleResourcePath
+- (NSString *)bundleResourcePath
 {
     return _snapshotController.bundleResourcePath;
 }
 
-- (void)setBundleResourcePath:(NSBundle *)bundleResourcePath
+- (void)setBundleResourcePath:(NSString *)bundleResourcePath
 {
     _snapshotController.bundleResourcePath = bundleResourcePath;
 }
