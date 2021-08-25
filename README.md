@@ -57,9 +57,11 @@ Add the following line to your `Package.swift`:
 
 ```spm
 dependencies: [
-  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", from("7.0.0")),
+  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", from: "7.0.0"),
 ],
 ```
+
+...or integrate with Xcode via `File -> Swift Packages -> Add Package Dependency...` using the URL of the repository. We recommend using "Up to Next Major" with the Version field, as we use Semantic Versioning and only put breaking changes in major versions.
 
 ### Step 2: Setup Test Scheme
 Replace "Tests" with the name of your test project.
