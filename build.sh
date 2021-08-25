@@ -61,7 +61,23 @@ function ci_carthage_demo() {
     popd
 }
 
+function ci_swiftpm_demo() {
+    NAME=$1
+    pushd iOSSnapshotTestCaseSwiftPMDemo
+    xcodebuild -project iOSSnapshotTestCaseSwiftPMDemo.xcodeproj \
+               -scheme "iOSSnapshotTestCaseSwiftPMDemo (iOS)" \
+               -destination "platform=iOS Simulator,name=${NAME}" \
+               build-for-testing
+    xcodebuild -project iOSSnapshotTestCaseSwiftPMDemo.xcodeproj \
+               -scheme "iOSSnapshotTestCaseSwiftPMDemo (iOS)" \
+               -destination "platform=iOS Simulator,name=${NAME}" \
+               test-without-building
+    popd
+}
+
 ci_lib "iPhone 8" && ci_demo "iPhone 8" && ci_demo_preprocessor "iPhone 8"
 ci_lib "iPhone 11" && ci_demo "iPhone 11" && ci_demo_preprocessor "iPhone 11"
 ci_lib "iPhone 8" && ci_carthage_demo "iPhone 8"
 ci_lib "iPhone 11" && ci_carthage_demo "iPhone 11"
+ci_lib "iPhone 8" && ci_swiftpm_demo "iPhone 8"
+ci_lib "iPhone 11" && ci_swiftpm_demo "iPhone 11"
