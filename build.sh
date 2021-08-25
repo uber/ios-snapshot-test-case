@@ -77,7 +77,7 @@ function ci_swiftpm_demo() {
 
 ci_lib "iPhone 8" && ci_demo "iPhone 8" && ci_demo_preprocessor "iPhone 8"
 ci_lib "iPhone 11" && ci_demo "iPhone 11" && ci_demo_preprocessor "iPhone 11"
-ci_lib "iPhone 8" && ci_carthage_demo "iPhone 8"
-ci_lib "iPhone 11" && ci_carthage_demo "iPhone 11"
-ci_lib "iPhone 8" && ci_swiftpm_demo "iPhone 8"
-ci_lib "iPhone 11" && ci_swiftpm_demo "iPhone 11"
+ci_carthage_demo "iPhone 8"
+ci_carthage_demo "iPhone 11"
+ci_swiftpm_demo "iPhone 8"
+ci_swiftpm_demo "iPhone 11"
