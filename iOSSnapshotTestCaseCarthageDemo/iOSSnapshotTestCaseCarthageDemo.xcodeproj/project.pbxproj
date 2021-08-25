@@ -3,16 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76F8D72026D5BFA800813F9B /* FBSnapshotTestCase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F8D71F26D5BFA800813F9B /* FBSnapshotTestCase.xcframework */; };
+		76F8D72126D5BFA800813F9B /* FBSnapshotTestCase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76F8D71F26D5BFA800813F9B /* FBSnapshotTestCase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76F8D72326D5BFB200813F9B /* FBSnapshotTestCase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F8D71F26D5BFA800813F9B /* FBSnapshotTestCase.xcframework */; };
 		E793D4A321ED6CB3001039B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793D4A221ED6CB3001039B0 /* AppDelegate.swift */; };
 		E793D4AA21ED6CB4001039B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E793D4A921ED6CB4001039B0 /* Assets.xcassets */; };
 		E793D4AD21ED6CB4001039B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E793D4AB21ED6CB4001039B0 /* LaunchScreen.storyboard */; };
 		E7E942DF21ED6EE1005BC62E /* iOSSnapshotTestCaseCarthageDemoSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E942DE21ED6EE1005BC62E /* iOSSnapshotTestCaseCarthageDemoSwiftTests.swift */; };
-		E7E942E821ED6F47005BC62E /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E942E721ED6F47005BC62E /* FBSnapshotTestCase.framework */; };
-		E7E942EA21ED704D005BC62E /* FBSnapshotTestCase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E942E721ED6F47005BC62E /* FBSnapshotTestCase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,19 +27,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E7E942E921ED7039005BC62E /* CopyFiles */ = {
+		76F8D72226D5BFA800813F9B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7E942EA21ED704D005BC62E /* FBSnapshotTestCase.framework in CopyFiles */,
+				76F8D72126D5BFA800813F9B /* FBSnapshotTestCase.xcframework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76F8D71F26D5BFA800813F9B /* FBSnapshotTestCase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSnapshotTestCase.xcframework; path = Carthage/Build/FBSnapshotTestCase.xcframework; sourceTree = "<group>"; };
 		E793D49F21ED6CB3001039B0 /* iOSSnapshotTestCaseCarthageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSnapshotTestCaseCarthageDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E793D4A221ED6CB3001039B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E793D4A921ED6CB4001039B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76F8D72026D5BFA800813F9B /* FBSnapshotTestCase.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E942E821ED6F47005BC62E /* FBSnapshotTestCase.framework in Frameworks */,
+				76F8D72326D5BFB200813F9B /* FBSnapshotTestCase.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 		E7E942E621ED6F46005BC62E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76F8D71F26D5BFA800813F9B /* FBSnapshotTestCase.xcframework */,
 				E7E942E721ED6F47005BC62E /* FBSnapshotTestCase.framework */,
 			);
 			name = Frameworks;
@@ -126,6 +131,7 @@
 				E793D49B21ED6CB3001039B0 /* Sources */,
 				E793D49C21ED6CB3001039B0 /* Frameworks */,
 				E793D49D21ED6CB3001039B0 /* Resources */,
+				76F8D72226D5BFA800813F9B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -143,7 +149,6 @@
 				E7E942D821ED6EE1005BC62E /* Sources */,
 				E7E942D921ED6EE1005BC62E /* Frameworks */,
 				E7E942DA21ED6EE1005BC62E /* Resources */,
-				E7E942E921ED7039005BC62E /* CopyFiles */,
 			);
 			buildRules = (
 			);
