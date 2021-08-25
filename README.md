@@ -57,7 +57,7 @@ Add the following line to your `Package.swift`:
 
 ```spm
 dependencies: [
-  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", .exact("6.2.1")),
+  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", from("7.0.0")),
 ],
 ```
 
