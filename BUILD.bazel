@@ -1,0 +1,28 @@
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library",
+)
+
+objc_library(
+    name = "FBSnapshotTestCaseCore",
+    module_name = "FBSnapshotTestCaseCore",
+    srcs = glob(["FBSnapshotTestCase/*.m", "FBSnapshotTestCase/Categories/*.h", "FBSnapshotTestCase/Categories/*.m"], allow_empty = False),
+    hdrs = glob(["FBSnapshotTestCase/Public/*.h"], allow_empty = False),
+    defines = [
+        "SWIFT_PACKAGE"
+    ],
+    copts = [
+        "-Wno-deprecated-declarations"
+    ],
+    visibility = ["//visibility:public"]
+)
+
+swift_library(
+    name = "FBSnapshotTestCase",
+    module_name = "FBSnapshotTestCase",
+    srcs = ["FBSnapshotTestCase/Support/SwiftSupport.swift"],
+    deps = [
+        ":FBSnapshotTestCaseCore"
+    ],
+    visibility = ["//visibility:public"]
+)

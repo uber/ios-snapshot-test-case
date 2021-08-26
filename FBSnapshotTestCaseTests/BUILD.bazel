@@ -1,0 +1,26 @@
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
+
+objc_library(
+    name = "FBSnapshotTestCaseTestsLib",
+    enable_modules = True,
+    srcs = ["FBSnapshotControllerTests.m"],
+    deps = [
+        "//:FBSnapshotTestCaseCore"
+    ],
+    defines = [
+        "BAZEL"
+    ],
+    data = glob(["*.png"], allow_empty = False),
+    sdk_frameworks = [
+        "CoreGraphics",
+        "QuartzCore"
+    ]
+)
+
+ios_unit_test(
+    name = "FBSnapshotTestCaseTests",
+    deps = [
+        ":FBSnapshotTestCaseTestsLib"
+    ],
+    minimum_os_version = "10.0",
+)

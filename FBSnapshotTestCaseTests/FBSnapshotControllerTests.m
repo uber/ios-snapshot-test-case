@@ -8,7 +8,14 @@
  */
 
 #import <XCTest/XCTest.h>
+#if BAZEL
+@import FBSnapshotTestCaseCore;
+@import UIKit;
+@import CoreGraphics;
+@import QuartzCore;
+#else
 #import "FBSnapshotTestCase.h"
+#endif
 
 @interface FBSnapshotControllerTests : XCTestCase
 
@@ -100,14 +107,14 @@
     XCTAssertNotNil(referenceImage);
     UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
     XCTAssertNotNil(testImage);
-    
+
     NSUInteger FBSnapshotTestCaseFileNameIncludeOptionMaxOffset = 4;
     for (NSUInteger i = 0; i <= FBSnapshotTestCaseFileNameIncludeOptionMaxOffset; i++) {
         FBSnapshotTestCaseFileNameIncludeOption options = 1 << i;
         id testClass = nil;
         FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
         [controller setFileNameOptions:options];
-        
+
         NSString *referenceImagesDirectory = @"/dev/null/";
         [controller setReferenceImagesDirectory:referenceImagesDirectory];
         NSError *error = nil;
@@ -117,7 +124,7 @@
         NSString *deviceIncludedReferencePath = FBFileNameIncludeNormalizedFileNameFromOption(NSStringFromSelector(selector), options);
         NSString *filePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
         XCTAssertTrue([filePath containsString:deviceIncludedReferencePath]);
-        
+
         NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@.png", referenceImagesDirectory, deviceIncludedReferencePath];
         XCTAssertEqualObjects(expectedFilePath, filePath);
     }
@@ -129,13 +136,13 @@
     XCTAssertNotNil(referenceImage);
     UIImage *testImage = [self _bundledImageNamed:@"square_with_pixel" type:@"png"];
     XCTAssertNotNil(testImage);
-    
+
     FBSnapshotTestCaseFileNameIncludeOption options = (FBSnapshotTestCaseFileNameIncludeOptionDevice | FBSnapshotTestCaseFileNameIncludeOptionOS | FBSnapshotTestCaseFileNameIncludeOptionScreenSize | FBSnapshotTestCaseFileNameIncludeOptionScreenScale);
-    
+
     id testClass = nil;
     FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
     [controller setFileNameOptions:options];
-    
+
     NSString *referenceImagesDirectory = @"/dev/null/";
     [controller setReferenceImagesDirectory:referenceImagesDirectory];
     NSError *error = nil;
@@ -145,7 +152,7 @@
     NSString *allOptionsIncludedReferencePath = FBFileNameIncludeNormalizedFileNameFromOption(NSStringFromSelector(selector), options);
     NSString *filePath = (NSString *)[error.userInfo objectForKey:FBReferenceImageFilePathKey];
     XCTAssertTrue([filePath containsString:allOptionsIncludedReferencePath]);
-    
+
     // Manually constructing expected filePath to make sure it looks correct
     NSString *expectedFilePath = [NSString stringWithFormat:@"%@%@_%@_%@_%.0fx%.0f@%.fx.png",
                                   referenceImagesDirectory,
@@ -193,10 +200,17 @@
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
 {
+    #if BAZEL
+    NSBundle *bundle = [NSBundle bundleForClass:[FBSnapshotControllerTests class]];
+    NSString *path = [bundle pathForResource:name ofType:type];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    return [[UIImage alloc] initWithData:data];
+    #else
     NSURL *url = [[NSURL fileURLWithPath: @__FILE__] URLByDeletingLastPathComponent];
     NSString *path = [[url URLByAppendingPathComponent: [NSString stringWithFormat:@"%@.%@", name, type]] path];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     return [[UIImage alloc] initWithData:data];
+    #endif
 }
 
 @end
