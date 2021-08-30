@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76F8D71C26D5B0F300813F9B /* FBSnapshotTestCase in Frameworks */ = {isa = PBXBuildFile; productRef = 76F8D71B26D5B0F300813F9B /* FBSnapshotTestCase */; };
-		76F8D71D26D5B0F300813F9B /* FBSnapshotTestCase in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 76F8D71B26D5B0F300813F9B /* FBSnapshotTestCase */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		76FFF53726D5A9C60072E261 /* iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FFF53626D5A9C60072E261 /* iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift */; };
 		76FFF54426D5A9C60072E261 /* iOSSnapshotTestCaseSwiftPMDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FFF51B26D5A9C50072E261 /* iOSSnapshotTestCaseSwiftPMDemoApp.swift */; };
 		76FFF54626D5A9C60072E261 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FFF51C26D5A9C50072E261 /* ContentView.swift */; };
 		76FFF54826D5A9C60072E261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FFF51D26D5A9C60072E261 /* Assets.xcassets */; };
+		E7C9A6FD26DC239C001AA250 /* FBSnapshotTestCase in Frameworks */ = {isa = PBXBuildFile; productRef = E7C9A6FC26DC239C001AA250 /* FBSnapshotTestCase */; };
+		E7C9A6FE26DC239C001AA250 /* FBSnapshotTestCase in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E7C9A6FC26DC239C001AA250 /* FBSnapshotTestCase */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				76F8D71D26D5B0F300813F9B /* FBSnapshotTestCase in Embed Frameworks */,
+				E7C9A6FE26DC239C001AA250 /* FBSnapshotTestCase in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +48,7 @@
 		76FFF53226D5A9C60072E261 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FFF53626D5A9C60072E261 /* iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift; sourceTree = "<group>"; };
 		76FFF53826D5A9C60072E261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7C9A6FA26DC2367001AA250 /* ios-snapshot-test-case */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ios-snapshot-test-case"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76F8D71C26D5B0F300813F9B /* FBSnapshotTestCase in Frameworks */,
+				E7C9A6FD26DC239C001AA250 /* FBSnapshotTestCase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +73,12 @@
 		76FFF51526D5A9C50072E261 = {
 			isa = PBXGroup;
 			children = (
+				E7C9A6FA26DC2367001AA250 /* ios-snapshot-test-case */,
 				76FFF51A26D5A9C50072E261 /* Shared */,
 				76FFF52426D5A9C60072E261 /* iOS */,
 				76FFF53526D5A9C60072E261 /* Tests iOS */,
 				76FFF52326D5A9C60072E261 /* Products */,
+				E7C9A6FB26DC239C001AA250 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +118,13 @@
 			path = "Tests iOS";
 			sourceTree = "<group>";
 		};
+		E7C9A6FB26DC239C001AA250 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,7 +161,7 @@
 			);
 			name = "Tests iOS";
 			packageProductDependencies = (
-				76F8D71B26D5B0F300813F9B /* FBSnapshotTestCase */,
+				E7C9A6FC26DC239C001AA250 /* FBSnapshotTestCase */,
 			);
 			productName = "Tests iOS";
 			productReference = 76FFF53226D5A9C60072E261 /* Tests iOS.xctest */;
@@ -185,7 +195,6 @@
 			);
 			mainGroup = 76FFF51526D5A9C50072E261;
 			packageReferences = (
-				76F8D71A26D5B0F300813F9B /* XCRemoteSwiftPackageReference "ios-snapshot-test-case" */,
 			);
 			productRefGroup = 76FFF52326D5A9C60072E261 /* Products */;
 			projectDirPath = "";
@@ -473,21 +482,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		76F8D71A26D5B0F300813F9B /* XCRemoteSwiftPackageReference "ios-snapshot-test-case" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uber/ios-snapshot-test-case";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		76F8D71B26D5B0F300813F9B /* FBSnapshotTestCase */ = {
+		E7C9A6FC26DC239C001AA250 /* FBSnapshotTestCase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 76F8D71A26D5B0F300813F9B /* XCRemoteSwiftPackageReference "ios-snapshot-test-case" */;
 			productName = FBSnapshotTestCase;
 		};
 /* End XCSwiftPackageProductDependency section */
