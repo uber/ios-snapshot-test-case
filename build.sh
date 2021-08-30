@@ -76,7 +76,7 @@ function ci_swiftpm_demo() {
 }
 
 function test_bazel() {
-    bazelisk test //FBSnapshotTestCaseTests:FBSnapshotTestCaseTests
+    bazelisk test //FBSnapshotTestCaseTests:FBSnapshotTestCaseTests --test_output=all
 }
 
 ci_lib "iPhone 8" && ci_demo "iPhone 8" && ci_demo_preprocessor "iPhone 8"
