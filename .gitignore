@@ -20,3 +20,4 @@ Pods
 FBSnapshotTestCaseDemo/FBSnapshotTestCaseDemoTests/FailedSnapshotImages
 iOSSnapshotTestCaseCarthageDemo/Carthage/Checkouts
 iOSSnapshotTestCaseCarthageDemo/Carthage/Build
+bazel-*
