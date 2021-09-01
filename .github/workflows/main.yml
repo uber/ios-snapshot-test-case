@@ -25,6 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install xcbeautify
+        uses: Cyberbeni/install-swift-tool@v2
+        with:
+          url: https://github.com/thii/xcbeautify
+
       # Setup python for Bazel test runner
       - uses: actions/setup-python@v2
         with:

@@ -8,12 +8,12 @@ function ci_lib() {
                -scheme "FBSnapshotTestCase iOS" \
                -destination "platform=iOS Simulator,name=${NAME}" \
                -sdk iphonesimulator \
-               build-for-testing
+               build-for-testing | xcbeautify
     xcodebuild -project FBSnapshotTestCase.xcodeproj \
                -scheme "FBSnapshotTestCase iOS" \
                -destination "platform=iOS Simulator,name=${NAME}" \
                -sdk iphonesimulator \
-               test-without-building
+               test-without-building | xcbeautify
 }
 
 function ci_demo() {
@@ -23,11 +23,11 @@ function ci_demo() {
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCaseDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               build-for-testing
+               build-for-testing | xcbeautify
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCaseDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               test-without-building
+               test-without-building | xcbeautify
     popd
 }
 
@@ -38,11 +38,11 @@ function ci_demo_preprocessor() {
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCasePreprocessorDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               build-for-testing
+               build-for-testing | xcbeautify
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCasePreprocessorDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               test-without-building
+               test-without-building | xcbeautify
     popd
 }
 
@@ -53,11 +53,11 @@ function ci_carthage_demo() {
     xcodebuild -project iOSSnapshotTestCaseCarthageDemo.xcodeproj \
                -scheme iOSSnapshotTestCaseCarthageDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               build-for-testing
+               build-for-testing | xcbeautify
     xcodebuild -project iOSSnapshotTestCaseCarthageDemo.xcodeproj \
                -scheme iOSSnapshotTestCaseCarthageDemo \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               test-without-building
+               test-without-building | xcbeautify
     popd
 }
 
@@ -67,11 +67,11 @@ function ci_swiftpm_demo() {
     xcodebuild -project iOSSnapshotTestCaseSwiftPMDemo.xcodeproj \
                -scheme "iOSSnapshotTestCaseSwiftPMDemo (iOS)" \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               build-for-testing
+               build-for-testing | xcbeautify
     xcodebuild -project iOSSnapshotTestCaseSwiftPMDemo.xcodeproj \
                -scheme "iOSSnapshotTestCaseSwiftPMDemo (iOS)" \
                -destination "platform=iOS Simulator,name=${NAME}" \
-               test-without-building
+               test-without-building | xcbeautify
     popd
 }
 
