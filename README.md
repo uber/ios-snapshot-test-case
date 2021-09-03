@@ -1,8 +1,9 @@
 # iOSSnapshotTestCase (previously [FBSnapshotTestCase](https://github.com/facebookarchive/ios-snapshot-test-case))
 
-[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case)
+[![Build Status](https://github.com/uber/ios-snapshot-test-case/workflows/build/badge.svg?branch=main)](https://github.com/uber/ios-snapshot-test-case/actions)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)
 
 ## What it does
 
