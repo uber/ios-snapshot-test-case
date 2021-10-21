@@ -9,8 +9,10 @@
 
 #if SWIFT_PACKAGE
 #import "UIImage+Snapshot.h"
+#import "UIApplication+KeyWindow.h"
 #else
 #import <FBSnapshotTestCase/UIImage+Snapshot.h>
+#import <FBSnapshotTestCase/UIApplication+KeyWindow.h>
 #endif
 
 @implementation UIImage (Snapshot)
@@ -46,7 +48,7 @@
     UIWindow *window = [view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window;
     BOOL removeFromSuperview = NO;
     if (!window) {
-        window = [[UIApplication sharedApplication] keyWindow];
+        window = [[UIApplication sharedApplication] ub_keyWindow];
     }
 
     if (!view.window && view != window) {

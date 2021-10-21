@@ -48,6 +48,10 @@
 		B76C68291C6BD6D200586E5B /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = B76C68271C6BD68100586E5B /* rect.png */; };
 		B76C682A1C6BD6D500586E5B /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = B76C68271C6BD68100586E5B /* rect.png */; };
 		E5C2CD621B1F399A00669887 /* square_with_pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C2CD611B1F399A00669887 /* square_with_pixel.png */; };
+		E73EAEE326D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */; };
+		E73EAEE426D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */; };
+		E73EAEE526D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */; };
+		E73EAEE626D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */; };
 		F0D698F51B204E120005CAC9 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D698F41B204E120005CAC9 /* SwiftSupport.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +98,8 @@
 		B32447DB1AB78B5E00B1D6FF /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		B76C68271C6BD68100586E5B /* rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect.png; sourceTree = "<group>"; };
 		E5C2CD611B1F399A00669887 /* square_with_pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_with_pixel.png; sourceTree = "<group>"; };
+		E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+KeyWindow.h"; sourceTree = "<group>"; };
+		E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+KeyWindow.m"; sourceTree = "<group>"; };
 		F0D698F41B204E120005CAC9 /* SwiftSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = Support/SwiftSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +146,8 @@
 				133564131B59C3F500A4E4BF /* UIImage+Diff.m */,
 				133564141B59C3F500A4E4BF /* UIImage+Snapshot.h */,
 				133564151B59C3F500A4E4BF /* UIImage+Snapshot.m */,
+				E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */,
+				E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 				827137991C63ABF900354E42 /* FBSnapshotTestCase.h in Headers */,
 				8271379B1C63ABF900354E42 /* FBSnapshotTestController.h in Headers */,
 				827137931C63ABF000354E42 /* UIImage+Snapshot.h in Headers */,
+				E73EAEE426D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */,
 				827137921C63ABF000354E42 /* UIImage+Diff.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +249,7 @@
 				B319882A1AB7849400B0A900 /* FBSnapshotTestController.h in Headers */,
 				133564181B59C3F500A4E4BF /* UIImage+Diff.h in Headers */,
 				133564161B59C3F500A4E4BF /* UIImage+Compare.h in Headers */,
+				E73EAEE326D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */,
 				1335641A1B59C3F500A4E4BF /* UIImage+Snapshot.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +427,7 @@
 			files = (
 				827137961C63ABF400354E42 /* UIImage+Diff.m in Sources */,
 				8271379E1C63ABFD00354E42 /* FBSnapshotTestController.m in Sources */,
+				E73EAEE626D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */,
 				8271379D1C63ABFD00354E42 /* FBSnapshotTestCasePlatform.m in Sources */,
 				8271379C1C63ABFD00354E42 /* FBSnapshotTestCase.m in Sources */,
 				827137951C63ABF400354E42 /* UIImage+Compare.m in Sources */,
@@ -439,6 +450,7 @@
 			files = (
 				133564171B59C3F500A4E4BF /* UIImage+Compare.m in Sources */,
 				B31988291AB7849400B0A900 /* FBSnapshotTestCase.m in Sources */,
+				E73EAEE526D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */,
 				133564191B59C3F500A4E4BF /* UIImage+Diff.m in Sources */,
 				1335641B1B59C3F500A4E4BF /* UIImage+Snapshot.m in Sources */,
 				B319882B1AB7849400B0A900 /* FBSnapshotTestController.m in Sources */,
@@ -618,14 +630,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Werror",
+				);
 			};
 			name = Debug;
 		};
@@ -671,8 +688,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
@@ -680,6 +698,10 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Werror",
+				);
 			};
 			name = Release;
 		};

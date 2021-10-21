@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
     cs.public_header_files = 'FBSnapshotTestCase/Public/FBSnapshotTestCase.h','FBSnapshotTestCase/Public/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/Public/FBSnapshotTestController.h'
-    cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h'
+    cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h','FBSnapshotTestCase/Categories/UIApplication+KeyWindow.h'
   end
   s.subspec 'SwiftSupport' do |cs|
     cs.dependency 'iOSSnapshotTestCase/Core'
