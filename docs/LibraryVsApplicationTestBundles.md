@@ -22,7 +22,7 @@ Unit tests that test parts of a framework or library should be part of a Library
 
 * No need to install anything, which makes running your tests faster and reduces the likelihood of Simulator instability
 * The Test Host application will start an application lifecycle, which is state that can cause instability in your tests
-* Only one host application can run at the same time in a Simulator, so tests with a Test Host cannot parallelize on one simulator. The `xctest` stub process spawned without a Test Hist isn’t a full iOS application, so multiple can run in parallel sharing a single simulator.
+* Only one host application can run at the same time in a Simulator, so tests with a Test Host cannot parallelize on one simulator. The `xctest` stub process spawned without a Test Host isn’t a full iOS application, so multiple can run in parallel sharing a single simulator.
 
 If you are using [Buck](https://buckbuild.com/), removing the `test_host_app` option for `apple_test()` rules will allow Buck and `xctool` to run your test bundles in parallel.
 
