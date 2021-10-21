@@ -4,10 +4,10 @@ load(
 )
 
 objc_library(
-    name = "FBSnapshotTestCaseCore",
-    module_name = "FBSnapshotTestCaseCore",
-    srcs = glob(["FBSnapshotTestCase/*.m", "FBSnapshotTestCase/Categories/*.h", "FBSnapshotTestCase/Categories/*.m"], allow_empty = False),
-    hdrs = glob(["FBSnapshotTestCase/Public/*.h"], allow_empty = False),
+    name = "iOSSnapshotTestCaseCore",
+    module_name = "iOSSnapshotTestCaseCore",
+    srcs = glob(["src/iOSSnapshotTestCaseCore/*.m", "src/iOSSnapshotTestCaseCore/Categories/*.h", "src/iOSSnapshotTestCaseCore/Categories/*.m"], allow_empty = False),
+    hdrs = glob(["src/iOSSnapshotTestCaseCore/Public/*.h"], allow_empty = False),
     defines = [
         "SWIFT_PACKAGE"
     ],
@@ -18,11 +18,11 @@ objc_library(
 )
 
 swift_library(
-    name = "FBSnapshotTestCase",
-    module_name = "FBSnapshotTestCase",
-    srcs = ["FBSnapshotTestCase/Support/SwiftSupport.swift"],
+    name = "iOSSnapshotTestCase",
+    module_name = "iOSSnapshotTestCase",
+    srcs = ["src/iOSSnapshotTestCaseCore/SwiftSupport.swift"],
     deps = [
-        ":FBSnapshotTestCaseCore"
+        ":iOSSnapshotTestCaseCore"
     ],
     visibility = ["//visibility:public"]
 )

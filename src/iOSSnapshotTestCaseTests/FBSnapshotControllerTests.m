@@ -9,7 +9,7 @@
 
 #import <XCTest/XCTest.h>
 #if BAZEL
-@import FBSnapshotTestCaseCore;
+@import iOSSnapshotTestCaseCore;
 @import UIKit;
 @import CoreGraphics;
 @import QuartzCore;

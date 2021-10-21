@@ -11,7 +11,7 @@ import UIKit
 import XCTest
 
 #if SWIFT_PACKAGE
-@_exported import FBSnapshotTestCaseCore
+@_exported import iOSSnapshotTestCaseCore
 #endif
 
 public extension FBSnapshotTestCase {
