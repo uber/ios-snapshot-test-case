@@ -49,7 +49,6 @@
 		76FFF53226D5A9C60072E261 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FFF53626D5A9C60072E261 /* iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSnapshotTestCaseSwiftPMDemoSwiftTests.swift; sourceTree = "<group>"; };
 		76FFF53826D5A9C60072E261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7C9A6FA26DC2367001AA250 /* ios-snapshot-test-case */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ios-snapshot-test-case"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				7623EA1E2722384C006BF966 /* Packages */,
-				E7C9A6FA26DC2367001AA250 /* ios-snapshot-test-case */,
 				76FFF51A26D5A9C50072E261 /* Shared */,
 				76FFF52426D5A9C60072E261 /* iOS */,
 				76FFF53526D5A9C60072E261 /* Tests iOS */,
