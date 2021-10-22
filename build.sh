@@ -18,7 +18,7 @@ function ci_lib() {
 
 function ci_demo() {
     NAME=$1
-    pushd FBSnapshotTestCaseDemo
+    pushd demos/FBSnapshotTestCaseDemo
     pod install
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCaseDemo \
@@ -33,7 +33,7 @@ function ci_demo() {
 
 function ci_demo_preprocessor() {
     NAME=$1
-    pushd FBSnapshotTestCaseDemo
+    pushd demos/FBSnapshotTestCaseDemo
     pod install
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCasePreprocessorDemo \
@@ -48,7 +48,7 @@ function ci_demo_preprocessor() {
 
 function ci_carthage_demo() {
     NAME=$1
-    pushd iOSSnapshotTestCaseCarthageDemo
+    pushd demos/iOSSnapshotTestCaseCarthageDemo
     carthage bootstrap --no-use-binaries --use-xcframeworks # we're using --no-use-binaries because carthage's archive doesn't yet create xcframeworks, and we're using --use-xcframeworks because of Xcode 12
     xcodebuild -project iOSSnapshotTestCaseCarthageDemo.xcodeproj \
                -scheme iOSSnapshotTestCaseCarthageDemo \
@@ -63,7 +63,7 @@ function ci_carthage_demo() {
 
 function ci_swiftpm_demo() {
     NAME=$1
-    pushd iOSSnapshotTestCaseSwiftPMDemo
+    pushd demos/iOSSnapshotTestCaseSwiftPMDemo
     xcodebuild -project iOSSnapshotTestCaseSwiftPMDemo.xcodeproj \
                -scheme "iOSSnapshotTestCaseSwiftPMDemo (iOS)" \
                -destination "platform=iOS Simulator,name=${NAME}" \
@@ -76,7 +76,7 @@ function ci_swiftpm_demo() {
 }
 
 function test_bazel() {
-    bazelisk test //FBSnapshotTestCaseTests:FBSnapshotTestCaseTests --test_output=all
+    bazelisk test //src/iOSSnapshotTestCaseTests:iOSSnapshotTestCaseTests --test_output=all
 }
 
 ci_lib "iPhone 8" && ci_demo "iPhone 8" && ci_demo_preprocessor "iPhone 8"
