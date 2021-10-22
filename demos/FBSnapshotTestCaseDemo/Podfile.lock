@@ -6,15 +6,15 @@ PODS:
     - iOSSnapshotTestCase/Core
 
 DEPENDENCIES:
-  - iOSSnapshotTestCase (from `..`)
+  - iOSSnapshotTestCase (from `../..`)
 
 EXTERNAL SOURCES:
   iOSSnapshotTestCase:
-    :path: ".."
+    :path: "../.."
 
 SPEC CHECKSUMS:
-  iOSSnapshotTestCase: fea60fd99da3b57d7bcd5a20531755c82b76359e
+  iOSSnapshotTestCase: 9af2360fa90f4b1f55cab53c0be6f78dbef7d39b
 
-PODFILE CHECKSUM: fbb7d596ed79771148d8ba7593d4cf7f99855e88
+PODFILE CHECKSUM: 6f2be7d7d46e065f7346db59c3950c6775795f35
 
 COCOAPODS: 1.11.2

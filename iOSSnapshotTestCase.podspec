@@ -24,12 +24,12 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
   s.default_subspecs = 'SwiftSupport'
   s.subspec 'Core' do |cs|
-    cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
-    cs.public_header_files = 'FBSnapshotTestCase/Public/FBSnapshotTestCase.h','FBSnapshotTestCase/Public/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/Public/FBSnapshotTestController.h'
-    cs.private_header_files = 'FBSnapshotTestCase/Categories/UIImage+Compare.h','FBSnapshotTestCase/Categories/UIImage+Diff.h','FBSnapshotTestCase/Categories/UIImage+Snapshot.h','FBSnapshotTestCase/Categories/UIApplication+KeyWindow.h'
+    cs.source_files = 'src/iOSSnapshotTestCaseCore/**/*.{h,m}', 'src/iOSSnapshotTestCaseCore/*.{h,m}'
+    cs.public_header_files = 'src/iOSSnapshotTestCaseCore/Public/FBSnapshotTestCase.h','src/iOSSnapshotTestCaseCore/Public/FBSnapshotTestCasePlatform.h','src/iOSSnapshotTestCaseCore/Public/FBSnapshotTestController.h'
+    cs.private_header_files = 'src/iOSSnapshotTestCaseCore/Categories/UIImage+Compare.h','src/iOSSnapshotTestCaseCore/Categories/UIImage+Diff.h','src/iOSSnapshotTestCaseCore/Categories/UIImage+Snapshot.h','src/iOSSnapshotTestCaseCore/Categories/UIApplication+KeyWindow.h'
   end
   s.subspec 'SwiftSupport' do |cs|
     cs.dependency 'iOSSnapshotTestCase/Core'
-    cs.source_files = 'FBSnapshotTestCase/**/*.swift'
+    cs.source_files = 'src/iOSSnapshotTestCase/SwiftSupport.swift'
   end
 end

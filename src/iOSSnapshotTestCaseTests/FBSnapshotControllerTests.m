@@ -9,7 +9,7 @@
 
 #import <XCTest/XCTest.h>
 #if BAZEL
-@import FBSnapshotTestCaseCore;
+@import iOSSnapshotTestCaseCore;
 @import UIKit;
 @import CoreGraphics;
 @import QuartzCore;
@@ -200,17 +200,10 @@
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
 {
-    #if BAZEL
     NSBundle *bundle = [NSBundle bundleForClass:[FBSnapshotControllerTests class]];
     NSString *path = [bundle pathForResource:name ofType:type];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     return [[UIImage alloc] initWithData:data];
-    #else
-    NSURL *url = [[NSURL fileURLWithPath: @__FILE__] URLByDeletingLastPathComponent];
-    NSString *path = [[url URLByAppendingPathComponent: [NSString stringWithFormat:@"%@.%@", name, type]] path];
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    return [[UIImage alloc] initWithData:data];
-    #endif
 }
 
 @end

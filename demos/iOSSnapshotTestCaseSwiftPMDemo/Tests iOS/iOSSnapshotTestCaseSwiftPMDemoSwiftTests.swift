@@ -7,7 +7,7 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
+import iOSSnapshotTestCase
 
 class iOSSnapshotTestCaseSwiftPMDemoSwiftTests: FBSnapshotTestCase {
 

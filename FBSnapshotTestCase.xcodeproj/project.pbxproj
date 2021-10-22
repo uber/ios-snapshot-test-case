@@ -15,8 +15,8 @@
 		1335641B1B59C3F500A4E4BF /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 133564151B59C3F500A4E4BF /* UIImage+Snapshot.m */; };
 		13CBB39D1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 13CBB39B1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		13CBB39E1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CBB39C1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m */; };
-		42F2B74420C0D7A400ABED24 /* rect_shade.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B74320C0D7A400ABED24 /* rect_shade.png */; };
-		42F2B74520C0D7A400ABED24 /* rect_shade.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B74320C0D7A400ABED24 /* rect_shade.png */; };
+		7623EA18272234D5006BF966 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 7623EA17272234D5006BF966 /* Resources */; };
+		7623EA19272234D5006BF966 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 7623EA17272234D5006BF966 /* Resources */; };
 		827137841C63AB7000354E42 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8271377A1C63AB6F00354E42 /* FBSnapshotTestCase.framework */; };
 		827137911C63ABE900354E42 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 133564101B59C3F500A4E4BF /* UIImage+Compare.h */; };
 		827137921C63ABF000354E42 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 133564121B59C3F500A4E4BF /* UIImage+Diff.h */; };
@@ -30,11 +30,6 @@
 		8271379C1C63ABFD00354E42 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B31988211AB7849400B0A900 /* FBSnapshotTestCase.m */; };
 		8271379D1C63ABFD00354E42 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CBB39C1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m */; };
 		8271379E1C63ABFD00354E42 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31988231AB7849400B0A900 /* FBSnapshotTestController.m */; };
-		8271379F1C63AC0000354E42 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D698F41B204E120005CAC9 /* SwiftSupport.swift */; };
-		827137A01C63AC0700354E42 /* square_with_pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C2CD611B1F399A00669887 /* square_with_pixel.png */; };
-		827137A11C63AC0900354E42 /* square_with_text.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447D91AB78B5E00B1D6FF /* square_with_text.png */; };
-		827137A21C63AC0D00354E42 /* square-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447DA1AB78B5E00B1D6FF /* square-copy.png */; };
-		827137A31C63AC0D00354E42 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447DB1AB78B5E00B1D6FF /* square.png */; };
 		827137A41C63AC0F00354E42 /* FBSnapshotControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B31988301AB784CB00B0A900 /* FBSnapshotControllerTests.m */; };
 		B31987FC1AB782D100B0A900 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31987F01AB782D000B0A900 /* FBSnapshotTestCase.framework */; };
 		B31988281AB7849400B0A900 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = B31988201AB7849400B0A900 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,17 +37,10 @@
 		B319882A1AB7849400B0A900 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = B31988221AB7849400B0A900 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B319882B1AB7849400B0A900 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31988231AB7849400B0A900 /* FBSnapshotTestController.m */; };
 		B31988311AB784CB00B0A900 /* FBSnapshotControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B31988301AB784CB00B0A900 /* FBSnapshotControllerTests.m */; };
-		B32447DC1AB78B5E00B1D6FF /* square_with_text.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447D91AB78B5E00B1D6FF /* square_with_text.png */; };
-		B32447DD1AB78B5E00B1D6FF /* square-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447DA1AB78B5E00B1D6FF /* square-copy.png */; };
-		B32447DE1AB78B5E00B1D6FF /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B32447DB1AB78B5E00B1D6FF /* square.png */; };
-		B76C68291C6BD6D200586E5B /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = B76C68271C6BD68100586E5B /* rect.png */; };
-		B76C682A1C6BD6D500586E5B /* rect.png in Resources */ = {isa = PBXBuildFile; fileRef = B76C68271C6BD68100586E5B /* rect.png */; };
-		E5C2CD621B1F399A00669887 /* square_with_pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C2CD611B1F399A00669887 /* square_with_pixel.png */; };
 		E73EAEE326D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */; };
 		E73EAEE426D49B9000590C3D /* UIApplication+KeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */; };
 		E73EAEE526D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */; };
 		E73EAEE626D49B9000590C3D /* UIApplication+KeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */; };
-		F0D698F51B204E120005CAC9 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D698F41B204E120005CAC9 /* SwiftSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,26 +69,19 @@
 		133564151B59C3F500A4E4BF /* UIImage+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Snapshot.m"; sourceTree = "<group>"; };
 		13CBB39B1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = Public/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		13CBB39C1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
-		42F2B74320C0D7A400ABED24 /* rect_shade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect_shade.png; sourceTree = "<group>"; };
+		7623EA17272234D5006BF966 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		8271377A1C63AB6F00354E42 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827137831C63AB7000354E42 /* FBSnapshotTestCase tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FBSnapshotTestCase tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31987F01AB782D000B0A900 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31987F41AB782D000B0A900 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
+		B31987F41AB782D000B0A900 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FBSnapshotTestCase-Info.plist"; path = "Resources/FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
 		B31987FB1AB782D100B0A900 /* FBSnapshotTestCase iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FBSnapshotTestCase iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31988011AB782D100B0A900 /* FBSnapshotTestCaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCaseTests-Info.plist"; sourceTree = "<group>"; };
 		B31988201AB7849400B0A900 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = Public/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		B31988211AB7849400B0A900 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		B31988221AB7849400B0A900 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = Public/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		B31988231AB7849400B0A900 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotTestController.m; sourceTree = "<group>"; };
 		B31988301AB784CB00B0A900 /* FBSnapshotControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSnapshotControllerTests.m; sourceTree = "<group>"; };
-		B32447D91AB78B5E00B1D6FF /* square_with_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_with_text.png; sourceTree = "<group>"; };
-		B32447DA1AB78B5E00B1D6FF /* square-copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-copy.png"; sourceTree = "<group>"; };
-		B32447DB1AB78B5E00B1D6FF /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
-		B76C68271C6BD68100586E5B /* rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect.png; sourceTree = "<group>"; };
-		E5C2CD611B1F399A00669887 /* square_with_pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_with_pixel.png; sourceTree = "<group>"; };
 		E73EAEE126D49B9000590C3D /* UIApplication+KeyWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+KeyWindow.h"; sourceTree = "<group>"; };
 		E73EAEE226D49B9000590C3D /* UIApplication+KeyWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+KeyWindow.m"; sourceTree = "<group>"; };
-		F0D698F41B204E120005CAC9 /* SwiftSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = Support/SwiftSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,11 +165,10 @@
 				13CBB39C1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m */,
 				B31988221AB7849400B0A900 /* FBSnapshotTestController.h */,
 				B31988231AB7849400B0A900 /* FBSnapshotTestController.m */,
-				F0D698F41B204E120005CAC9 /* SwiftSupport.swift */,
 				B31987F31AB782D000B0A900 /* Supporting Files */,
 			);
 			name = Sources;
-			path = FBSnapshotTestCase;
+			path = src/iOSSnapshotTestCaseCore;
 			sourceTree = "<group>";
 		};
 		B31987F31AB782D000B0A900 /* Supporting Files */ = {
@@ -202,25 +182,11 @@
 		B31987FF1AB782D100B0A900 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				42F2B74320C0D7A400ABED24 /* rect_shade.png */,
-				B76C68271C6BD68100586E5B /* rect.png */,
-				E5C2CD611B1F399A00669887 /* square_with_pixel.png */,
-				B32447D91AB78B5E00B1D6FF /* square_with_text.png */,
-				B32447DA1AB78B5E00B1D6FF /* square-copy.png */,
-				B32447DB1AB78B5E00B1D6FF /* square.png */,
 				B31988301AB784CB00B0A900 /* FBSnapshotControllerTests.m */,
-				B31988001AB782D100B0A900 /* Supporting Files */,
+				7623EA17272234D5006BF966 /* Resources */,
 			);
 			name = Tests;
-			path = FBSnapshotTestCaseTests;
-			sourceTree = "<group>";
-		};
-		B31988001AB782D100B0A900 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B31988011AB782D100B0A900 /* FBSnapshotTestCaseTests-Info.plist */,
-			);
-			name = "Supporting Files";
+			path = src/iOSSnapshotTestCaseTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,12 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B76C682A1C6BD6D500586E5B /* rect.png in Resources */,
-				827137A01C63AC0700354E42 /* square_with_pixel.png in Resources */,
-				827137A21C63AC0D00354E42 /* square-copy.png in Resources */,
-				827137A31C63AC0D00354E42 /* square.png in Resources */,
-				827137A11C63AC0900354E42 /* square_with_text.png in Resources */,
-				42F2B74520C0D7A400ABED24 /* rect_shade.png in Resources */,
+				7623EA19272234D5006BF966 /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,12 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B76C68291C6BD6D200586E5B /* rect.png in Resources */,
-				B32447DC1AB78B5E00B1D6FF /* square_with_text.png in Resources */,
-				E5C2CD621B1F399A00669887 /* square_with_pixel.png in Resources */,
-				B32447DE1AB78B5E00B1D6FF /* square.png in Resources */,
-				B32447DD1AB78B5E00B1D6FF /* square-copy.png in Resources */,
-				42F2B74420C0D7A400ABED24 /* rect_shade.png in Resources */,
+				7623EA18272234D5006BF966 /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +388,6 @@
 				8271379C1C63ABFD00354E42 /* FBSnapshotTestCase.m in Sources */,
 				827137951C63ABF400354E42 /* UIImage+Compare.m in Sources */,
 				827137971C63ABF400354E42 /* UIImage+Snapshot.m in Sources */,
-				8271379F1C63AC0000354E42 /* SwiftSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +409,6 @@
 				133564191B59C3F500A4E4BF /* UIImage+Diff.m in Sources */,
 				1335641B1B59C3F500A4E4BF /* UIImage+Snapshot.m in Sources */,
 				B319882B1AB7849400B0A900 /* FBSnapshotTestController.m in Sources */,
-				F0D698F51B204E120005CAC9 /* SwiftSupport.swift in Sources */,
 				13CBB39E1AEE013900B6ADBA /* FBSnapshotTestCasePlatform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,7 +452,7 @@
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/iOSSnapshotTestCaseCore/Resources/FBSnapshotTestCase-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -532,7 +486,7 @@
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/iOSSnapshotTestCaseCore/Resources/FBSnapshotTestCase-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -555,7 +509,7 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FBSnapshotTestCaseTests/FBSnapshotTestCaseTests-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseTests/Resources/FBSnapshotTestCaseTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.FBSnapshotTestCase-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -571,7 +525,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FBSnapshotTestCaseTests/FBSnapshotTestCaseTests-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseTests/Resources/FBSnapshotTestCaseTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.FBSnapshotTestCase-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -719,7 +673,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseCore/Resources/FBSnapshotTestCase-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -749,7 +703,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseCore/Resources/FBSnapshotTestCase-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -776,7 +730,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FBSnapshotTestCaseTests/FBSnapshotTestCaseTests-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseTests/Resources/FBSnapshotTestCaseTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -790,7 +744,7 @@
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
-				INFOPLIST_FILE = "FBSnapshotTestCaseTests/FBSnapshotTestCaseTests-Info.plist";
+				INFOPLIST_FILE = "src/iOSSnapshotTestCaseTests/Resources/FBSnapshotTestCaseTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
