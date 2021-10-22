@@ -49,7 +49,7 @@ If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, 
 Add the following line to your Cartfile:
 
 ```carthage
-github "uber/ios-snapshot-test-case" ~> 6.1.0
+github "uber/ios-snapshot-test-case" ~> 8.0.0
 ```
 
 #### Swift Package Manager
@@ -58,7 +58,7 @@ Add the following line to your `Package.swift`:
 
 ```spm
 dependencies: [
-  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", from: "7.0.0"),
+  .package(url: "https://github.com/uber/ios-snapshot-test-case.git", from: "8.0.0"),
 ],
 ```
 
