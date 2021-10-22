@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 8.0.0
+
+- We fixed all the file path issues and renamed the targets from FBSnapshotTestCase to iOSSnapshotTestCase. There were a lot of confusing old legacy decisions lingering in the repo and it didn't make sense to keep using confusing naming or directory structures. If you use SPM you will have to use 'import iOSSnapshotTestCase'. Cocoapods and Carthage will continue to use 'import FBSnapshotTestCase'.
+- Xcode 13 and iOS 15 support.
+- Bazel support.
+
 ## 7.0.0
 
 - Support for Swift Package Manager.
