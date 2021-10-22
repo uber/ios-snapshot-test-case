@@ -10,7 +10,7 @@ objc_library(
     defines = [
         "BAZEL"
     ],
-    data = glob(["*.png"], allow_empty = False),
+    data = glob(["Resources/*.png"], allow_empty = False),
     sdk_frameworks = [
         "CoreGraphics",
         "QuartzCore"
