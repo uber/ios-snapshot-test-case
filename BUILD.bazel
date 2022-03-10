@@ -20,7 +20,7 @@ objc_library(
 swift_library(
     name = "iOSSnapshotTestCase",
     module_name = "iOSSnapshotTestCase",
-    srcs = ["src/iOSSnapshotTestCaseCore/SwiftSupport.swift"],
+    srcs = ["src/iOSSnapshotTestCase/SwiftSupport.swift"],
     deps = [
         ":iOSSnapshotTestCaseCore"
     ],
