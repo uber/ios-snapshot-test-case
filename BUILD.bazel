@@ -14,6 +14,7 @@ objc_library(
     copts = [
         "-Wno-deprecated-declarations"
     ],
+    sdk_frameworks = ["XCTest"],
     visibility = ["//visibility:public"]
 )
 
