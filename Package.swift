@@ -7,7 +7,6 @@ let package = Package(
     products: [
         .library(
             name: "iOSSnapshotTestCase",
-            type: .dynamic,
             targets: [
                 "iOSSnapshotTestCase",
                 "iOSSnapshotTestCaseCore"
