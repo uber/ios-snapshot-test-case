@@ -196,6 +196,37 @@
     XCTAssertNil(error);
 }
 
+- (void)testCompareReferenceImageToGrayscaleCrushedImageShouldBeEqual
+{
+    UIImage *referenceImage = [self _bundledImageNamed:@"rect" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+
+    // rect_crushed was made by pngcrush version 1.8.13 with default options as shown below. Reduced file size by 67%
+    // FBSnapshotTestCaseTests$ pngcrush rect.png rect_crushed.png
+    UIImage *testImage = [self _bundledImageNamed:@"rect_crushed" type:@"png"];
+    XCTAssertNotNil(testImage);
+
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+    NSError *error = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    XCTAssertNil(error);
+}
+
+- (void)testCompareGrayscaleCrushedImageToReferenceImageShouldBeEqual
+{
+    UIImage *referenceImage = [self _bundledImageNamed:@"rect_crushed" type:@"png"];
+    XCTAssertNotNil(referenceImage);
+    UIImage *testImage = [self _bundledImageNamed:@"rect" type:@"png"];
+    XCTAssertNotNil(testImage);
+
+    id testClass = nil;
+    FBSnapshotTestController *controller = [[FBSnapshotTestController alloc] initWithTestClass:testClass];
+    NSError *error = nil;
+    XCTAssertTrue([controller compareReferenceImage:referenceImage toImage:testImage overallTolerance:0 error:&error]);
+    XCTAssertNil(error);
+}
+
 #pragma mark - Private helper methods
 
 - (UIImage *)_bundledImageNamed:(NSString *)name type:(NSString *)type
