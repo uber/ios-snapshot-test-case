@@ -25,5 +25,6 @@ swift_library(
     deps = [
         ":iOSSnapshotTestCaseCore"
     ],
+    testonly = True,
     visibility = ["//visibility:public"]
 )
