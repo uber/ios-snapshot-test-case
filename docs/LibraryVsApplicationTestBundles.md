@@ -10,7 +10,7 @@ Library Test Bundles were once called _Logic_ Test Bundles in Apple's nomenclatu
 
 ### Application tests
 
-Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a Test Host (an application to run your tests in) and at test run time, a simulator too. The attached Test Host provides access to some iOS APIs that only work inside Application test bundles. In our experience, we've seen these:
+Unit tests that test parts of an application (such as UIViewControllers, UIWindows, UIViews) should typically be part of an Application test bundle. An Application test bundle requires a 'Test Host' (an application to run your tests in) and at test run time, a simulator too. The attached Test Host provides access to some iOS APIs that only work inside Application test bundles. In our experience, we've seen these:
 
 * `-[UIControl sendActionsForControlEvents:]` — This API is commonly used to trigger actions at runtime and sometimes you might want to use it inside a test to trigger a particular code path which is ordinarily run when a user performs an action. While it does not work inside a Library test bundle, we've written our own version for unit tests (see 'Code Snippets' below) that works well for this need.
 * `UIAppearance` — Most `UIAppearance` APIs break when there is no test host present.
