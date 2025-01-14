@@ -22,5 +22,5 @@ ios_unit_test(
     deps = [
         ":iOSSnapshotTestCaseTestsLib"
     ],
-    minimum_os_version = "10.0",
+    minimum_os_version = "11.0",
 )
