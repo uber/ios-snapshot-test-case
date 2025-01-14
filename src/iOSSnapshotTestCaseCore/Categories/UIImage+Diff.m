@@ -41,16 +41,25 @@
     if (!image) {
         return nil;
     }
-    CGSize imageSize = CGSizeMake(MAX(self.size.width, image.size.width), MAX(self.size.height, image.size.height));
+
+    CGFloat scaleFactor = self.scale / (MAX(self.scale, image.scale));
+    CGAffineTransform scaleTransform = CGAffineTransformScale(CGAffineTransformIdentity, scaleFactor, scaleFactor);
+    CGSize scaledSize = CGSizeApplyAffineTransform(self.size, scaleTransform);
+
+    CGFloat imageScaleFactor = image.scale / (MAX(self.scale, image.scale));
+    CGAffineTransform imageScaleTransform = CGAffineTransformScale(CGAffineTransformIdentity, imageScaleFactor, imageScaleFactor);
+    CGSize imageScaledSize = CGSizeApplyAffineTransform(image.size, imageScaleTransform);
+
+    CGSize imageSize = CGSizeMake(MAX(scaledSize.width, imageScaledSize.width), MAX(scaledSize.height, imageScaledSize.height));
     UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    [self drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
     CGContextSetAlpha(context, 0.5);
     CGContextBeginTransparencyLayer(context, NULL);
-    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [image drawInRect:CGRectMake(0, 0, imageScaledSize.width, imageScaledSize.height)];
     CGContextSetBlendMode(context, kCGBlendModeDifference);
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextFillRect(context, CGRectMake(0, 0, self.size.width, self.size.height));
+    CGContextFillRect(context, CGRectMake(0, 0, scaledSize.width, scaledSize.height));
     CGContextEndTransparencyLayer(context);
     UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
